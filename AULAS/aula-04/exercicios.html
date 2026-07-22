@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios — Aula 04: Flexbox</title>
+    <link rel="stylesheet" href="../assets/exercicios.css">
+</head>
+<body>
+    <div class="exercise-header">
+        <h1>📝 Lista de Exercícios — Aula 04</h1>
+        <p class="subtitle">CSS Layout com Flexbox</p>
+        <div class="meta">
+            <span>📅 04/08/2026</span>
+            <span>⏱ 45 minutos</span>
+            <span>📂 3 exercícios</span>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="card-header">
+            <div class="number">1</div>
+            <span class="card-title">Barra de Navegação Horizontal</span>
+            <span class="difficulty easy">Básico</span>
+        </div>
+        <div class="description">
+            <p>Crie uma <strong>barra de navegação horizontal</strong> usando Flexbox, com 4 links: <strong>Home, Projetos, Sobre, Contato</strong>.</p>
+            <ul>
+                <li>Use uma <code>&lt;nav&gt;</code> com <code>display: flex</code></li>
+                <li>Os links devem ficar lado a lado, com espaçamento uniforme</li>
+                <li>Estilize com: cor de fundo escura, texto branco, padding, e efeito <code>:hover</code> nos links</li>
+            </ul>
+            <div class="hints">
+                <strong>💡 Dica:</strong> Use <code>justify-content: space-evenly</code> para distribuir os links igualmente. Para remover o sublinhado dos links, use <code>text-decoration: none</code>.
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="card-header">
+            <div class="number">2</div>
+            <span class="card-title">3 Colunas de Serviços IoT</span>
+            <span class="difficulty medium">Intermediário</span>
+        </div>
+        <div class="description">
+            <p>Crie um layout de <strong>3 colunas</strong> usando Flexbox, onde cada coluna representa um "serviço IoT":</p>
+            <ul>
+                <li>🔍 <strong>Monitoramento</strong> — ícone (emoji), título e descrição</li>
+                <li>⚙️ <strong>Automação</strong> — ícone, título e descrição</li>
+                <li>🔒 <strong>Segurança</strong> — ícone, título e descrição</li>
+            </ul>
+            <p>As 3 colunas devem ter o <strong>mesmo tamanho</strong>, com bordas, padding e um espaçamento entre elas usando <code>gap</code>.</p>
+            <div class="hints">
+                <strong>💡 Dica:</strong> Use <code>flex: 1</code> nos filhos para que todos ocupem o mesmo espaço.
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider">⭐ Desafio</div>
+
+    <div class="exercise-card">
+        <div class="card-header">
+            <div class="number">3</div>
+            <span class="card-title">Layout de Página Completo</span>
+            <span class="difficulty challenge">Desafio</span>
+        </div>
+        <div class="description">
+            <p>Crie um <strong>layout de página completo</strong> com:</p>
+            <ul>
+                <li><strong>Header</strong> — com barra de navegação horizontal (Flexbox)</li>
+                <li><strong>Main</strong> — com 3 cards lado a lado (Flexbox)</li>
+                <li><strong>Footer</strong> — com informações de contato centralizadas</li>
+            </ul>
+            <p>Tudo deve ser estilizado com CSS externo. A página deve usar <strong>Flexbox em pelo menos 2 contextos diferentes</strong> (navbar + cards).</p>
+        </div>
+    </div>
+
+    <div class="exercise-footer">
+        <p>UC14 — Internet das Coisas · Senac SP · 2026</p>
+    </div>
+</body>
+</html>

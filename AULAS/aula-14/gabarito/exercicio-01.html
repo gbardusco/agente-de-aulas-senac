@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gabarito — Ex 1 (SWAPI)</title>
+</head>
+<body>
+    <h1>Personagem de Star Wars</h1>
+    <button onclick="buscarPersonagem()">Buscar Luke Skywalker</button>
+    
+    <div id="info" style="margin-top: 20px;">
+        <p><strong>Nome:</strong> <span id="nome">...</span></p>
+        <p><strong>Cor do Cabelo:</strong> <span id="cabelo">...</span></p>
+    </div>
+
+    <script>
+        function buscarPersonagem() {
+            fetch('https://swapi.dev/api/people/1/')
+                .then(resposta => resposta.json())
+                .then(dados => {
+                    document.getElementById('nome').textContent = dados.name;
+                    document.getElementById('cabelo').textContent = dados.hair_color;
+                })
+                .catch(erro => alert("Falha na comunicação com a API: " + erro));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios — Aula 13</title>
+    <link rel="stylesheet" href="../assets/exercicios.css">
+</head>
+<body>
+    <div class="exercise-header">
+        <h1>📝 Lista de Exercícios — Aula 13</h1>
+        <p class="subtitle">Alertas Visuais e Lógica de Automação</p>
+        <div class="meta"><span>📅 25/08/2026</span><span>⏱ 45 min</span><span>📂 3 exercícios</span></div>
+    </div>
+    <div class="exercise-card">
+        <div class="card-header"><div class="number">1</div><span class="card-title">Alerta Visual com Animação</span><span class="difficulty easy">Básico</span></div>
+        <div class="description">
+            <p>No seu Dashboard, implemente: se a temperatura ultrapassar 35°C, o card deve <strong>piscar com animação CSS</strong> (<code>@keyframes</code>) e exibir o emoji <strong>⚠️</strong> ao lado do valor.</p>
+            <div class="hints"><strong>💡 Dica:</strong> Crie uma classe CSS <code>.alerta</code> com <code>animation: piscar 1s infinite</code> e adicione/remova via JS com <code>classList.add()</code> e <code>classList.remove()</code>.</div>
+        </div>
+    </div>
+    <div class="exercise-card">
+        <div class="card-header"><div class="number">2</div><span class="card-title">Automação Cruzada</span><span class="difficulty medium">Intermediário</span></div>
+        <div class="description"><p>Crie uma regra de automação: se a luminosidade cair abaixo de 200 lux, o card de "Iluminação" deve mudar automaticamente de <strong>"Desligada"</strong> para <strong>"Ligada"</strong> (mudando cor e texto).</p></div>
+    </div>
+    <div class="section-divider">⭐ Desafio</div>
+    <div class="exercise-card">
+        <div class="card-header"><div class="number">3</div><span class="card-title">Log de Eventos</span><span class="difficulty challenge">Desafio</span></div>
+        <div class="description">
+            <p>Adicione um <strong>"log de eventos"</strong> no rodapé da dashboard: cada vez que um alerta disparar ou uma automação agir, adicione uma linha de texto com o <strong>horário</strong> e a <strong>descrição</strong> do evento.</p>
+            <div class="hints"><strong>💡 Dica:</strong> Use <code>document.createElement("p")</code> para criar novos parágrafos e <code>container.prepend(elemento)</code> para adicioná-los no topo da lista.</div>
+        </div>
+    </div>
+    <div class="exercise-footer"><p>UC14 — Internet das Coisas · Senac SP · 2026</p></div>
+</body>
+</html>

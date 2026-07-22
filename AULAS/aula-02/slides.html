@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02 — Listas, Links, Imagens e Semântica HTML</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 02</span>
+
+    <!-- SLIDE 1: Título -->
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>Listas, Links, Imagens<br>e Semântica HTML</h1>
+            <p class="subtitle">Aula 02 · 15 de julho de 2026</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: Revisão -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔄 Revisão Rápida — Aula 01</h2>
+            <ul>
+                <li>HTML é uma linguagem de <span class="highlight">marcação</span></li>
+                <li>Estrutura: <code>&lt;!DOCTYPE&gt;</code> → <code>&lt;html&gt;</code> → <code>&lt;head&gt;</code> + <code>&lt;body&gt;</code></li>
+                <li>Tags de título: <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code></li>
+                <li>Parágrafos: <code>&lt;p&gt;</code> | Quebra: <code>&lt;br&gt;</code> | Linha: <code>&lt;hr&gt;</code></li>
+            </ul>
+            <div class="tip-box">
+                <p>💡 <strong>Hoje:</strong> vamos deixar nossas páginas mais ricas com listas, links, imagens e estrutura semântica!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: Listas -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 1</p>
+            <h2>Listas HTML</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: Lista não ordenada -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📋 Lista Não Ordenada — <code>&lt;ul&gt;</code></h2>
+            <div class="two-columns align-center">
+                <div>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Sensor de temperatura<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Sensor de umidade<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Sensor de luminosidade<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+                </div>
+                <div>
+                    <div class="preview-box">
+                        <div class="preview-label">Resultado no navegador</div>
+                        <ul style="color:#333; padding-left: 20px;">
+                            <li>Sensor de temperatura</li>
+                            <li>Sensor de umidade</li>
+                            <li>Sensor de luminosidade</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p><code>&lt;ul&gt;</code> = <span class="highlight">U</span>nordered <span class="highlight">L</span>ist (lista com bolinhas)</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: Lista ordenada -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔢 Lista Ordenada — <code>&lt;ol&gt;</code></h2>
+            <div class="two-columns align-center">
+                <div>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;ol&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Coleta de dados (sensor)<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Transmissão (Wi-Fi/LoRa)<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Processamento (nuvem)<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Visualização (dashboard)<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></code></pre>
+                </div>
+                <div>
+                    <div class="preview-box">
+                        <div class="preview-label">Resultado no navegador</div>
+                        <ol style="color:#333; padding-left: 20px;">
+                            <li>Coleta de dados (sensor)</li>
+                            <li>Transmissão (Wi-Fi/LoRa)</li>
+                            <li>Processamento (nuvem)</li>
+                            <li>Visualização (dashboard)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <p><code>&lt;ol&gt;</code> = <span class="highlight">O</span>rdered <span class="highlight">L</span>ist (lista numerada). Cada item é um <code>&lt;li&gt;</code> (<span class="highlight">L</span>ist <span class="highlight">I</span>tem).</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: Links -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 2</p>
+            <h2>Links</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: Tag <a> -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔗 Links — <code>&lt;a&gt;</code></h2>
+            <pre data-lang="HTML"><code><span class="comment">&lt;!-- Link para um site externo --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://www.arduino.cc"</span><span class="tag">&gt;</span>Site do Arduino<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link para outra página local --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"sobre.html"</span><span class="tag">&gt;</span>Ir para a página Sobre<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Link que abre em nova aba --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://www.espressif.com"</span> <span class="attr">target</span>=<span class="value">"_blank"</span><span class="tag">&gt;</span>ESP32<span class="tag">&lt;/a&gt;</span></code></pre>
+            <div class="two-columns">
+                <div class="info-box">
+                    <p><code>href</code> = destino do link<br><code>target="_blank"</code> = abre em nova aba</p>
+                </div>
+                <div class="warning-box">
+                    <p>⚠️ <code>&lt;a&gt;</code> vem de <strong>anchor</strong> (âncora). O texto entre as tags é o que aparece clicável na tela.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: Imagens -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 3</p>
+            <h2>Imagens</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: Tag <img> -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🖼️ Imagens — <code>&lt;img&gt;</code></h2>
+            <pre data-lang="HTML"><code><span class="comment">&lt;!-- Imagem local (na mesma pasta) --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"sensor-dht11.jpg"</span> <span class="attr">alt</span>=<span class="value">"Foto do sensor DHT11"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Imagem em subpasta --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"imagens/arduino.png"</span> <span class="attr">alt</span>=<span class="value">"Placa Arduino Uno"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Imagem com tamanho definido --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"esp32.jpg"</span> <span class="attr">alt</span>=<span class="value">"ESP32"</span> <span class="attr">width</span>=<span class="value">"300"</span><span class="tag">&gt;</span></code></pre>
+            <div class="two-columns">
+                <div class="info-box">
+                    <p><code>src</code> = caminho da imagem<br><code>alt</code> = texto alternativo (acessibilidade)<br><code>width</code> = largura em pixels</p>
+                </div>
+                <div class="tip-box">
+                    <p>💡 A tag <code>&lt;img&gt;</code> é <strong>auto-fechada</strong> — não tem <code>&lt;/img&gt;</code>!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 10: Tabelas -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 4</p>
+            <h2>Tabelas HTML</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 11: Estrutura de Tabela -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📊 Tabelas — <code>&lt;table&gt;</code></h2>
+            <div class="two-columns align-center">
+                <div>
+                    <pre data-lang="HTML" style="font-size: 14px;"><code><span class="tag">&lt;table&gt;</span>
+    <span class="tag">&lt;thead&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Sensor<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Preço<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/thead&gt;</span>
+    <span class="tag">&lt;tbody&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td&gt;</span>DHT11<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>R$ 12<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/tbody&gt;</span>
+<span class="tag">&lt;/table&gt;</span></code></pre>
+                </div>
+                <div>
+                    <div class="preview-box">
+                        <div class="preview-label">Resultado no navegador</div>
+                        <table style="color:#333; border-collapse: collapse; width: 100%;">
+                            <thead>
+                                <tr style="background: #e0e7ff;">
+                                    <th style="border:1px solid #ccc; padding: 10px;">Sensor</th>
+                                    <th style="border:1px solid #ccc; padding: 10px;">Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:1px solid #ccc; padding: 10px;">DHT11</td>
+                                    <td style="border:1px solid #ccc; padding: 10px;">R$ 12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tip-box" style="margin-top: 20px;">
+                        <p>💡 <code>&lt;th&gt;</code> = cabeçalho (negrito)<br><code>&lt;td&gt;</code> = dado (célula)<br><code>&lt;tr&gt;</code> = linha</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 12: Semântica -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 5</p>
+            <h2>HTML Semântico</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 11: Tags semânticas -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🏗️ Tags Semânticas</h2>
+            <p>Dão <span class="highlight">significado</span> à estrutura da página — o navegador e os buscadores entendem o que cada parte <em>é</em>.</p>
+            <div class="two-columns">
+                <div>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Meu Site IoT<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;section&gt;</span>
+        <span class="tag">&lt;h2&gt;</span>Sensores<span class="tag">&lt;/h2&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Conteúdo...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span>© 2026<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></code></pre>
+                </div>
+                <div>
+                    <table>
+                        <thead><tr><th>Tag</th><th>Representa</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>&lt;header&gt;</code></td><td>Cabeçalho da página</td></tr>
+                            <tr><td><code>&lt;main&gt;</code></td><td>Conteúdo principal</td></tr>
+                            <tr><td><code>&lt;section&gt;</code></td><td>Seção temática</td></tr>
+                            <tr><td><code>&lt;footer&gt;</code></td><td>Rodapé da página</td></tr>
+                            <tr><td><code>&lt;nav&gt;</code></td><td>Navegação</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 12: Comparação -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>❌ vs ✅ — Estrutura Semântica</h2>
+            <div class="comparison">
+                <div class="before">
+                    <div class="label">❌ Sem semântica</div>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;div&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Título<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Conteúdo<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Rodapé<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+                </div>
+                <div class="after">
+                    <div class="label">✅ Com semântica</div>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Título<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Conteúdo<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Rodapé<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 13: Live Coding -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Mão na Massa</p>
+            <h2>🖥️ Live Coding</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 14: Resumo -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>✅ O que aprendemos hoje</h2>
+            <ul>
+                <li><code>&lt;ul&gt;</code> e <code>&lt;ol&gt;</code> criam listas (cada item é um <code>&lt;li&gt;</code>)</li>
+                <li><code>&lt;a href="..."&gt;</code> cria links para outras páginas</li>
+                <li><code>&lt;img src="..." alt="..."&gt;</code> insere imagens</li>
+                <li><code>&lt;table&gt;</code> organiza dados em linhas e colunas (<code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;td&gt;</code>)</li>
+                <li>Tags semânticas (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>) dão significado à estrutura</li>
+            </ul>
+            <div class="info-box">
+                <p>📅 <strong>Próxima aula:</strong> Introdução ao CSS — dando vida visual às páginas!</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="slide-counter">1 / 16</div>
+    <div class="nav-arrows">
+        <button class="nav-prev">←</button>
+        <button class="nav-next">→</button>
+    </div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

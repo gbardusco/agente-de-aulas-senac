@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstração — Formulário de Cadastro de Dispositivo IoT</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>📡 Cadastro de Dispositivo IoT</h1>
+        <p class="subtitle">Preencha os dados do sensor ou atuador</p>
+
+        <form>
+            <div class="form-group">
+                <label for="nome">Nome do Dispositivo:</label>
+                <input type="text" id="nome" placeholder="Ex: Sensor de Temperatura - Sala 1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" required>
+                    <option value="">Selecione o tipo</option>
+                    <option value="sensor-temp">Sensor de Temperatura</option>
+                    <option value="sensor-umid">Sensor de Umidade</option>
+                    <option value="sensor-luz">Sensor de Luminosidade</option>
+                    <option value="sensor-dist">Sensor de Distância</option>
+                    <option value="atuador-led">Atuador - LED</option>
+                    <option value="atuador-motor">Atuador - Motor</option>
+                    <option value="atuador-rele">Atuador - Relé</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="min">Leitura Mínima:</label>
+                    <input type="number" id="min" placeholder="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="max">Leitura Máxima:</label>
+                    <input type="number" id="max" placeholder="100" value="100">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="intervalo">Intervalo de Coleta: <span id="intervalo-valor">5s</span></label>
+                <input type="range" id="intervalo" min="1" max="60" value="5">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail para Alertas:</label>
+                <input type="email" id="email" placeholder="seu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>Alertas:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" checked> Alerta por e-mail</label>
+                    <label><input type="checkbox"> Alerta visual no dashboard</label>
+                    <label><input type="checkbox"> Alerta sonoro</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="obs">Observações:</label>
+                <textarea id="obs" rows="3" placeholder="Informações adicionais sobre o dispositivo..."></textarea>
+            </div>
+
+            <button type="submit">💾 Cadastrar Dispositivo</button>
+        </form>
+    </div>
+</body>
+</html>

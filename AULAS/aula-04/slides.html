@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04 — Revisão + Flexbox</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 04</span>
+
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>Revisão Ativa +<br>CSS Flexbox</h1>
+            <p class="subtitle">Aula 04 · 04 de agosto de 2026 · Pós-Recesso!</p>
+        </div>
+    </section>
+
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 1</p>
+            <h2>⚡ Quiz Relâmpago</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>Quiz 1 — O que este código mostra?</h2>
+            <pre data-lang="HTML"><code><span class="tag">&lt;h1</span> <span class="attr">style</span>=<span class="value">"color: red;"</span><span class="tag">&gt;</span>Olá<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">class</span>=<span class="value">"destaque"</span><span class="tag">&gt;</span>Mundo<span class="tag">&lt;/p&gt;</span></code></pre>
+            <div class="info-box">
+                <p>🤔 Antes de rodar no navegador: qual cor terá o <code>&lt;h1&gt;</code>? E o <code>&lt;p&gt;</code> sem CSS externo?</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>Quiz 2 — Qual a diferença?</h2>
+            <div class="comparison">
+                <div class="before">
+                    <div class="label">Código A</div>
+                    <pre data-lang="CSS"><code><span class="selector">.card</span> {
+    <span class="property">margin</span>: <span class="value">20px</span>;
+    <span class="property">padding</span>: <span class="value">10px</span>;
+}</code></pre>
+                </div>
+                <div class="after">
+                    <div class="label">Código B</div>
+                    <pre data-lang="CSS"><code><span class="selector">.card</span> {
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    <span class="property">margin</span>: <span class="value">10px</span>;
+}</code></pre>
+                </div>
+            </div>
+            <div class="info-box">
+                <p>🤔 Qual terá mais espaço <strong>dentro</strong> do card? E mais espaço <strong>fora</strong>?</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 2</p>
+            <h2>Flexbox</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📐 O Problema: Alinhar Coisas Lado a Lado</h2>
+            <p>Por padrão, <code>&lt;div&gt;</code>s ficam <strong>empilhadas verticalmente</strong>. Para colocá-las lado a lado, precisamos do <span class="highlight">Flexbox</span>.</p>
+            <div class="comparison">
+                <div class="before">
+                    <div class="label">❌ Sem Flexbox</div>
+                    <div style="text-align:center">
+                        <div style="background: var(--accent-cyan); opacity:0.3; margin:5px auto; padding:15px; width:80%; border-radius:6px;">Card 1</div>
+                        <div style="background: var(--accent-purple); opacity:0.3; margin:5px auto; padding:15px; width:80%; border-radius:6px;">Card 2</div>
+                        <div style="background: var(--accent-green); opacity:0.3; margin:5px auto; padding:15px; width:80%; border-radius:6px;">Card 3</div>
+                    </div>
+                </div>
+                <div class="after">
+                    <div class="label">✅ Com Flexbox</div>
+                    <div style="display:flex; gap:10px; justify-content:center;">
+                        <div style="background: var(--accent-cyan); opacity:0.3; padding:15px 25px; border-radius:6px; flex:1;">Card 1</div>
+                        <div style="background: var(--accent-purple); opacity:0.3; padding:15px 25px; border-radius:6px; flex:1;">Card 2</div>
+                        <div style="background: var(--accent-green); opacity:0.3; padding:15px 25px; border-radius:6px; flex:1;">Card 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔑 <code>display: flex</code> — O Básico</h2>
+            <pre data-lang="CSS"><code><span class="selector">.container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;  <span class="comment">/* Ativa o Flexbox! */</span>
+}</code></pre>
+            <pre data-lang="HTML"><code><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"container"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div&gt;</span>Card 1<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div&gt;</span>Card 2<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div&gt;</span>Card 3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+            <div class="tip-box">
+                <p>💡 <strong>Regra de ouro:</strong> o Flexbox é aplicado no <strong>pai</strong> (container) e afeta os <strong>filhos</strong> diretos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>↔️ <code>justify-content</code> — Eixo Horizontal</h2>
+            <table>
+                <thead><tr><th>Valor</th><th>Efeito</th></tr></thead>
+                <tbody>
+                    <tr><td><code>flex-start</code></td><td>Itens no início (padrão)</td></tr>
+                    <tr><td><code>flex-end</code></td><td>Itens no final</td></tr>
+                    <tr><td><code>center</code></td><td>Itens centralizados</td></tr>
+                    <tr><td><code>space-between</code></td><td>Espaço igual entre itens</td></tr>
+                    <tr><td><code>space-around</code></td><td>Espaço ao redor de cada item</td></tr>
+                    <tr><td><code>space-evenly</code></td><td>Espaço igual em todos os lados</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>↕️ <code>align-items</code> — Eixo Vertical</h2>
+            <table>
+                <thead><tr><th>Valor</th><th>Efeito</th></tr></thead>
+                <tbody>
+                    <tr><td><code>stretch</code></td><td>Estica para preencher (padrão)</td></tr>
+                    <tr><td><code>flex-start</code></td><td>Alinha no topo</td></tr>
+                    <tr><td><code>flex-end</code></td><td>Alinha na base</td></tr>
+                    <tr><td><code>center</code></td><td>Alinha no centro vertical</td></tr>
+                </tbody>
+            </table>
+            <div class="info-box">
+                <p>🎯 <strong>Centralizar perfeitamente:</strong> <code>justify-content: center</code> + <code>align-items: center</code></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔄 <code>flex-direction</code> e <code>gap</code></h2>
+            <pre data-lang="CSS"><code><span class="selector">.container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-direction</span>: <span class="value">row</span>;      <span class="comment">/* horizontal (padrão) */</span>
+    <span class="property">flex-direction</span>: <span class="value">column</span>;   <span class="comment">/* vertical */</span>
+    <span class="property">gap</span>: <span class="value">20px</span>;               <span class="comment">/* espaço entre itens */</span>
+}</code></pre>
+            <div class="tip-box">
+                <p>💡 <code>gap</code> é muito mais prático que usar <code>margin</code> em cada item!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Mão na Massa</p>
+            <h2>🖥️ Live Coding</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>✅ O que aprendemos hoje</h2>
+            <ul>
+                <li>Revisamos HTML + CSS dos encontros anteriores</li>
+                <li><code>display: flex</code> transforma um container em Flexbox</li>
+                <li><code>justify-content</code> controla o eixo <strong>horizontal</strong></li>
+                <li><code>align-items</code> controla o eixo <strong>vertical</strong></li>
+                <li><code>flex-direction: column</code> empilha itens verticalmente</li>
+                <li><code>gap</code> define o espaçamento entre itens</li>
+            </ul>
+            <div class="info-box">
+                <p>📅 <strong>Próxima aula:</strong> Formulários HTML + Estilização CSS!</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="slide-counter">1 / 12</div>
+    <div class="nav-arrows">
+        <button class="nav-prev">←</button>
+        <button class="nav-next">→</button>
+    </div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

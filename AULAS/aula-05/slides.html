@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 05 — Formulários HTML + CSS</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 05</span>
+
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>Formulários + CSS Responsivo (Mobile) 📱</h1>
+            <p class="subtitle">Aula 05 · 05 de agosto de 2026</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📋 Por que Formulários?</h2>
+            <div class="two-columns">
+                <div>
+                    <p>Formulários são a principal forma de <span class="highlight">coletar dados do usuário</span> na web:</p>
+                    <ul>
+                        <li>🔐 Telas de login</li>
+                        <li>📝 Cadastros</li>
+                        <li>🔍 Campos de busca</li>
+                        <li>⚙️ Configurações de dispositivos IoT</li>
+                        <li>📊 Filtros de dashboard</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <p>Em IoT, formulários são usados para <strong>configurar sensores</strong>, definir <strong>intervalos de leitura</strong>, e <strong>cadastrar dispositivos</strong> no sistema.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🏷️ Estrutura Básica de um Formulário</h2>
+            <pre data-lang="HTML"><code><span class="tag">&lt;form&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"nome"</span><span class="tag">&gt;</span>Nome:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">id</span>=<span class="value">"nome"</span> <span class="attr">placeholder</span>=<span class="value">"Digite seu nome"</span><span class="tag">&gt;</span>
+
+    <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="value">"email"</span><span class="tag">&gt;</span>E-mail:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="value">"email"</span> <span class="attr">id</span>=<span class="value">"email"</span> <span class="attr">placeholder</span>=<span class="value">"seu@email.com"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+
+    <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="value">"submit"</span><span class="tag">&gt;</span>Enviar<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
+            <div class="tip-box">
+                <p>💡 <code>&lt;label for="id"&gt;</code> conecta o rótulo ao campo — clicando no label, o campo ganha foco!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>⌨️ Tipos de <code>&lt;input&gt;</code></h2>
+            <table>
+                <thead><tr><th>Tipo</th><th>Aparência</th><th>Uso em IoT</th></tr></thead>
+                <tbody>
+                    <tr><td><code>text</code></td><td>Campo de texto simples</td><td>Nome do sensor</td></tr>
+                    <tr><td><code>number</code></td><td>Só aceita números (com setas)</td><td>Valor mín/máx de leitura</td></tr>
+                    <tr><td><code>email</code></td><td>Valida formato de e-mail</td><td>E-mail de alerta</td></tr>
+                    <tr><td><code>password</code></td><td>Esconde os caracteres</td><td>Senha de acesso</td></tr>
+                    <tr><td><code>range</code></td><td>Slider (barra deslizante)</td><td>Intervalo de coleta</td></tr>
+                    <tr><td><code>checkbox</code></td><td>Caixa de marcação</td><td>Ativar/desativar alerta</td></tr>
+                    <tr><td><code>radio</code></td><td>Opção única entre várias</td><td>Tipo de protocolo</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📦 <code>&lt;select&gt;</code> e <code>&lt;textarea&gt;</code></h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Dropdown (seleção)</h3>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;select</span> <span class="attr">id</span>=<span class="value">"tipo"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">""</span><span class="tag">&gt;</span>Selecione<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"temp"</span><span class="tag">&gt;</span>Temperatura<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"umid"</span><span class="tag">&gt;</span>Umidade<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="value">"luz"</span><span class="tag">&gt;</span>Luminosidade<span class="tag">&lt;/option&gt;</span>
+<span class="tag">&lt;/select&gt;</span></code></pre>
+                </div>
+                <div>
+                    <h3>Área de texto</h3>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;textarea</span> <span class="attr">id</span>=<span class="value">"obs"</span>
+    <span class="attr">rows</span>=<span class="value">"4"</span>
+    <span class="attr">placeholder</span>=<span class="value">"Observações..."</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/textarea&gt;</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🎨 Estilizando Formulários com CSS</h2>
+            <pre data-lang="CSS"><code><span class="selector">input, select, textarea</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">padding</span>: <span class="value">12px</span>;
+    <span class="property">border</span>: <span class="value">2px solid #333</span>;
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+    <span class="property">background</span>: <span class="value">#1a1a3e</span>;
+    <span class="property">color</span>: <span class="value">#f0f0f0</span>;
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+}
+
+<span class="selector">input:focus, select:focus, textarea:focus</span> {
+    <span class="property">border-color</span>: <span class="value">#00d4ff</span>;
+    <span class="property">outline</span>: <span class="value">none</span>;     <span class="comment">/* remove borda padrão */</span>
+}
+
+<span class="selector">button</span> {
+    <span class="property">background</span>: <span class="value">#00d4ff</span>;
+    <span class="property">color</span>: <span class="value">#000</span>;
+    <span class="property">border</span>: <span class="value">none</span>;
+    <span class="property">padding</span>: <span class="value">12px 24px</span>;
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+}
+
+<span class="selector">button:hover</span> {
+    <span class="property">background</span>: <span class="value">#00b8e6</span>;
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 2</p>
+            <h2>CSS Responsivo (Mobile)</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📱 Por que ser Responsivo?</h2>
+            <div class="two-columns">
+                <div>
+                    <p>O layout do site deve se adaptar automaticamente ao tamanho da tela (celular, tablet, desktop).</p>
+                    <p>Em projetos de IoT, a maioria dos usuários acessará o <strong>Dashboard através do Smartphone</strong> para checar a casa remotamente.</p>
+                </div>
+                <div class="info-box">
+                    <p>💡 <strong>Dica de Ouro:</strong> Sempre adicione a meta tag de viewport no <code>&lt;head&gt;</code> do HTML:</p>
+                    <pre data-lang="HTML" style="font-size:12px"><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📏 Media Queries (<code>@media</code>)</h2>
+            <p>O CSS pode aplicar estilos condicionais dependendo do tamanho da tela.</p>
+            <pre data-lang="CSS"><code><span class="comment">/* Estilo padrão (telas grandes / desktop) */</span>
+<span class="selector">.container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-direction</span>: <span class="value">row</span>; <span class="comment">/* lado a lado */</span>
+}
+
+<span class="comment">/* Aplicado apenas em telas MENORES que 768px (Celulares) */</span>
+<span class="selector">@media (max-width: 768px)</span> {
+    <span class="selector">.container</span> {
+        <span class="property">flex-direction</span>: <span class="value">column</span>; <span class="comment">/* um embaixo do outro */</span>
+    }
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Mão na Massa</p>
+            <h2>🖥️ Live Coding</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>✅ O que aprendemos hoje</h2>
+            <ul>
+                <li><code>&lt;form&gt;</code> agrupa campos de entrada</li>
+                <li><code>&lt;input&gt;</code> tem vários tipos: text, number, email, password, range, checkbox, radio</li>
+                <li><code>&lt;select&gt;</code> cria dropdowns, <code>&lt;textarea&gt;</code> cria campos de texto grande</li>
+                <li><code>&lt;label for="..."&gt;</code> conecta rótulo ao campo</li>
+                <li>CSS <code>:focus</code> e <code>:hover</code> estilizam interações.</li>
+                <li><strong>Media Queries (`@media`)</strong> alteram o layout para telas pequenas.</li>
+                <li><strong>Flex-direction: column</strong> é o melhor amigo do layout mobile!</li>
+            </ul>
+            <div class="info-box">
+                <p>📅 <strong>Próxima aula:</strong> Projeto Portfólio — Construção Guiada! 🎯</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="slide-counter">1 / 11</div>
+    <div class="nav-arrows">
+        <button class="nav-prev">←</button>
+        <button class="nav-next">→</button>
+    </div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

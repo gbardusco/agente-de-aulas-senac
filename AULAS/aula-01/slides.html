@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01 — O que é a Web e Estrutura HTML</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 01</span>
+
+    <!-- SLIDE 1: Título -->
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>O que é a Web e<br>Estrutura HTML</h1>
+            <p class="subtitle">Aula 01 · 14 de julho de 2026</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: Agenda -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📋 Agenda do Dia</h2>
+            <ol>
+                <li><strong>O que é a Web?</strong> — como o navegador funciona</li>
+                <li><strong>Web + IoT</strong> — por que isso importa para vocês</li>
+                <li><strong>Estrutura básica do HTML</strong> — a "espinha dorsal" de toda página</li>
+                <li><strong>Tags essenciais</strong> — títulos, parágrafos, quebras</li>
+                <li><strong>Prática!</strong> — criando sua primeira página</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: O que é a Web -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🌐 O que é a Web?</h2>
+            <div class="two-columns align-center">
+                <div>
+                    <p>A <span class="highlight">World Wide Web</span> é um sistema de documentos interligados que funcionam sobre a Internet.</p>
+                    <p>Quando você acessa um site, o navegador faz 3 coisas:</p>
+                    <ol>
+                        <li>Pede o arquivo ao servidor</li>
+                        <li>Recebe o código (HTML, CSS, JS)</li>
+                        <li><strong>Interpreta</strong> e mostra na tela</li>
+                    </ol>
+                </div>
+                <div class="concept-card">
+                    <span class="icon-large">💻</span>
+                    <h3>Navegador = Interpretador</h3>
+                    <p>O navegador <em>lê</em> o código HTML e <em>desenha</em> a página. É como uma receita: o HTML são os ingredientes e as instruções.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: Web + IoT -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔗 Web + IoT: Por que isso importa?</h2>
+            <div class="two-columns">
+                <div>
+                    <p>Na Internet das Coisas, os dispositivos precisam de <span class="highlight">interfaces visuais</span> para:</p>
+                    <ul>
+                        <li>📊 <strong>Dashboards</strong> — monitorar sensores em tempo real</li>
+                        <li>🎛️ <strong>Painéis de controle</strong> — ligar/desligar atuadores</li>
+                        <li>📱 <strong>Apps web</strong> — acessar de qualquer dispositivo</li>
+                        <li>⚠️ <strong>Alertas visuais</strong> — avisar sobre anomalias</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <p><strong>Tudo isso roda no navegador!</strong></p>
+                    <p>HTML + CSS + JavaScript são as tecnologias que constroem essas interfaces. É isso que vamos aprender.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: HTML -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 1</p>
+            <h2>O que é HTML?</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: Definição HTML -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📝 HTML — HyperText Markup Language</h2>
+            <p><span class="highlight">Linguagem de Marcação de Hipertexto</span> — não é uma linguagem de programação, é uma linguagem de <em>marcação</em>.</p>
+            <div class="two-columns">
+                <div class="concept-card">
+                    <h3>🏗️ Marcação</h3>
+                    <p>Usamos <strong>tags</strong> (etiquetas) para dizer ao navegador o que cada parte do conteúdo <em>é</em>: um título, um parágrafo, uma imagem...</p>
+                </div>
+                <div class="concept-card">
+                    <h3>🔗 Hipertexto</h3>
+                    <p>Textos que se conectam a outros textos através de <strong>links</strong>. É o que permite navegar de uma página para outra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: Estrutura de uma tag -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🏷️ Anatomia de uma Tag HTML</h2>
+            <pre data-lang="HTML"><code><span class="tag">&lt;h1&gt;</span>Meu Primeiro Título<span class="tag">&lt;/h1&gt;</span></code></pre>
+            <div class="two-columns">
+                <div>
+                    <ul>
+                        <li><code>&lt;h1&gt;</code> → <strong>Tag de abertura</strong></li>
+                        <li><code>&lt;/h1&gt;</code> → <strong>Tag de fechamento</strong> (com <code>/</code>)</li>
+                        <li>O texto entre as tags → <strong>Conteúdo</strong></li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p>⚠️ <strong>Cuidado!</strong> Esquecer de fechar uma tag é um dos erros mais comuns. Sempre que abrir, feche!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: Estrutura básica -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📄 Estrutura Básica de um Documento HTML</h2>
+            <pre data-lang="HTML"><code><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"pt-BR"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Minha Primeira Página<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Olá, Mundo!<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Minha primeira página web.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: Explicando cada parte -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔍 Entendendo Cada Parte</h2>
+            <table>
+                <thead>
+                    <tr><th>Elemento</th><th>O que faz</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Diz ao navegador: "isso é HTML5"</td></tr>
+                    <tr><td><code>&lt;html lang="pt-BR"&gt;</code></td><td>Início do documento, idioma em português</td></tr>
+                    <tr><td><code>&lt;head&gt;</code></td><td>Informações <em>sobre</em> a página (não aparece na tela)</td></tr>
+                    <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Permite acentos e caracteres especiais (ç, ã, é)</td></tr>
+                    <tr><td><code>&lt;title&gt;</code></td><td>Título na aba do navegador</td></tr>
+                    <tr><td><code>&lt;body&gt;</code></td><td>Tudo que <strong>aparece na tela</strong> fica aqui</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SLIDE 10: Tags de Título -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Parte 2</p>
+            <h2>Tags Essenciais</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 11: Títulos h1-h6 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📐 Títulos: <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code></h2>
+            <div class="two-columns align-center">
+                <div>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;h1&gt;</span>Título Principal<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Subtítulo<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Sub-subtítulo<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>Nível 4<span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span>Nível 5<span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span>Nível 6<span class="tag">&lt;/h6&gt;</span></code></pre>
+                </div>
+                <div>
+                    <div class="info-box">
+                        <p>📌 <strong>Hierarquia importa!</strong></p>
+                        <p><code>&lt;h1&gt;</code> é o mais importante (maior).<br>
+                        <code>&lt;h6&gt;</code> é o menos importante (menor).</p>
+                        <p>Use apenas <strong>um <code>&lt;h1&gt;</code></strong> por página!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 12: Parágrafos -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📝 Parágrafos e Quebras</h2>
+            <div class="two-columns">
+                <div>
+                    <h3>Parágrafo <code>&lt;p&gt;</code></h3>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;p&gt;</span>Este é um parágrafo.
+   O navegador ignora
+   quebras de linha no código.<span class="tag">&lt;/p&gt;</span>
+
+<span class="tag">&lt;p&gt;</span>Este é outro parágrafo.<span class="tag">&lt;/p&gt;</span></code></pre>
+                </div>
+                <div>
+                    <h3>Quebra de Linha <code>&lt;br&gt;</code></h3>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;p&gt;</span>Linha 1<span class="tag">&lt;br&gt;</span>
+Linha 2<span class="tag">&lt;br&gt;</span>
+Linha 3<span class="tag">&lt;/p&gt;</span></code></pre>
+                    <h3>Linha Horizontal <code>&lt;hr&gt;</code></h3>
+                    <pre data-lang="HTML"><code><span class="tag">&lt;p&gt;</span>Seção 1<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;hr&gt;</span>
+<span class="tag">&lt;p&gt;</span>Seção 2<span class="tag">&lt;/p&gt;</span></code></pre>
+                </div>
+            </div>
+            <div class="tip-box">
+                <p>💡 <code>&lt;br&gt;</code> e <code>&lt;hr&gt;</code> são tags que <strong>não precisam de fechamento</strong> (tags "auto-fechadas").</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 13: Live Coding -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Mão na Massa</p>
+            <h2>🖥️ Live Coding</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 14: Passo a passo -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🛠️ Vamos Criar Juntos!</h2>
+            <ol>
+                <li>Abra o <strong>VS Code</strong> (ou Notepad++)</li>
+                <li>Crie uma pasta chamada <code>aula-01</code></li>
+                <li>Dentro dela, crie um arquivo chamado <code>index.html</code></li>
+                <li>Digite a estrutura básica do HTML</li>
+                <li>Adicione títulos e parágrafos sobre <strong>IoT</strong></li>
+                <li>Salve e abra no <strong>Chrome</strong> (Ctrl + O ou arraste o arquivo)</li>
+            </ol>
+            <div class="tip-box">
+                <p>💡 No VS Code, digite <code>!</code> e aperte <strong>Tab</strong> para gerar a estrutura básica automaticamente!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 15: Exercícios -->
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Prática</p>
+            <h2>📝 Lista de Exercícios</h2>
+        </div>
+    </section>
+
+    <!-- SLIDE 16: Resumo -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>✅ O que aprendemos hoje</h2>
+            <ul>
+                <li>A <strong>Web</strong> funciona com arquivos que o navegador interpreta</li>
+                <li>IoT usa interfaces web para <strong>dashboards e controles</strong></li>
+                <li><strong>HTML</strong> é a linguagem de marcação que estrutura o conteúdo</li>
+                <li>Todo documento HTML tem: <code>&lt;!DOCTYPE&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code></li>
+                <li>Tags de título (<code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>) criam hierarquia</li>
+                <li><code>&lt;p&gt;</code> cria parágrafos, <code>&lt;br&gt;</code> quebra linhas, <code>&lt;hr&gt;</code> traça linhas</li>
+            </ul>
+            <div class="info-box">
+                <p>📅 <strong>Próxima aula:</strong> Listas, links, imagens e semântica HTML!</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="slide-counter">1 / 16</div>
+    <div class="nav-arrows">
+        <button class="nav-prev">←</button>
+        <button class="nav-next">→</button>
+    </div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

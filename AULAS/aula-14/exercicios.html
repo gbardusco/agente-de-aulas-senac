@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios — Aula 14: Consumo de APIs</title>
+    <link rel="stylesheet" href="../assets/exercicios.css">
+</head>
+<body>
+    <div class="exercise-header">
+        <h1>📝 Lista de Exercícios — Aula 14</h1>
+        <p class="subtitle">Consumo de API com fetch()</p>
+        <div class="meta">
+            <span>📅 26/08/2026</span>
+            <span>⏱ 45 minutos</span>
+            <span>📂 2 exercícios</span>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="card-header">
+            <div class="number">1</div>
+            <span class="card-title">Buscador de Personagens (Star Wars API)</span>
+            <span class="difficulty medium">Intermediário</span>
+        </div>
+        <div class="description">
+            <p>Vamos usar a API pública do Star Wars (SWAPI).</p>
+            <p>1. Crie uma página com um botão "Buscar Luke Skywalker".</p>
+            <p>2. Ao clicar, use o <code>fetch()</code> na URL: <code>https://swapi.dev/api/people/1/</code></p>
+            <p>3. Pegue a resposta, converta para <code>.json()</code> e exiba o <strong>nome</strong> e a <strong>cor do cabelo</strong> do personagem em elementos HTML (ex: <code>&lt;span&gt;</code>).</p>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="card-header">
+            <div class="number">2</div>
+            <span class="card-title">Integração API no Dashboard IoT</span>
+            <span class="difficulty challenge">Desafio</span>
+        </div>
+        <div class="description">
+            <p>No seu projeto final (Dashboard IoT), você usava <code>Math.random()</code> para gerar a Temperatura. Vamos trocar isso!</p>
+            <p>Use a API pública de clima (ou uma API mockada que o professor passar) para buscar a temperatura real e atualizá-la no seu painel a cada 10 segundos.</p>
+            <p>Dica: Substitua a lógica de gerar o número aleatório pela chamada do <code>fetch()</code> e coloque a alteração do <code>textContent</code> dentro do <code>.then()</code>.</p>
+        </div>
+    </div>
+
+    <div class="exercise-footer">
+        <p>UC14 — Internet das Coisas · Senac SP · 2026</p>
+    </div>
+</body>
+</html>

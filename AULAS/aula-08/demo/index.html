@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo — Aula 08: Condicionais + DOM</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a1e; color: #f0f0f0; padding: 40px; text-align: center; }
+        h1 { color: #00d4ff; }
+        .sensor { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 30px; max-width: 300px; margin: 20px auto; }
+        .sensor h3 { margin-bottom: 10px; }
+        .valor { font-size: 48px; font-weight: bold; margin: 15px 0; }
+        .status { padding: 6px 16px; border-radius: 12px; display: inline-block; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>🌡️ Monitor de Temperatura</h1>
+    <div class="sensor">
+        <h3>Sensor DHT11</h3>
+        <p class="valor" id="valor-temp">--</p>
+        <p class="status" id="status-temp">Carregando...</p>
+    </div>
+    <div class="sensor">
+        <h3>💧 Umidade</h3>
+        <p class="valor" id="valor-umid">--</p>
+        <p class="status" id="status-umid">Carregando...</p>
+    </div>
+
+    <script>
+        // Simulando valores de sensores
+        let temperatura = 36;
+        let umidade = 85;
+
+        // === TEMPERATURA ===
+        let elTemp = document.getElementById("valor-temp");
+        let statusTemp = document.getElementById("status-temp");
+
+        elTemp.textContent = temperatura + "°C";
+
+        if (temperatura > 30) {
+            statusTemp.textContent = "🔴 ALERTA: Temperatura Alta!";
+            statusTemp.style.backgroundColor = "#7f1d1d";
+            statusTemp.style.color = "#fca5a5";
+        } else if (temperatura >= 15) {
+            statusTemp.textContent = "🟢 Normal";
+            statusTemp.style.backgroundColor = "#064e3b";
+            statusTemp.style.color = "#34d399";
+        } else {
+            statusTemp.textContent = "🔵 Frio";
+            statusTemp.style.backgroundColor = "#1e3a5f";
+            statusTemp.style.color = "#93c5fd";
+        }
+
+        // === UMIDADE ===
+        let elUmid = document.getElementById("valor-umid");
+        let statusUmid = document.getElementById("status-umid");
+
+        elUmid.textContent = umidade + "%";
+
+        if (umidade > 80) {
+            statusUmid.textContent = "🔴 Umidade Alta!";
+            statusUmid.style.backgroundColor = "#7f1d1d";
+            statusUmid.style.color = "#fca5a5";
+        } else if (umidade >= 40) {
+            statusUmid.textContent = "🟢 Normal";
+            statusUmid.style.backgroundColor = "#064e3b";
+            statusUmid.style.color = "#34d399";
+        } else {
+            statusUmid.textContent = "🟡 Umidade Baixa";
+            statusUmid.style.backgroundColor = "#78350f";
+            statusUmid.style.color = "#fbbf24";
+        }
+    </script>
+</body>
+</html>

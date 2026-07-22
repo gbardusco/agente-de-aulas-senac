@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 12 — Interface do Dashboard</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 12</span>
+
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>Construção da Interface<br>do Dashboard 🎨</h1>
+            <p class="subtitle">Aula 12 · 20 de agosto de 2026</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🎯 Objetivo do Projeto Final</h2>
+            <div class="two-columns">
+                <div>
+                    <p>O <strong>Dashboard IoT</strong> será a interface de controle de uma casa inteligente simulada.</p>
+                    <p>Requisitos de Interface:</p>
+                    <ul>
+                        <li>Header com status online/offline</li>
+                        <li>Seção de <strong>Leituras</strong> (sensores)</li>
+                        <li>Seção de <strong>Controles</strong> (atuadores)</li>
+                        <li>Seção de <strong>Log de Eventos</strong></li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <p>Hoje o foco é <strong>100% HTML + CSS</strong>.</p>
+                    <p>Vamos estruturar os "blocos" e deixá-los bonitos usando Flexbox e variáveis CSS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📐 Planejamento Visual (Wireframe)</h2>
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; text-align: center;">
+                <div style="border-bottom: 2px solid #555; padding-bottom: 10px; margin-bottom: 15px;">HEADER (Título + Relógio)</div>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <div style="flex:1; border: 1px dashed #777; padding: 20px;">Sensor 1</div>
+                    <div style="flex:1; border: 1px dashed #777; padding: 20px;">Sensor 2</div>
+                    <div style="flex:1; border: 1px dashed #777; padding: 20px;">Sensor 3</div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <div style="flex:1; border: 1px dashed #777; padding: 20px;">Atuador 1</div>
+                    <div style="flex:1; border: 1px dashed #777; padding: 20px;">Atuador 2</div>
+                </div>
+                <div style="border: 1px dashed #777; padding: 20px;">LOG DE EVENTOS (Lista de textos)</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🏗️ Estrutura Semântica</h2>
+            <pre data-lang="HTML"><code><span class="tag">&lt;header&gt;</span>...<span class="tag">&lt;/header&gt;</span>
+<span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="value">"sensores"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/section&gt;</span>
+    <span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="value">"controles"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/section&gt;</span>
+    <span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="value">"log"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/section&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;footer&gt;</span>...<span class="tag">&lt;/footer&gt;</span></code></pre>
+            <div class="tip-box">
+                <p>💡 Separe as áreas com <code>&lt;section&gt;</code> para manter o código organizado. Use um <code>&lt;div class="container"&gt;</code> dentro delas para alinhar com Flexbox.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide section-slide">
+        <div class="slide-content">
+            <p class="section-number">Mão na Massa</p>
+            <h2>🖥️ Construção do Template</h2>
+            <p style="font-size: 20px; font-weight: normal; margin-top: 20px;">Acompanhe o professor para criarmos juntos o esqueleto do Dashboard!</p>
+        </div>
+    </section>
+
+    <div class="slide-counter">1 / 4</div>
+    <div class="nav-arrows"><button class="nav-prev">←</button><button class="nav-next">→</button></div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

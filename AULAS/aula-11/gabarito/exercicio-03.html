@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito — Aula 11</title>
+    <style>
+        body { font-family: sans-serif; background: #0a0a1e; color: #fff; padding: 20px; text-align: center; }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+        .card { background: #1a1a3e; padding: 20px; border-radius: 10px; width: 150px; transition: opacity 0.3s; }
+        .pausado { opacity: 0.5; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1 id="relogio">--:--:--</h1>
+    
+    <div class="cards" id="cards-container">
+        <div class="card" id="s1"><h3>🌡️ Temp</h3><p class="val">--</p><p class="hora">--</p></div>
+        <div class="card" id="s2"><h3>💧 Umid</h3><p class="val">--</p><p class="hora">--</p></div>
+        <div class="card" id="s3"><h3>💡 Luz</h3><p class="val">--</p><p class="hora">--</p></div>
+    </div>
+
+    <button id="btn-pausar">⏸ Pausar</button>
+    <button id="btn-retomar">▶ Retomar</button>
+
+    <script>
+        // Exercício 1: Relógio
+        function atualizarRelogio() {
+            let agora = new Date();
+            document.getElementById("relogio").textContent = agora.toLocaleTimeString("pt-BR");
+        }
+        setInterval(atualizarRelogio, 1000);
+
+        // Exercício 2: Dashboard Auto-Update
+        function atualizaSensores() {
+            let hora = new Date().toLocaleTimeString("pt-BR");
+            let temp = Math.floor(Math.random() * 30) + 15;
+            let umid = Math.floor(Math.random() * 60) + 30;
+            let luz = Math.floor(Math.random() * 1000);
+
+            document.querySelector("#s1 .val").textContent = `${temp}°C`;
+            document.querySelector("#s1 .hora").textContent = `Às ${hora}`;
+            
+            document.querySelector("#s2 .val").textContent = `${umid}%`;
+            document.querySelector("#s2 .hora").textContent = `Às ${hora}`;
+            
+            document.querySelector("#s3 .val").textContent = `${luz} lux`;
+            document.querySelector("#s3 .hora").textContent = `Às ${hora}`;
+        }
+        
+        atualizaSensores();
+        let loopSensores = setInterval(atualizaSensores, 5000);
+
+        // Exercício 3: Pausar e Retomar
+        let container = document.getElementById("cards-container");
+        
+        document.getElementById("btn-pausar").addEventListener("click", function() {
+            clearInterval(loopSensores);
+            container.classList.add("pausado");
+        });
+
+        document.getElementById("btn-retomar").addEventListener("click", function() {
+            // Previne múltiplos intervalos
+            clearInterval(loopSensores); 
+            loopSensores = setInterval(atualizaSensores, 5000);
+            atualizaSensores();
+            container.classList.remove("pausado");
+        });
+    </script>
+</body>
+</html>

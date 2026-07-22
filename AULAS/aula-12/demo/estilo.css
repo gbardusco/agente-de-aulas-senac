@@ -1,0 +1,65 @@
+:root {
+    --cor-fundo: #0a0a1e;
+    --cor-card: #12123a;
+    --cor-borda: #1a1a4e;
+    --cor-texto: #f0f0f0;
+    --cor-muted: #888;
+    --cor-destaque: #00d4ff;
+    --cor-verde: #34d399;
+    --cor-amarelo: #fbbf24;
+    --cor-vermelho: #ef4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: var(--cor-fundo); color: var(--cor-texto); }
+
+/* HEADER */
+header { background: var(--cor-card); border-bottom: 2px solid var(--cor-borda); padding: 15px 30px; }
+.header-content { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; }
+header h1 { font-size: 20px; color: var(--cor-destaque); }
+.header-info { display: flex; gap: 15px; align-items: center; }
+.status-badge { background: #064e3b; color: var(--cor-verde); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+.relogio { color: var(--cor-muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+
+/* MAIN */
+main { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+section { margin-bottom: 35px; }
+section h2 { color: var(--cor-destaque); font-size: 18px; margin-bottom: 15px; border-bottom: 1px solid var(--cor-borda); padding-bottom: 8px; }
+
+/* CARDS */
+.cards-container { display: flex; gap: 15px; flex-wrap: wrap; }
+.card { flex: 1; min-width: 200px; background: var(--cor-card); border: 2px solid #333; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
+.card h3 { font-size: 14px; color: #a0a0c0; margin-bottom: 8px; }
+.card .valor { font-size: 40px; font-weight: bold; transition: color 0.3s; }
+.card .unidade { font-size: 14px; color: var(--cor-muted); }
+.card .hora { font-size: 11px; color: #555; margin-top: 8px; }
+
+/* CONTROLES */
+.controle .ctrl-status { font-size: 16px; margin: 10px 0; }
+.controle button { padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 14px; background: var(--cor-destaque); color: #000; transition: all 0.2s; }
+.controle button:hover { background: #00b8e6; }
+.controle.ligado { border-color: var(--cor-verde); }
+.controle.ligado button { background: var(--cor-vermelho); color: #fff; }
+
+/* LOG */
+.log-container { background: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: 8px; padding: 15px; max-height: 200px; overflow-y: auto; font-family: 'Consolas', monospace; font-size: 13px; }
+.log-entry { color: #a0a0c0; margin-bottom: 4px; }
+.log-entry.alerta { color: var(--cor-vermelho); }
+.log-entry.automacao { color: var(--cor-amarelo); }
+
+/* ALERTA PISCANTE */
+@keyframes piscar { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.card.alerta-visual { animation: piscar 1s infinite; border-color: var(--cor-vermelho); }
+
+/* FOOTER */
+footer { text-align: center; padding: 20px; border-top: 1px solid var(--cor-borda); color: #555; font-size: 12px; }
+
+/* =========================================
+   MOBILE (RESPONSIVO) - Indicadores 1 e 4
+   ========================================= */
+@media (max-width: 768px) {
+    .header-content { flex-direction: column; gap: 10px; }
+    .cards-container { flex-direction: column; }
+    .card { width: 100%; min-width: unset; }
+    main { padding: 15px 10px; }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 10 — Funções e Loops</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 10</span>
+
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>Funções Avançadas<br>e Loops 🔁</h1>
+            <p class="subtitle">Aula 10 · 18 de agosto de 2026</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔧 Funções com Parâmetros e Retorno</h2>
+            <pre data-lang="JavaScript"><code><span class="keyword">function</span> <span class="function">gerarLeitura</span>(min, max) {
+    <span class="keyword">let</span> valor = <span class="function">Math.random</span>() * (max - min) + min;
+    <span class="keyword">return</span> <span class="function">Math.floor</span>(valor);
+}
+
+<span class="keyword">let</span> temp = <span class="function">gerarLeitura</span>(<span class="number">15</span>, <span class="number">40</span>);   <span class="comment">// ex: 27</span>
+<span class="keyword">let</span> umid = <span class="function">gerarLeitura</span>(<span class="number">30</span>, <span class="number">90</span>);   <span class="comment">// ex: 65</span>
+<span class="function">console.log</span>(<span class="string">"Temp:"</span>, temp, <span class="string">"Umid:"</span>, umid);</code></pre>
+            <div class="info-box">
+                <p><code>Math.random()</code> gera número entre 0 e 1. Multiplicamos pela faixa desejada e somamos o mínimo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🔁 Loop <code>for</code></h2>
+            <pre data-lang="JavaScript"><code><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+    <span class="function">console.log</span>(<span class="string">"Sensor"</span>, i + <span class="number">1</span>);
+}
+<span class="comment">// Saída: Sensor 1, Sensor 2, Sensor 3, Sensor 4, Sensor 5</span></code></pre>
+            <table>
+                <thead><tr><th>Parte</th><th>O que faz</th></tr></thead>
+                <tbody>
+                    <tr><td><code>let i = 0</code></td><td>Inicia o contador</td></tr>
+                    <tr><td><code>i < 5</code></td><td>Condição para continuar</td></tr>
+                    <tr><td><code>i++</code></td><td>Incrementa a cada volta</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>🎯 <code>querySelectorAll</code> + Loop</h2>
+            <pre data-lang="JavaScript"><code><span class="comment">// Seleciona TODOS os elementos com classe "sensor"</span>
+<span class="keyword">let</span> sensores = <span class="function">document.querySelectorAll</span>(<span class="string">".sensor"</span>);
+
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < sensores.<span class="property">length</span>; i++) {
+    <span class="keyword">let</span> valor = <span class="function">gerarLeitura</span>(<span class="number">15</span>, <span class="number">40</span>);
+    sensores[i].<span class="property">textContent</span> = valor + <span class="string">"°C"</span>;
+
+    <span class="keyword">if</span> (valor > <span class="number">30</span>) {
+        sensores[i].<span class="property">style</span>.<span class="property">color</span> = <span class="string">"red"</span>;
+    } <span class="keyword">else</span> {
+        sensores[i].<span class="property">style</span>.<span class="property">color</span> = <span class="string">"green"</span>;
+    }
+}</code></pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content">
+            <h2>✅ O que aprendemos hoje</h2>
+            <ul>
+                <li>Funções com <strong>parâmetros</strong> e <strong>retorno</strong></li>
+                <li><code>Math.random()</code> e <code>Math.floor()</code> para dados aleatórios</li>
+                <li>Loop <code>for</code> para repetir código</li>
+                <li><code>querySelectorAll()</code> para selecionar múltiplos elementos</li>
+                <li>Combinando tudo: <strong>gerar dados + loop + DOM</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="slide-counter">1 / 5</div>
+    <div class="nav-arrows"><button class="nav-prev">←</button><button class="nav-next">→</button></div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

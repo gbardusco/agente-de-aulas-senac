@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 11 — Temporizadores</title>
+    <link rel="stylesheet" href="../assets/slides.css">
+</head>
+<body>
+<div class="presentation">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <span class="lesson-badge">UC14 · AULA 11</span>
+    <section class="slide title-slide active">
+        <div class="slide-content">
+            <div class="badge">UC 14 — Internet das Coisas</div>
+            <h1>Temporizadores e<br>Tempo Real ⏱️</h1>
+            <p class="subtitle">Aula 11 · 19 de agosto de 2026</p>
+        </div>
+    </section>
+    <section class="slide">
+        <div class="slide-content">
+            <h2>⏱️ <code>setInterval</code> — Repetir a Cada X ms</h2>
+            <pre data-lang="JavaScript"><code><span class="keyword">let</span> intervalo = <span class="function">setInterval</span>(<span class="keyword">function</span>() {
+    <span class="function">console.log</span>(<span class="string">"Leitura a cada 3 segundos!"</span>);
+}, <span class="number">3000</span>);  <span class="comment">// 3000ms = 3 segundos</span>
+
+<span class="comment">// Para parar:</span>
+<span class="function">clearInterval</span>(intervalo);</code></pre>
+            <div class="info-box"><p><strong>IoT:</strong> é exatamente assim que um sensor coleta dados periodicamente!</p></div>
+        </div>
+    </section>
+    <section class="slide">
+        <div class="slide-content">
+            <h2>📝 Template Literals</h2>
+            <pre data-lang="JavaScript"><code><span class="keyword">let</span> temp = <span class="number">25</span>;
+<span class="keyword">let</span> hora = <span class="keyword">new</span> <span class="function">Date</span>().<span class="function">toLocaleTimeString</span>(<span class="string">"pt-BR"</span>);
+
+<span class="comment">// Antes (concatenação):</span>
+<span class="function">console.log</span>(<span class="string">"Temp: "</span> + temp + <span class="string">"°C às "</span> + hora);
+
+<span class="comment">// Agora (template literal — use crase `):</span>
+<span class="function">console.log</span>(<span class="string">`Temp: ${temp}°C às ${hora}`</span>);</code></pre>
+            <div class="tip-box"><p>💡 Template literals usam <strong>crase</strong> (`) e <code>${variavel}</code> para inserir valores!</p></div>
+        </div>
+    </section>
+    <section class="slide">
+        <div class="slide-content">
+            <h2>✅ O que aprendemos hoje</h2>
+            <ul>
+                <li><code>setInterval(fn, ms)</code> executa código repetidamente</li>
+                <li><code>clearInterval(id)</code> para a execução</li>
+                <li><code>setTimeout(fn, ms)</code> executa uma vez após atraso</li>
+                <li>Template literals (<code>`texto ${var}`</code>) facilitam strings</li>
+                <li><code>new Date()</code> fornece data/hora atual</li>
+            </ul>
+        </div>
+    </section>
+    <div class="slide-counter">1 / 4</div>
+    <div class="nav-arrows"><button class="nav-prev">←</button><button class="nav-next">→</button></div>
+</div>
+<script src="../assets/slides.js"></script>
+</body>
+</html>

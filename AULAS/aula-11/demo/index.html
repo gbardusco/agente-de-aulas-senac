@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo — Aula 11: Dashboard Tempo Real</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a1e; color: #f0f0f0; padding: 30px; text-align: center; }
+        h1 { color: #00d4ff; margin-bottom: 5px; }
+        .timestamp { color: #888; font-size: 14px; margin-bottom: 25px; }
+        .container { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; max-width: 700px; margin: 0 auto 25px; }
+        .card { background: #16213e; border: 2px solid #333; border-radius: 12px; padding: 20px; min-width: 180px; flex: 1; transition: all 0.3s; }
+        .card h3 { font-size: 14px; color: #a0a0c0; margin-bottom: 5px; }
+        .card .valor { font-size: 36px; font-weight: bold; transition: color 0.3s; }
+        .card .hora { font-size: 11px; color: #666; margin-top: 5px; }
+        .controles { display: flex; gap: 10px; justify-content: center; }
+        button { padding: 10px 24px; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-play { background: #34d399; color: #000; }
+        .btn-pause { background: #ef4444; color: #fff; }
+        .card.pausado { opacity: 0.4; }
+    </style>
+</head>
+<body>
+    <h1>📊 Dashboard IoT — Tempo Real</h1>
+    <p class="timestamp" id="relogio">--</p>
+
+    <div class="container">
+        <div class="card" id="card-temp"><h3>🌡️ Temperatura</h3><p class="valor" id="v-temp">--</p><p class="hora" id="h-temp">--</p></div>
+        <div class="card" id="card-umid"><h3>💧 Umidade</h3><p class="valor" id="v-umid">--</p><p class="hora" id="h-umid">--</p></div>
+        <div class="card" id="card-luz"><h3>💡 Luminosidade</h3><p class="valor" id="v-luz">--</p><p class="hora" id="h-luz">--</p></div>
+    </div>
+
+    <div class="controles">
+        <button class="btn-pause" id="btn-pausar">⏸ Pausar</button>
+        <button class="btn-play" id="btn-retomar" style="display:none">▶ Retomar</button>
+    </div>
+
+    <script>
+        function gerarLeitura(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+        function horaAtual() { return new Date().toLocaleTimeString("pt-BR"); }
+
+        function atualizarDados() {
+            let temp = gerarLeitura(15, 42);
+            let umid = gerarLeitura(30, 95);
+            let luz = gerarLeitura(0, 1200);
+            let hora = horaAtual();
+
+            document.getElementById("v-temp").textContent = `${temp}°C`;
+            document.getElementById("v-temp").style.color = temp > 35 ? "#ef4444" : temp > 28 ? "#fbbf24" : "#34d399";
+            document.getElementById("h-temp").textContent = `Atualizado: ${hora}`;
+
+            document.getElementById("v-umid").textContent = `${umid}%`;
+            document.getElementById("v-umid").style.color = umid > 80 ? "#3b82f6" : "#34d399";
+            document.getElementById("h-umid").textContent = `Atualizado: ${hora}`;
+
+            document.getElementById("v-luz").textContent = `${luz} lux`;
+            document.getElementById("v-luz").style.color = luz < 200 ? "#fbbf24" : "#34d399";
+            document.getElementById("h-luz").textContent = `Atualizado: ${hora}`;
+
+            document.getElementById("relogio").textContent = `🕐 ${hora}`;
+        }
+
+        atualizarDados();
+        let intervalo = setInterval(atualizarDados, 3000);
+
+        document.getElementById("btn-pausar").addEventListener("click", function() {
+            clearInterval(intervalo);
+            document.querySelectorAll(".card").forEach(c => c.classList.add("pausado"));
+            this.style.display = "none";
+            document.getElementById("btn-retomar").style.display = "inline-block";
+        });
+
+        document.getElementById("btn-retomar").addEventListener("click", function() {
+            intervalo = setInterval(atualizarDados, 3000);
+            atualizarDados();
+            document.querySelectorAll(".card").forEach(c => c.classList.remove("pausado"));
+            this.style.display = "none";
+            document.getElementById("btn-pausar").style.display = "inline-block";
+        });
+    </script>
+</body>
+</html>

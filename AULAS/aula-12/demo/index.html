@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template — Dashboard IoT Completo</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🏠 Dashboard IoT</h1>
+            <div class="header-info">
+                <span class="status-badge" id="status-geral">🟢 Online</span>
+                <span class="relogio" id="relogio">--:--:--</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="sensores">
+            <h2>📊 Sensores</h2>
+            <div class="cards-container">
+                <div class="card" id="card-temp">
+                    <h3>🌡️ Temperatura</h3>
+                    <p class="valor" id="v-temp">--</p>
+                    <p class="unidade">°C</p>
+                    <p class="hora" id="h-temp">--</p>
+                </div>
+                <div class="card" id="card-umid">
+                    <h3>💧 Umidade</h3>
+                    <p class="valor" id="v-umid">--</p>
+                    <p class="unidade">%</p>
+                    <p class="hora" id="h-umid">--</p>
+                </div>
+                <div class="card" id="card-luz">
+                    <h3>💡 Luminosidade</h3>
+                    <p class="valor" id="v-luz">--</p>
+                    <p class="unidade">lux</p>
+                    <p class="hora" id="h-luz">--</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="controles">
+            <h2>🎛️ Controles</h2>
+            <div class="cards-container">
+                <div class="card controle" id="ctrl-ventilador">
+                    <h3>🌀 Ventilador</h3>
+                    <p class="ctrl-status" id="st-ventilador">⚫ Desligado</p>
+                    <button id="btn-ventilador">Ligar</button>
+                </div>
+                <div class="card controle" id="ctrl-lampada">
+                    <h3>💡 Iluminação</h3>
+                    <p class="ctrl-status" id="st-lampada">⚫ Desligada</p>
+                    <button id="btn-lampada">Ligar</button>
+                </div>
+                <div class="card controle" id="ctrl-alarme">
+                    <h3>🔔 Alarme</h3>
+                    <p class="ctrl-status" id="st-alarme">⚫ Desligado</p>
+                    <button id="btn-alarme">Ligar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="log">
+            <h2>📋 Log de Eventos</h2>
+            <div class="log-container" id="log-container">
+                <p class="log-entry">Sistema iniciado...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Dashboard IoT · UC14 · Senac SP · 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

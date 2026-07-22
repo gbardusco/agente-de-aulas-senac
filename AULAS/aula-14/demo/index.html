@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo — Consumo de API (Fetch)</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a1e; color: #fff; padding: 40px; }
+        .card { background: #12123a; border: 2px solid #333; padding: 20px; border-radius: 10px; max-width: 400px; margin-bottom: 20px; }
+        h1 { color: #00d4ff; font-size: 20px; margin-bottom: 15px; }
+        .dado { font-size: 24px; font-weight: bold; color: #34d399; margin: 10px 0; }
+        button { padding: 10px 20px; background: #00d4ff; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #00b8e6; }
+        #carregando { display: none; color: #fbbf24; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔍 Buscar CEP via API</h1>
+        <p>Digite um CEP para buscar a rua (ViaCEP API):</p>
+        <input type="text" id="input-cep" placeholder="Ex: 01001000" style="padding: 8px; border-radius: 4px; border: none;">
+        <button onclick="buscarCEP()">Buscar</button>
+        <p id="carregando">Buscando dados...</p>
+        
+        <div id="resultado" style="margin-top: 15px; display: none;">
+            <p><strong>Logradouro:</strong> <span id="res-rua" class="dado"></span></p>
+            <p><strong>Bairro:</strong> <span id="res-bairro" class="dado"></span></p>
+            <p><strong>Cidade:</strong> <span id="res-cidade" class="dado"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function buscarCEP() {
+            const cep = document.getElementById('input-cep').value;
+            if(cep.length !== 8) {
+                alert("Digite um CEP válido com 8 números!");
+                return;
+            }
+
+            // Exibir carregando
+            document.getElementById('carregando').style.display = 'block';
+            document.getElementById('resultado').style.display = 'none';
+
+            // Consumir API Pública do ViaCEP
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(resposta => resposta.json())
+                .then(dados => {
+                    document.getElementById('carregando').style.display = 'none';
+                    
+                    if(dados.erro) {
+                        alert("CEP não encontrado!");
+                        return;
+                    }
+
+                    // Preencher os dados na tela
+                    document.getElementById('res-rua').textContent = dados.logradouro;
+                    document.getElementById('res-bairro').textContent = dados.bairro;
+                    document.getElementById('res-cidade').textContent = dados.localidade + ' - ' + dados.uf;
+                    
+                    document.getElementById('resultado').style.display = 'block';
+                })
+                .catch(erro => {
+                    document.getElementById('carregando').style.display = 'none';
+                    alert("Erro ao buscar a API: " + erro);
+                });
+        }
+    </script>
+</body>
+</html>

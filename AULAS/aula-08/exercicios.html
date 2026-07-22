@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios — Aula 08</title>
+    <link rel="stylesheet" href="../assets/exercicios.css">
+</head>
+<body>
+    <div class="exercise-header">
+        <h1>📝 Lista de Exercícios — Aula 08</h1>
+        <p class="subtitle">Condicionais e Manipulação do DOM</p>
+        <div class="meta"><span>📅 12/08/2026</span><span>⏱ 45 min</span><span>📂 3 exercícios</span></div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="card-header"><div class="number">1</div><span class="card-title">Status do Sensor</span><span class="difficulty easy">Básico</span></div>
+        <div class="description">
+            <p>Crie uma página com um parágrafo que diz "Status do Sensor". No JavaScript:</p>
+            <ul>
+                <li>Defina uma variável <code>temperatura</code> com um valor</li>
+                <li>Se <code>temperatura > 30</code>: mude o texto para <strong>"🔴 ALERTA: Temperatura Alta!"</strong> com fundo vermelho</li>
+                <li>Senão: mude para <strong>"🟢 Normal"</strong> com fundo verde</li>
+            </ul>
+            <p>Use <code>document.getElementById()</code>, <code>.textContent</code> e <code>.style</code>.</p>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <div class="card-header"><div class="number">2</div><span class="card-title">3 Sensores com Condicionais</span><span class="difficulty medium">Intermediário</span></div>
+        <div class="description">
+            <p>Crie uma página com <strong>3 <code>&lt;div&gt;</code></strong> representando 3 sensores. Defina 3 variáveis de temperatura no JS e, para cada uma, mude o <strong>texto</strong> e a <strong>cor de fundo</strong> da div correspondente usando condicionais.</p>
+        </div>
+    </div>
+
+    <div class="section-divider">⭐ Desafio</div>
+
+    <div class="exercise-card">
+        <div class="card-header"><div class="number">3</div><span class="card-title">Verificador de Senha Visual</span><span class="difficulty challenge">Desafio</span></div>
+        <div class="description">
+            <p>Crie uma página com um parágrafo que mostra a "força" de uma senha. Defina uma variável <code>senha</code> (string) no JS:</p>
+            <ul>
+                <li>Menos de 6 caracteres → <strong>"Senha fraca"</strong> em vermelho</li>
+                <li>Entre 6 e 10 → <strong>"Senha média"</strong> em amarelo</li>
+                <li>Acima de 10 → <strong>"Senha forte"</strong> em verde</li>
+            </ul>
+            <div class="hints"><strong>💡 Dica:</strong> Use <code>senha.length</code> para saber o número de caracteres de uma string.</div>
+        </div>
+    </div>
+
+    <div class="exercise-footer"><p>UC14 — Internet das Coisas · Senac SP · 2026</p></div>
+</body>
+</html>
