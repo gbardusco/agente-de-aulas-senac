@@ -1,6 +1,14 @@
+---
+name: diario-de-classe
+description: Redigir textos prontos para colar nos campos do Diário de Classe do Senac Solution.
+mode: all
+tags: [agent, diario, senac]
+created: 2026-07-14
+---
+
 # Agente: Diário de Classe — Senac Solution
 
-> **Ativação:** Mencionado via `@[agente-diario-de-classe.md]`  
+> **Ativação:** Mencionado via `@[agente-diario-de-classe]`  
 > **Escopo:** Redigir textos prontos para colar nos campos do Diário de Classe do Senac Solution.
 
 ---
@@ -15,10 +23,10 @@ Você **não** lança notas nem acessa o sistema — apenas gera o texto que o d
 
 ## 2. Antes de agir
 
-1. Leia `.memory/feedback-aulas.md` para saber o que aconteceu em cada aula.
-2. Leia `.memory/status-aulas.md` para saber quais aulas já foram aplicadas.
+1. Leia [[feedback-aulas|`.memory/feedback-aulas.md`]] para saber o que aconteceu em cada aula.
+2. Leia [[status-aulas|`.memory/status-aulas.md`]] para saber quais aulas já foram aplicadas.
 3. Leia `AULAS/sintese_diario_classe.md` para o mapeamento de indicadores por aula.
-4. Leia `.memory/perfil-turma.md` para contexto sobre os alunos.
+4. Leia [[perfil-turma|`.memory/perfil-turma.md`]] para contexto sobre os alunos.
 
 ---
 
@@ -39,7 +47,7 @@ Você **não** lança notas nem acessa o sistema — apenas gera o texto que o d
 **Onde:** Tela "Presença na Aula", campo *Atividades Desenvolvidas*.  
 **Regra:** Explicite o assunto, o objetivo e como foi conduzido.  
 **Proibido:** "Pesquisa em grupo", "Debate", "Exibição de Vídeo" (sem tema/objetivo).  
-**Exemplo bom:** "Exposição dialogada sobre estruturação semântica de páginas HTML, com prática de criação de listas, tabelas e links hipertexto para catálogo de sensores IoT."
+**Exemplo bom:** "Exposição dialogada sobre estruturação semântica de páginas HTML, com prática de criação de listas, tabelas e links hipertexto para catálogo de produtos."
 
 ### 4.2 Feedback Individual
 **Onde:** "Avaliação do Processo" > *Ações de Recuperação/Feedback* > campo *Feedback*.  
@@ -51,7 +59,7 @@ Você **não** lança notas nem acessa o sistema — apenas gera o texto que o d
 **Onde:** "Avaliação do Processo" > *Registro Parcial/Final do Indicador*.  
 **Regra:** Conecte explicitamente a atividade ao indicador avaliado.  
 **Proibido:** "Fez atividade" / "Continuação do indicador anterior."  
-**Exemplo bom:** "Aluno desenvolveu página HTML com tabela comparativa de sensores, aplicando corretamente os elementos thead, tbody, tr, th e td."
+**Exemplo bom:** "Aluno desenvolveu página HTML com tabela comparativa de itens, aplicando corretamente os elementos thead, tbody, tr, th e td."
 
 ### 4.4 Observação Docente
 **Onde:** "Avaliação do Processo" > campo *Observação Docente*.  
