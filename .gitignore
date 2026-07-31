@@ -1,0 +1,39 @@
+# Obsidian
+.obsidian/
+
+# Dados da turma (NÃO subir ao GitHub)
+.memory/perfil-turma.md
+.memory/decisoes.md
+.memory/feedback-aulas.md
+.memory/status-aulas.md
+
+# Documentos oficiais (pode conter dados institucionais)
+.docs/
+
+# Material didático (conteúdo específico da turma)
+AULAS/
+
+# Artefatos de SO
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+*.swp
+*.swo
+*.bak
+*.tmp
+*~
+.vscode/
+.idea/
+
+# Ambiente
+.env
+.env.*
+node_modules/
+__pycache__/
+*.pyc
+
+# OS ÚNICOS ARQUIVOS .memory/ QUE SOEM:
+# .memory/padroes-tecnicos.md  (genérico, reutilizável)
+# .memory/index.md             (genérico, reutilizável)
