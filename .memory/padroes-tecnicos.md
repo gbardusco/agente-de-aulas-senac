@@ -1,12 +1,30 @@
+---
+aliases: [Padrões Técnicos, Padrões, CSS]
+tags: [memory, padroes, css, codigo]
+created: 2026-07-14
+updated: 2026-07-31
+version: "2.0"
+---
+
 # Padrões Técnicos — Materiais Didáticos
+
+## Versão
+
+| Campo | Valor |
+|-------|-------|
+| Versão | 2.0 |
+| Última atualização | 2026-07-31 |
+| Histórico | 1.0 (2026-07-14) — versão inicial · 2.0 (2026-07-31) — agentes setup/exportador/checklist, rubrica de revisão, templates expandidos |
 
 ## Estrutura de pastas
 
 ```
-UC14/
+NOME-DO-PROJETO/
 ├── .agents/          # Agentes de IA para apoio ao projeto
 ├── .docs/            # Documentos oficiais (plano de curso, calendário)
 ├── .memory/          # Memória persistente do projeto (esta pasta)
+├── 00-MOC/           # Mapas de Conteúdo (Obsidian)
+├── _templates/       # Templates reutilizáveis
 └── AULAS/
     ├── assets/       # CSS e JS compartilhados (slides + exercícios)
     ├── index.md      # Índice geral das aulas
@@ -38,7 +56,7 @@ UC14/
 <body>
 <div class="presentation">
     <div class="progress-bar"><div class="progress-fill"></div></div>
-    <span class="lesson-badge">UC14 · AULA XX</span>
+    <span class="lesson-badge">UC · AULA XX</span>
 
     <!-- Slides aqui -->
 
@@ -117,22 +135,29 @@ UC14/
 
 ## Convenções de código
 
-### HTML ensinado aos alunos
+### HTML
 - Identação com **4 espaços**.
 - Tags sempre em minúsculo.
 - Atributos entre aspas duplas.
 - `alt` obrigatório em `<img>`.
 - Estrutura semântica: `<header>`, `<main>`, `<section>`, `<footer>`, `<nav>`.
 
-### CSS ensinado aos alunos
+### CSS
 - Arquivo externo vinculado via `<link>`.
-- Variáveis CSS com `:root` (a partir da Aula 03).
-- Flexbox para layout (a partir da Aula 04).
-- Media Queries para responsividade (a partir da Aula 05).
+- Variáveis CSS com `:root` (quando aplicável).
+- Flexbox para layout.
+- Media Queries para responsividade.
 
-### JavaScript ensinado aos alunos
+### JavaScript
 - `let` e `const` (nunca `var`).
 - `document.getElementById()` para manipulação do DOM.
-- `addEventListener()` para eventos (a partir da Aula 09).
-- `setInterval()` para temporizadores (a partir da Aula 11).
-- `fetch()` para APIs (Aula 14 apenas).
+- `addEventListener()` para eventos.
+- `setInterval()` para temporizadores.
+- `fetch()` para APIs (quando aplicável).
+
+> **Nota:** O momento exato de introduzir cada conceito depende do plano de aula da turma. Consulte [[perfil-turma|`.memory/perfil-turma.md`]] para a estrutura do curso e [[status-aulas|`.memory/status-aulas.md`]] para o progresso atual.
+
+## Navegação
+
+- Ver também: [[decisoes|Decisões]] · [[perfil-turma|Perfil]]
+- Voltar para [[Home|Índice Principal]]
