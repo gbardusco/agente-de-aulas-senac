@@ -3,6 +3,7 @@ aliases: [Regras, Regras do Projeto]
 tags: [agents, config, rules]
 created: 2026-07-14
 updated: 2026-07-31
+version: "2.1"
 ---
 
 # Regras do Projeto — Material Didático
@@ -52,6 +53,7 @@ Ao receber um prompt que mencione `@[agente-...]`, leia o arquivo do agente e **
 
 | Agente | Quando usar |
 |--------|-------------|
+| `@[agente-orquestrador]` | Analisar tarefa e delegar ao agente correto |
 | `@[agente-planejador-didatico]` | Planejar, criar ou ajustar conteúdo de aulas |
 | `@[agente-diario-de-classe]` | Redigir textos para o Diário de Classe |
 | `@[agente-revisor-de-material]` | Revisar qualidade, acessibilidade e consistência dos materiais |
@@ -102,6 +104,12 @@ NOME-DO-PROJETO/
 │   ├── feedback-aulas-template.md
 │   ├── status-aulas-template.md
 │   ├── feedback-aluno-template.md
+│   ├── glossario-template.md
+│   ├── aula-index-template.md
+│   ├── sintese-diario-classe-template.md
+│   ├── slides-template.html
+│   ├── exercicios-template.html
+│   ├── demo-template.html
 │   └── README.md
 └── AULAS/             # Material didático
     ├── assets/        # CSS e JS compartilhados

@@ -41,10 +41,15 @@ NOME-DO-PROJETO/
 ├── 00-MOC/           # Copiar do template
 ├── _templates/       # Copiar do template
 ├── AULAS/
-│   ├── assets/       # Criar vazio (CSS/JS serão criados depois)
+│   ├── assets/       # CSS e JS compartilhados
+│   │   ├── slides.css
+│   │   ├── slides.js
+│   │   └── exercicios.css
 │   └── index.md      # Criar vazio
 └── .gitignore        # Copiar do template
 ```
+
+> **Dica:** Execute `./setup.sh "Nome do Projeto"` para automatizar a criação da estrutura.
 
 ### 2.3 Copiar templates
 

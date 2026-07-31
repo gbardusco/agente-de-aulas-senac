@@ -16,6 +16,7 @@ Este repositório é **público**. NÃO faça commit de dados sensíveis.
 | `.memory/perfil-turma.md` | Nome da instituição, turma, horários, observações sobre alunos |
 | `.memory/decisoes.md` | Decisões internas do projeto pedagógico |
 | `.memory/feedback-aulas.md` | Feedback do professor, possíveis menções a alunos |
+| `.memory/feedback-aluno.md` | Feedback individual com dados de alunos |
 | `.memory/status-aulas.md` | Status interno das aulas |
 | `.docs/` | Documentos oficiais da instituição (PDFs, planilhas) |
 | `AULAS/` | Material didático com conteúdo específico da turma |
@@ -44,9 +45,15 @@ Se você precisa versionar o material específico de uma turma, crie um **reposi
 ### 1. Copie este repositório
 
 ```bash
-cp -r IOT/ ~/meu-novo-curso/
-cd ~/meu-novo-curso/
+git clone https://github.com/gbardusco/agente-de-aulas-senac.git ~/meu-novo-curso
+cd ~/meu-novo-curso
 rm -rf .git && git init
+```
+
+Ou execute o script de setup automatizado:
+
+```bash
+./setup.sh "Nome do Projeto"
 ```
 
 ### 2. Configure a turma
@@ -67,11 +74,15 @@ No opencode, invoque os agentes via `@[nome-do-agente]`:
 
 | Agente | Uso |
 |--------|-----|
+| `@[agente-orquestrador]` | Analisar tarefa e delegar ao agente correto |
 | `@[agente-planejador-didatico]` | Criar/ajustar conteúdo de aulas |
 | `@[agente-revisor-de-material]` | Revisar qualidade e consistência |
 | `@[agente-diario-de-classe]` | Gerar textos para diário de classe |
 | `@[agente-gerador-de-exercicios]` | Criar exercícios e gabaritos |
 | `@[agente-gestor-de-memoria]` | Documentar feedbacks e decisões |
+| `@[agente-setup-inicial]` | Configurar novo projeto a partir dos templates |
+| `@[agente-checklist-pos-aula]` | Verificar registros após cada aula |
+| `@[agente-exportador]` | Gerar materiais para compartilhamento/impressão |
 
 ---
 
@@ -87,7 +98,11 @@ No opencode, invoque os agentes via `@[nome-do-agente]`:
 ├── .docs/                # ❌ Documentos oficiais (NÃO sobe)
 ├── 00-MOC/               # ✅ Mapas de Conteúdo genéricos
 ├── _templates/           # ✅ Templates para novas turmas
+│   ├── *.md              # Templates de memória e material
+│   └── *.html            # Templates HTML (slides, exercícios, demo)
 ├── AULAS/                # ❌ Material didático (NÃO sobe)
+├── setup.sh              # ✅ Script de setup automatizado
+├── verificar-integridade.sh  # ✅ Script de verificação
 └── .obsidian/            # Config do Obsidian (gitignored)
 ```
 
@@ -100,8 +115,13 @@ No opencode, invoque os agentes via `@[nome-do-agente]`:
 - [ ] Copiar `_templates/decisoes-template.md` → `.memory/decisoes.md`
 - [ ] Copiar `_templates/feedback-aulas-template.md` → `.memory/feedback-aulas.md`
 - [ ] Copiar `_templates/status-aulas-template.md` → `.memory/status-aulas.md`
+- [ ] Copiar `_templates/feedback-aluno-template.md` → `.memory/feedback-aluno.md`
+- [ ] Copiar `_templates/sintese-diario-classe-template.md` → `AULAS/sintese_diario_classe.md`
 - [ ] Ajustar número de aulas em `status-aulas.md` se necessário
+- [ ] Manter `.memory/padroes-tecnicos.md` (reutilizável)
+- [ ] Verificar `.agents/AGENTS.md` — caminhos estão corretos?
 - [ ] Criar `.docs/` com documentos oficiais
 - [ ] Criar `AULAS/` com estrutura de pastas
-- [ ] **NÃO** fazer commit dos arquivos listados acima
+- [ ] Abrir no Obsidian e verificar graph view
+- [ ] **NÃO** fazer commit dos arquivos `.memory/` (exceto `padroes-tecnicos.md` e `index.md`)
 - [ ] Criar repositório **privado** se quiser versionar o material da turma

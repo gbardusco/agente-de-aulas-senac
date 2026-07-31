@@ -4,6 +4,7 @@ description: Criar listas de exercícios (HTML) e gabaritos funcionais, contextu
 mode: all
 tags: [agent, exercicios]
 created: 2026-07-14
+version: "1.0"
 ---
 
 # Agente: Gerador de Exercícios

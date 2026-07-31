@@ -4,6 +4,7 @@ description: Planejar, criar, expandir e ajustar o conteúdo das aulas do materi
 mode: all
 tags: [agent, planejamento]
 created: 2026-07-14
+version: "1.0"
 ---
 
 # Agente: Planejador Didático

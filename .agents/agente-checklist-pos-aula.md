@@ -4,6 +4,7 @@ description: Verificar se tudo foi registrado após cada aula aplicada.
 mode: all
 tags: [agent, checklist]
 created: 2026-07-31
+version: "1.0"
 ---
 
 # Agente: Checklist Pós-Aula

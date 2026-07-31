@@ -29,6 +29,7 @@ Os seguintes arquivos são específicos de cada turma e devem ser criados ao ini
 | `perfil-turma.md` | Perfil da turma, ritmo, contexto temático |
 | `decisoes.md` | Decisões pedagógicas e técnicas |
 | `feedback-aulas.md` | Feedback pós-aula do professor |
+| `feedback-aluno.md` | Feedback individual por aluno |
 | `status-aulas.md` | Progresso das aulas |
 
 > Use os templates em `_templates/` como ponto de partida.

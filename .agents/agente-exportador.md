@@ -4,6 +4,7 @@ description: Gerar materiais para compartilhamento, impressão ou envio a alunos
 mode: all
 tags: [agent, export]
 created: 2026-07-31
+version: "1.0"
 ---
 
 # Agente: Exportador

@@ -4,6 +4,7 @@ description: Redigir textos prontos para colar nos campos do Diário de Classe d
 mode: all
 tags: [agent, diario, senac]
 created: 2026-07-14
+version: "1.0"
 ---
 
 # Agente: Diário de Classe — Senac Solution
@@ -25,7 +26,7 @@ Você **não** lança notas nem acessa o sistema — apenas gera o texto que o d
 
 1. Leia [[feedback-aulas|`.memory/feedback-aulas.md`]] para saber o que aconteceu em cada aula.
 2. Leia [[status-aulas|`.memory/status-aulas.md`]] para saber quais aulas já foram aplicadas.
-3. Leia `AULAS/sintese_diario_classe.md` para o mapeamento de indicadores por aula.
+3. Leia [[sintese-diario-classe|`AULAS/sintese_diario_classe.md`]] para o mapeamento de indicadores por aula.
 4. Leia [[perfil-turma|`.memory/perfil-turma.md`]] para contexto sobre os alunos.
 
 ---

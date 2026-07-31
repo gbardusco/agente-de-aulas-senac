@@ -7,21 +7,21 @@ updated: 2026-07-31
 
 # Home
 
-> **Mapa de Conteudo (MOC)** principal deste vault.  
+> **Mapa de Conteúdo (MOC)** principal deste vault.  
 > Navegue usando os links abaixo ou a barra lateral do Obsidian.
 
 ---
 
-## Sobre Este Repositorio
+## Sobre Este Repositório
 
-Esta e a **instalacao padrao** reutilizavel para criar material didatico para qualquer Unidade Curricular.  
+Esta é a **instalação padrão** reutilizável para criar material didático para qualquer Unidade Curricular.  
 Para usar, copie os arquivos para um novo projeto e preencha o perfil da turma em `.memory/perfil-turma.md`.
 
 ---
 
 ## Dashboard de Progresso
 
-| Metrica | Valor |
+| Métrica | Valor |
 |---------|-------|
 | Total de aulas | *(ver status-aulas.md)* |
 | Aulas aplicadas | *(ver status-aulas.md)* |
@@ -31,24 +31,29 @@ Para usar, copie os arquivos para um novo projeto e preencha o perfil da turma e
 
 ---
 
-## Navegacao
+## Navegação
 
-### Configuracao e Regras
+### Configuração e Regras
 - [[AGENTS|Regras do Projeto]] — regras globais para agentes de IA
-- [[padroes-tecnicos|Padroes Tecnicos]] — templates CSS, convencoes de codigo
+- [[padroes-tecnicos|Padrões Técnicos]] — templates CSS, convenções de código
 
 ### Agentes de IA
-- [[Agentes|Indice de Agentes]] — visao geral de todos os agentes disponiveis
-- [[planejador-didatico|Planejador Didatico]] — cria e ajusta conteudo
+- [[Agentes|Índice de Agentes]] — visão geral de todos os agentes disponíveis
+- [[orquestrador|Orquestrador]] — analisa e delega tarefas
+- [[planejador-didatico|Planejador Didático]] — cria e ajusta conteúdo
 - [[revisor-de-material|Revisor de Material]] — audita qualidade
-- [[diario-de-classe|Diario de Classe]] — gera textos para diario de classe
-- [[gerador-de-exercicios|Gerador de Exercicios]] — cria listas e gabaritos
-- [[gestor-de-memoria|Gestor de Memoria]] — documenta feedbacks e decisoes
+- [[diario-de-classe|Diário de Classe]] — gera textos para diário de classe
+- [[gerador-de-exercicios|Gerador de Exercícios]] — cria listas e gabaritos
+- [[gestor-de-memoria|Gestor de Memória]] — documenta feedbacks e decisões
 - [[setup-inicial|Setup Inicial]] — configura novo projeto
-- [[checklist-pos-aula|Checklist Pos-Aula]] — verifica registros apos cada aula
+- [[checklist-pos-aula|Checklist Pós-Aula]] — verifica registros após cada aula
 - [[exportador|Exportador]] — gera materiais para compartilhamento
 
-### Para Comecar um Novo Projeto
+### Memória do Projeto
+- [[Memoria|Índice de Memória]] — visão geral da memória persistente
+- [[padroes-tecnicos|Padrões Técnicos]] — convenções de código e CSS
+
+### Para Começar um Novo Projeto
 - `_templates/perfil-turma-template.md` — copie para `.memory/perfil-turma.md`
 - `_templates/README.md` — checklist completo de setup
 
@@ -60,10 +65,10 @@ Para usar, copie os arquivos para um novo projeto e preencha o perfil da turma e
 Abra a pasta do projeto como vault no Obsidian.
 
 ### Com Agentes de IA (opencode, etc.)
-Os agentes leem `.agents/AGENTS.md` automaticamente. As memorias ficam em `.memory/`.
+Os agentes leem `.agents/AGENTS.md` automaticamente. As memórias ficam em `.memory/`.
 
-### Reutilizacao
-1. Copie todo este repositorio para um novo diretorio
+### Reutilização
+1. Copie todo este repositório para um novo diretório
 2. Copie `_templates/perfil-turma-template.md` para `.memory/perfil-turma.md`
 3. Preencha os dados da nova turma
 4. Os agentes se adaptam automaticamente ao perfil definido

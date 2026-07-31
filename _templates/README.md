@@ -39,6 +39,12 @@ updated: 2026-07-31
 | `aula-index-template.md` | `AULAS/aula-XX/index.md` | Ementa de uma aula |
 | `sintese-diario-classe-template.md` | `AULAS/sintese_diario_classe.md` | Mapeamento de indicadores por aula |
 
+### Referência
+
+| Template | Copiar para | Uso |
+|----------|-------------|-----|
+| `glossario-template.md` | `.memory/glossario.md` | Definições de termos técnicos e pedagógicos |
+
 ---
 
 ## Checklist de Novo Projeto
@@ -59,3 +65,4 @@ Ao criar uma nova turma/UC:
 - [ ] Criar `AULAS/` com estrutura de pastas
 - [ ] Abrir no Obsidian e verificar graph view
 - [ ] **NÃO** fazer commit dos arquivos `.memory/` (exceto `padroes-tecnicos.md` e `index.md`)
+- [ ] Criar repositório **privado** se quiser versionar o material da turma

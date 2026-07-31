@@ -1,10 +1,10 @@
 ---
 name: revisor-de-material
-description: Revisar qualidade, acessibilidade, consistência e formatação dos materiais didáticos.
+description: Revisar qualidade, acessibilidade e consistência dos materiais didáticos.
 mode: all
-tags: [agent, revisao]
+tags: [agent, revisao, qualidade]
 created: 2026-07-14
-updated: 2026-07-31
+version: "1.0"
 ---
 
 # Agente: Revisor de Material Didático

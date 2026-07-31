@@ -70,23 +70,71 @@ Antes de agir, todo agente deve consultar a [[Memoria|Memória do Projeto]].
 
 ---
 
+### [[orquestrador|Orquestrador]]
+| Campo | Valor |
+|-------|-------|
+| **Arquivo** | `.agents/agente-orquestrador.md` |
+| **Ativação** | `@[agente-orquestrador]` |
+| **Escopo** | Analisar tarefa e delegar ao agente correto |
+| **Função** | Classificar pedidos, convocar agentes, coordenar execução |
+
+---
+
+### [[setup-inicial|Setup Inicial]]
+| Campo | Valor |
+|-------|-------|
+| **Arquivo** | `.agents/agente-setup-inicial.md` |
+| **Ativação** | `@[agente-setup-inicial]` |
+| **Escopo** | Configurar novo projeto a partir dos templates |
+| **Entregáveis** | Estrutura de pastas, cópia de templates, preenchimento inicial |
+
+---
+
+### [[checklist-pos-aula|Checklist Pós-Aula]]
+| Campo | Valor |
+|-------|-------|
+| **Arquivo** | `.agents/agente-checklist-pos-aula.md` |
+| **Ativação** | `@[agente-checklist-pos-aula]` |
+| **Escopo** | Verificar registros após cada aula aplicada |
+| **Verifica** | Status, feedback, diário de classe, pendências |
+
+---
+
+### [[exportador|Exportador]]
+| Campo | Valor |
+|-------|-------|
+| **Arquivo** | `.agents/agente-exportador.md` |
+| **Ativação** | `@[agente-exportador]` |
+| **Escopo** | Gerar materiais para compartilhamento e impressão |
+| **Formatos** | PDF, HTML exportável, materiais para alunos |
+
+---
+
 ## Fluxo de Trabalho
 
 ```
 Professor solicita algo
         │
         ▼
-┌─ gestor-de-memoria ←─ (brain dump, feedback rápido)
-│
-├─ planejador-didatico ←─ (criar/ajustar conteúdo)
+┌─ orquestrador ←─ (analisa e delega ao agente correto)
 │       │
-│       ▼
-│   gerador-de-exercicios ←─ (listas e gabaritos)
+│       ├──→ gestor-de-memoria ←─ (brain dump, feedback rápido)
 │       │
-│       ▼
-│   revisor-de-material ←─ (auditar qualidade)
-│
-└─ diario-de-classe ←─ (gerar textos para diário de classe)
+│       ├──→ planejador-didatico ←─ (criar/ajustar conteúdo)
+│       │       │
+│       │       ▼
+│       │   gerador-de-exercicios ←─ (listas e gabaritos)
+│       │       │
+│       │       ▼
+│       │   revisor-de-material ←─ (auditar qualidade)
+│       │
+│       ├──→ diario-de-classe ←─ (gerar textos para diário de classe)
+│       │
+│       ├──→ setup-inicial ←─ (configurar novo projeto)
+│       │
+│       ├──→ checklist-pos-aula ←─ (verificar registros pós-aula)
+│       │
+│       └──→ exportador ←─ (gerar materiais para compartilhar)
 ```
 
 ---

@@ -4,6 +4,7 @@ description: Centralizar, registrar e organizar feedbacks, decisões e status do
 mode: all
 tags: [agent, memoria]
 created: 2026-07-14
+version: "1.0"
 ---
 
 # Agente: Gestor de Memória
@@ -38,7 +39,7 @@ Siga este fluxo:
 1. **Interprete:** Qual arquivo deve receber essa informação? (Feedback de aula? Perfil da turma?).
 2. **Formate:** Transforme a fala solta do professor em um registro profissional, conciso e datado.
 3. **Atualize:** Modifique o respectivo arquivo em `.memory/`.
-   4. **Alinhe:** Se uma decisão nova afetar o material (ex: "Eles odiaram tabelas"), avise o professor que ele deve acionar o `@[agente-planejador-didatico]` para reestruturar as próximas aulas.
+4. **Alinhe:** Se uma decisão nova afetar o material (ex: "Eles odiaram tabelas"), avise o professor que ele deve acionar o `@[agente-planejador-didatico]` para reestruturar as próximas aulas.
 
 ---
 

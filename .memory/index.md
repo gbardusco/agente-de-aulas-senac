@@ -23,6 +23,7 @@ Os seguintes arquivos devem ser criados a partir dos templates em `_templates/`:
 | `perfil-turma.md` | Informações sobre a turma, ritmo, contexto temático |
 | `decisoes.md` | Registro de decisões pedagógicas e técnicas |
 | `feedback-aulas.md` | Feedback do professor após aplicar cada aula |
+| `feedback-aluno.md` | Feedback individual por aluno |
 | `status-aulas.md` | Estado atual de cada aula (criada, revisada, aplicada) |
 
 ## Navegação

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo — Aula XX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .demo-header {
+            background: #16213e;
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #0f3460;
+        }
+        .demo-header h1 {
+            font-size: 1.5rem;
+            color: #e94560;
+        }
+        .demo-header p {
+            color: #a0a0a0;
+            margin-top: 0.25rem;
+        }
+        .demo-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 1.5rem;
+        }
+        .code-section {
+            background: #0f0f23;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #333;
+        }
+        .code-section h2 {
+            font-size: 1rem;
+            color: #e94560;
+            margin-bottom: 1rem;
+        }
+        pre {
+            background: #1a1a2e;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .output-section {
+            background: #ffffff;
+            color: #000000;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #333;
+        }
+        .output-section h2 {
+            font-size: 1rem;
+            color: #e94560;
+            margin-bottom: 1rem;
+        }
+        .output-content {
+            min-height: 100px;
+        }
+        .tag { color: #4fc3f7; }
+        .attr { color: #ffb74d; }
+        .value { color: #81c784; }
+        .comment { color: #757575; }
+        .keyword { color: #ce93d8; }
+        .property { color: #4fc3f7; }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>Demo — Aula XX</h1>
+        <p>Título da Aula</p>
+    </div>
+
+    <div class="demo-content">
+        <div class="code-section">
+            <h2>Código</h2>
+            <pre><span class="comment">&lt;!-- Código da demo aqui --&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+    <span class="tag">&lt;head&gt;</span>
+        <span class="tag">&lt;title&gt;</span>Minha Página<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;/head&gt;</span>
+    <span class="tag">&lt;body&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>Olá, Mundo!<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+        </div>
+
+        <div class="output-section">
+            <h2>Resultado</h2>
+            <div class="output-content">
+                <h1>Olá, Mundo!</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript da demo aqui (se aplicável)
+        // Exemplo:
+        // document.querySelector('h1').addEventListener('click', function() {
+        //     alert('Clicou!');
+        // });
+    </script>
+</body>
+</html>

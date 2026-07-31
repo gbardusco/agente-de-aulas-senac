@@ -1,18 +1,18 @@
 ---
-aliases: [Glossario, Termos]
+aliases: [Glossário, Termos]
 tags: [memory, glossario]
 created: YYYY-MM-DD
 ---
 
-# Glossario
+# Glossário
 
-Definicoes dos termos tecnicos e pedagogicos usados no projeto.
+Definições dos termos técnicos e pedagógicos usados no projeto.
 
 ---
 
-| Termo | Definicao |
+| Termo | Definição |
 |-------|-----------|
-| UC | Unidade Curricula — disciplina do curso |
+| UC | Unidade Curricular — disciplina do curso |
 | Slide | Pagina da apresentacao HTML (100vh) |
 | Demo | Codigo-fonte criado em sala para live coding |
 | Exercicio | Atividade pratica de fixacao para o aluno |
