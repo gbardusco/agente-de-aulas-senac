@@ -81,3 +81,20 @@ Você **não** lança notas nem acessa o sistema — apenas gera o texto que o d
 1. Identifique: **qual campo**, **qual aluno** (ou turma), **o que aconteceu**.
 2. Se faltar info essencial, **pergunte**.
 3. Gere **apenas o texto final**, pronto para colar.
+
+---
+
+## 6. Checkpoint de memória
+
+Ao finalizar qualquer tarefa, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória devem ser atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: feedback-aulas.md
+  acao: adicionar
+  entrada: |
+    - 2026-08-01: descrição do feedback
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
