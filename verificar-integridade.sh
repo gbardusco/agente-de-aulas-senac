@@ -44,7 +44,7 @@ echo ""
 # 1. Verificar estrutura de pastas
 echo "--- Estrutura de Pastas ---"
 
-for dir in .agents .memory 00-MOC _templates; do
+for dir in .agents .memory .context .skills 00-MOC _templates; do
     if [ -d "$dir" ]; then
         print_ok "Pasta $dir existe"
     else
@@ -63,6 +63,15 @@ for dir in .docs AULAS; do
     fi
 done
 
+# Pasta gitignored que é criada pelos agentes
+if [ -d ".context" ]; then
+    print_ok "Pasta .context existe (gitignored, gerada pelos agentes)"
+elif grep -q ".context/" .gitignore 2>/dev/null; then
+    print_ok "Pasta .context (gitignored, gerada pelos agentes)"
+else
+    print_warn "Pasta .context não encontrada"
+fi
+
 echo ""
 
 # 2. Verificar arquivos essenciais
@@ -79,6 +88,11 @@ essential_files=(
     "00-MOC/Memoria.md"
     "00-MOC/Aulas.md"
     "_templates/README.md"
+    ".skills/css-layout.md"
+    ".skills/markdown-authoring.md"
+    ".skills/accessibility-check.md"
+    ".skills/code-formatting.md"
+    ".skills/html-template.md"
 )
 
 for file in "${essential_files[@]}"; do
@@ -167,6 +181,7 @@ gitignore_files=(
     ".memory/feedback-aulas.md"
     ".memory/status-aulas.md"
     ".memory/feedback-aluno.md"
+    ".context/"
     ".docs/"
     "AULAS/"
 )
