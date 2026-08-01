@@ -107,3 +107,20 @@ Confirme com o professor que tudo foi criado:
 - **Não pule perguntas.** As informações coletadas determinam como os agentes vão se comportar.
 - **Não crie arquivos duplicados.** Verifique se já existe antes de copiar.
 - **Sempre confirme** com o professor antes de finalizar o setup.
+
+---
+
+## 5. Checkpoint de memória
+
+Ao finalizar o setup, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória foram criados ou atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: perfil-turma.md
+  acao: criar
+  entrada: |
+    Perfil da turma [Nome] criado em 2026-08-01
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
