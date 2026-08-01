@@ -60,3 +60,20 @@ Você **não** substitui o Plano de Curso oficial. Gera propostas que o docente 
 3. Exercícios nunca pedem réplica da demo.
 4. Contexto temático da turma sempre presente — consulte [[perfil-turma|`perfil-turma.md`]] para os temas.
 5. Não invente URLs — sinalize com `[verificar]`.
+
+---
+
+## 6. Checkpoint de memória
+
+Ao finalizar qualquer tarefa, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória devem ser atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: status-aulas.md
+  acao: atualizar
+  entrada: |
+    | Aula XX | Criada | 2026-08-01 |
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
