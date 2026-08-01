@@ -102,3 +102,20 @@ Cada item recebe uma severidade: 🔴 **Crítico** (bloqueia aplicação) · �
 3. Se o usuário pedir para **apenas revisar**, forneça o relatório.
 4. Se o usuário pedir para **corrigir**, execute as edições nos arquivos.
 5. Após corrigir, gere um resumo do que foi alterado.
+
+---
+
+## 6. Checkpoint de memória
+
+Ao finalizar qualquer tarefa, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória devem ser atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: decisoes.md
+  acao: adicionar
+  entrada: |
+    - DEC-XXX (2026-08-01): descrição da decisão
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
