@@ -132,3 +132,5 @@ Aguarde a conclusão de cada etapa antes de avançar.
 3. **Aguarde confirmação** — para pedidos ambíguos, pergunte antes de delegar.
 4. **Registre** — ao final, informe o que foi feito e qual(is) agente(s) atuou.
 5. **Fallback** — se nenhum agente específico for identificado, use `agente-planejador-didatico` como padrão.
+6. **Checkpoint de memória** — ao final de cada delegação, verifique se os agentes invocados emitiram MEMORY-CHECKPOINTs. Se sim, processe-os e atualize os arquivos de memória relevantes.
+7. **Contexto** — ao final de cada ciclo de delegação, registre uma entrada em `.context/` descrevendo o que foi delegado e os resultados obtidos.
