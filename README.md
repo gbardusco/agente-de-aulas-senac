@@ -26,12 +26,15 @@ Este repositório é **público**. NÃO faça commit de dados sensíveis.
 | Arquivo/Pasta | Por quê |
 |---------------|---------|
 | `.agents/*.md` | Agentes genéricos, sem dados de turma |
+| `.skills/*.md` | Skills compartilhadas entre projetos |
 | `.memory/padroes-tecnicos.md` | Padrões de código reutilizáveis |
 | `.memory/index.md` | Índice genérico |
 | `00-MOC/*.md` | Mapas de conteúdo genéricos |
 | `_templates/*` | Templates para novas turmas |
 | `.gitignore` | Configuração de ignore |
 | `README.md` | Este arquivo |
+| `setup.sh` | Script de setup automatizado |
+| `verificar-integridade.sh` | Script de verificação |
 
 ### Como funciona na prática
 
@@ -84,6 +87,12 @@ No opencode, invoque os agentes via `@[nome-do-agente]`:
 | `@[agente-checklist-pos-aula]` | Verificar registros após cada aula |
 | `@[agente-exportador]` | Gerar materiais para compartilhamento/impressão |
 
+### Novidades
+
+- **Contexto agentico** — cada agente registra automaticamente um contexto em `.context/` após executar tarefas, permitindo que qualquer agente ou harness posterior acesse o histórico de trabalho.
+- **Checkpoint de memória** — agentes emitem blocos `MEMORY-CHECKPOINT` ao final de cada tarefa, atualizando a memória automaticamente sem necessidade de invocar o gestor de memória explicitamente.
+- **Skills** — capacidades reutilizáveis (CSS layout, markdown authoring, accessibility check, code formatting, HTML templates) definidas em `.skills/` e adotadas pelos agentes via seu frontmatter.
+
 ---
 
 ## Estrutura
@@ -92,10 +101,19 @@ No opencode, invoque os agentes via `@[nome-do-agente]`:
 ├── .agents/              # Agentes de IA (genéricos)
 │   ├── AGENTS.md         # Regras globais
 │   └── agente-*.md       # Agentes especializados
+├── .context/             # Contexto agentico (gitignored)
+│   ├── index.md
+│   └── agente-*.md
+├── .docs/                # ❌ Documentos oficiais (NÃO sobe)
 ├── .memory/              # Memória do projeto
 │   ├── padroes-tecnicos.md  # ✅ Reutilizável (sobe ao GitHub)
 │   └── (perfil-turma.md)    # ❌ Criado por você (NÃO sobe)
-├── .docs/                # ❌ Documentos oficiais (NÃO sobe)
+├── .skills/              # Skills compartilhadas entre projetos
+│   ├── css-layout.md
+│   ├── markdown-authoring.md
+│   ├── accessibility-check.md
+│   ├── code-formatting.md
+│   └── html-template.md
 ├── 00-MOC/               # ✅ Mapas de Conteúdo genéricos
 ├── _templates/           # ✅ Templates para novas turmas
 │   ├── *.md              # Templates de memória e material
