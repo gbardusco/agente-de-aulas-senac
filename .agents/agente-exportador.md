@@ -62,3 +62,16 @@ Você transforma os materiais do projeto em formatos prontos para uso fora do Ob
 - **Preserve a formatação** — o material exportado deve ter a mesma qualidade visual.
 - **Inclua cabeçalho** — dados da instituição, turma, data (consulte [[perfil-turma|`.memory/perfil-turma.md`]]).
 - **NÃO inclua gabaritos** na exportação para alunos (a menos que solicitado explicitamente).
+
+---
+
+## 5. Checkpoint de memória
+
+Ao finalizar qualquer exportação, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória devem ser atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
