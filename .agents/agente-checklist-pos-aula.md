@@ -66,3 +66,20 @@ Para cada aula aplicada, verifique:
 2. Verifique cada item do checklist.
 3. Gere o relatório com o resultado.
 4. Se o professor pedir para **registrar**, ajude a preencher os campos faltantes.
+
+---
+
+## 5. Checkpoint de memória
+
+Ao finalizar o checklist, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória devem ser atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: status-aulas.md
+  acao: atualizar
+  entrada: |
+    | Aula XX | Aplicada | 2026-08-01 |
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
