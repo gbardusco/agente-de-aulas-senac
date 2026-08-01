@@ -8,6 +8,9 @@
 .memory/status-aulas.md
 .memory/feedback-aluno.md
 
+# Contexto agentico (gerado dinamicamente pelos agentes)
+.context/
+
 # Documentos oficiais (pode conter dados institucionais)
 .docs/
 
