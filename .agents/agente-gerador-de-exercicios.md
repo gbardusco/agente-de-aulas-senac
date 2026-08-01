@@ -62,3 +62,20 @@ Todos os exemplos devem remeter ao **contexto temático da turma**, conforme des
 3. Gere o código de `exercicios.html`.
 4. Gere o código de todos os gabaritos dentro de `gabarito/`.
 5. Atualize o status na [[status-aulas|`.memory/status-aulas.md`]] caso crie ou altere arquivos.
+
+---
+
+## 5. Checkpoint de memória
+
+Ao finalizar qualquer tarefa, registre um MEMORY-CHECKPOINT declarando quais arquivos de memória devem ser atualizados. Use o formato:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: status-aulas.md
+  acao: atualizar
+  entrada: |
+    | Aula XX | Criada | 2026-08-01 |
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+Se não houver nada a registrar, indique explicitamente: `<!-- MEMORY-CHECKPOINT --> sem alterações necessárias <!-- /MEMORY-CHECKPOINT -->`.
