@@ -39,6 +39,25 @@ Após qualquer alteração significativa no material, **atualize os arquivos de 
 - Recebeu feedback do professor? → Registre em [[feedback-aulas|`feedback-aulas.md`]].
 - Mudou algo na turma? → Atualize [[perfil-turma|`perfil-turma.md`]].
 
+### Regra 2b — Checkpoint de memória obrigatório
+
+Ao final de cada tarefa, **todo agente deve emitir um bloco MEMORY-CHECKPOINT** declarando quais arquivos de memória devem ser atualizados. O formato é:
+
+```
+<!-- MEMORY-CHECKPOINT -->
+- arquivo: status-aulas.md
+  acao: atualizar
+  entrada: |
+    | Aula 05 | Criada | 2026-08-01 |
+- arquivo: decisoes.md
+  acao: adicionar
+  entrada: |
+    - DEC-005 (2026-08-01): descrição da decisão
+<!-- /MEMORY-CHECKPOINT -->
+```
+
+O orquestrador (ou qualquer harness) processa esses blocos e atualiza os arquivos de memória automaticamente. Não é necessário invocar `@[agente-gestor-de-memoria]` explicitamente para isso.
+
 ## Regra 3 — Padrões de código são invioláveis
 
 - Todo código exibido aos alunos deve ter **identação perfeita com 4 espaços**.
@@ -46,6 +65,12 @@ Após qualquer alteração significativa no material, **atualize os arquivos de 
 - Exercícios exigem **produção autônoma** — nunca réplica da demo.
 - **Contexto temático** da turma deve estar presente em todo conteúdo — consulte [[perfil-turma|`perfil-turma.md`]] para os temas.
 - Consulte [[padroes-tecnicos|`padroes-tecnicos.md`]] para templates e classes CSS.
+
+### Regra 3b — Skills adotáveis
+
+Cada agente adota skills relevantes listadas em seu frontmatter (`skills:`). Skills são definições reutilizáveis de capacidades (CSS layout, markdown authoring, accessibility check, code formatting, HTML templates) armazenadas em `.skills/`. Ao adotar uma skill, o agente deve seguir suas instruções.
+
+Skills disponíveis estão em `.skills/` e são compartilhadas entre todos os projetos.
 
 ## Regra 4 — Agentes especializados
 
@@ -63,6 +88,10 @@ Ao receber um prompt que mencione `@[agente-...]`, leia o arquivo do agente e **
 | `@[agente-checklist-pos-aula]` | Verificar se tudo foi registrado após cada aula |
 | `@[agente-exportador]` | Gerar materiais para compartilhamento/impressão |
 
+### Fallback: agente orquestrador
+
+**Se nenhum agente específico for invocado**, acione o [[orquestrador|`agente-orquestrador`]] para que ele analise a tarefa e delegue ao(s) agente(s) correto(s). O orquestrador é o ponto de entrada padrão para qualquer pedido que não especifique um agente.
+
 ## Regra 5 — Documentos de referência
 
 - `.docs/` — Plano de Curso oficial e calendário acadêmico.
@@ -78,6 +107,18 @@ Se uma nova informação contradiz uma decisão registrada em `decisoes.md`:
 3. **Referencie** a decisão que está sendo substituída (ex: "Substitui DEC-002").
 4. **Avise o professor** sobre o conflito antes de tomar qualquer ação.
 
+## Regra 7 — Contexto agentico
+
+Após concluir uma tarefa, todo agente deve registrar um **contexto** em `.context/` descrevendo o que foi feito, o que foi descoberto e o que fica pendente. Isso permite que qualquer agente ou harness posterior acesse o histórico de trabalho sem precisar re-executar tarefas.
+
+### Formato do contexto
+
+Cada entrada é um arquivo em `.context/` seguindo o template `.context/agente-template.md`. O índice de todas as entradas está em `.context/index.md`.
+
+### Obrigatoriedade
+
+O registro de contexto é obrigatório após cada tarefa concluída. Não é opcional.
+
 ## Estrutura do projeto
 
 ```
@@ -85,6 +126,9 @@ NOME-DO-PROJETO/
 ├── .agents/           # Agentes e regras (este arquivo)
 │   ├── AGENTS.md      # ← Regras globais (lidas automaticamente)
 │   └── agente-*.md    # Agentes especializados
+├── .context/           # Contexto agentico (gitignored)
+│   ├── index.md
+│   └── agente-*.md
 ├── .docs/             # Documentos oficiais
 ├── .memory/           # Memória persistente do projeto
 │   ├── decisoes.md
@@ -93,6 +137,12 @@ NOME-DO-PROJETO/
 │   ├── perfil-turma.md
 │   ├── padroes-tecnicos.md
 │   └── index.md
+├── .skills/            # Skills compartilhadas entre projetos
+│   ├── css-layout.md
+│   ├── markdown-authoring.md
+│   ├── accessibility-check.md
+│   ├── code-formatting.md
+│   └── html-template.md
 ├── 00-MOC/            # Mapas de Conteúdo (Obsidian)
 │   ├── Home.md
 │   ├── Agentes.md
