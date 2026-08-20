@@ -13,6 +13,7 @@ Esta pasta armazena o **contexto persistente** do projeto de criação de materi
 | Arquivo | Finalidade |
 |---------|-----------|
 | [[padroes-tecnicos|padroes-tecnicos.md]] | Padrões de código, CSS e convenções do projeto |
+| [[decisoes|decisoes.md]] | Registro de decisões pedagógicas e técnicas (DEC-001: sequência pedagógica dos slides; DEC-002: atividades complementares opcionais) |
 
 ## Arquivos da Turma (preenchidos ao iniciar novo projeto)
 
@@ -21,7 +22,6 @@ Os seguintes arquivos devem ser criados a partir dos templates em `_templates/`:
 | Arquivo | Finalidade |
 |---------|-----------|
 | `perfil-turma.md` | Informações sobre a turma, ritmo, contexto temático |
-| `decisoes.md` | Registro de decisões pedagógicas e técnicas |
 | `feedback-aulas.md` | Feedback do professor após aplicar cada aula |
 | `feedback-aluno.md` | Feedback individual por aluno |
 | `status-aulas.md` | Estado atual de cada aula (criada, revisada, aplicada) |
