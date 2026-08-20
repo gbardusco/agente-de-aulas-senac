@@ -76,6 +76,15 @@ NOME-DO-PROJETO/
 - `.section-slide` — divisor de seção (ex: "Parte 2")
 - Slide normal — conteúdo com `.slide-content`
 
+### Sequência pedagógica dos slides
+Todo conceito novo deve ser apresentado em 3 passos:
+
+1. **Situação-problema contextualizada** — abrir com um problema do mundo real, de fácil entendimento e ligado ao contexto temático da turma (ex: "Como mostrar o cardápio de forma organizada?").
+2. **Formalização do conceito** — a partir da situação-problema, definir formalmente o conceito da aula.
+3. **Exemplo na prática** — resolver a situação-problema do passo 1 com um exemplo prático (idealmente com `.two-columns` + `.preview-box`).
+
+Nunca partir direto do código: primeiro o problema, depois o conceito, por fim a aplicação.
+
 ### Blocos visuais disponíveis
 - `.two-columns` — layout lado a lado (código + preview)
 - `.preview-box` + `.preview-label` — preview de resultado do navegador
@@ -98,6 +107,27 @@ NOME-DO-PROJETO/
 2. **Identação exemplar** em todo código exibido.
 3. Se o slide ficou grande, **divida em dois** — nunca comprima.
 4. `font-size: 14px` no `<pre>` pode ser usado para tabelas grandes, mas sem sacrificar identação.
+
+## Atividades complementares (opcionais)
+
+A **lista de exercícios é sempre obrigatória** em toda aula. Além dela, o planejador pode propor — **de forma opcional e contextual** — outras estratégias didáticas para enriquecer a aula.
+
+Catálogo disponível (ver skill [[atividades-complementares|`.skills/atividades-complementares.md`]]):
+
+| Estratégia | Quando usar | Esforço |
+|------------|-------------|---------|
+| Seminário | Tema amplo para aprofundamento em grupos | Alto |
+| Pesquisa guiada | Conceito com fontes oficiais | Médio |
+| Aula invertida | Teoria assimilável antes da aula | Médio |
+| Estudo de caso | Situação-problema real do tema | Médio |
+| Gamificação / quiz | Revisão rápida ou fixação | Baixo |
+| Debate orientado | Temas com trade-offs | Baixo |
+| Trabalho em grupo / mini-projeto | Combinação de conceitos em solução maior | Alto |
+| Mapa mental / síntese visual | Consolidar conceitos | Baixo |
+| Ensino por pares | Revisão entre colegas | Baixo |
+| Prática guiada estendida | Ritmo lento ou feedback de dificuldade | Médio |
+
+**Critérios de decisão:** tema da aula, perfil da turma, feedback real, tempo disponível e infraestrutura. Se propor, justificar e registrar na ementa (`index.md`); se não houver necessidade, não inserir. Atividades complementares **não substituem** exercícios nem demo.
 
 ## Exercícios (`exercicios.html`)
 
