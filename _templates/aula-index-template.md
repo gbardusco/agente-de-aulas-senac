@@ -28,3 +28,11 @@
 | 🟨 Prática Guiada | 30 min | *(descrever)* |
 | 🟥 Lista de Exercícios | 45 min | *(descrever)* |
 | 🟪 Fechamento | 10 min | Recapitulação |
+
+## Atividade Complementar (opcional)
+
+> Preenchido apenas quando o planejador decidir inserir uma estratégia extra (seminário, pesquisa, aula invertida, etc.). Não é obrigatório — a lista de exercícios é o único item garantido.
+
+**Estratégia:** *(ex: estudo de caso)*  
+**Justificativa:** *(por que se adequa ao tema e à turma)*  
+**Bloco/Duração:** *(onde entra na estrutura da aula)*
