@@ -59,6 +59,10 @@ Cada item recebe uma severidade: 🔴 **Crítico** (bloqueia aplicação) · �
 | Progressão Básico → Intermediário → Desafio | 🟡 |
 | Alinhamento com contexto temático da turma | 🟡 |
 | Dicas práticas em `<div class="hints">` | 🔵 |
+| Slide de conceito abre com situação-problema contextualizada (mundo real, fácil entendimento) | 🟡 |
+| Formalização do conceito antes do exemplo na prática | 🟡 |
+| Exemplo prático presente fechando a sequência | 🟡 |
+| Atividades complementares, se propostas, são coerentes com o tema e a turma (e não substituem exercícios) | 🔵 |
 
 ### 3.4 Acessibilidade
 | Item | Severidade |
