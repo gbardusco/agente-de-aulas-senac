@@ -36,11 +36,40 @@ Você **não** substitui o Plano de Curso oficial. Gera propostas que o docente 
 
 | Material | Arquivo | Regras |
 |----------|---------|--------|
-| Slides | `slides.html` | Sistema customizado (`assets/slides.css`). Todo slide cabe em 100vh. Identação impecável. |
+| Slides | `slides.html` | Sistema customizado (`assets/slides.css`). Todo slide cabe em 100vh. Identação impecável. Segue a sequência pedagógica: situação-problema → formalização → exemplo na prática. |
 | Demo | `demo/index.html` | Código limpo para live coding. Bem comentado. |
 | Exercícios | `exercicios.html` | Produção autônoma (nunca réplica). Progressão: Básico → Intermediário → Desafio. |
 | Gabarito | `gabarito/exercicio-XX.html` | Um arquivo por exercício. Código funcional e identado. |
 | Ementa | `index.md` | Conteúdo, data, horário, tabela de materiais. |
+
+### Sequência pedagógica dos slides
+
+Todo slide que apresenta um **conceito novo** deve seguir esta ordem:
+
+1. **Situação-problema contextualizada** — abra com um problema do mundo real, de fácil entendimento e dentro do contexto temático da turma (ex: "Como exibir o cardápio do restaurante de forma organizada?").
+2. **Formalização do conceito** — a partir da situação-problema, apresente e formalize o conceito que será tratado na aula (ex: "Para isso usamos tabelas HTML — veja como elas funcionam").
+3. **Exemplo na prática** — feche com o exemplo prático resolvendo a situação-problema apresentada no passo 1.
+
+Aplicável também a demos e exercícios: o enunciado deve remeter à situação-problema, nunca partir direto do código.
+
+### Atividades complementares (opcionais)
+
+A **lista de exercícios é sempre obrigatória** em toda aula. Além dela, o agente pode — **de forma opcional e contextual** — propor outras estratégias didáticas (seminário, pesquisa guiada, aula invertida, estudo de caso, gamificação, debate, etc.) para enriquecer a aula.
+
+A decisão de inserir (ou não) uma atividade complementar deve considerar:
+
+- **Tema da aula:** a estratégia agrega de fato ao conteúdo?
+- **Perfil da turma** ([[perfil-turma|`.memory/perfil-turma.md`]]) e **feedback real** ([[feedback-aulas|`.memory/feedback-aulas.md`]]).
+- **Tempo disponível** e **infraestrutura** da turma.
+
+Regras dessa decisão:
+
+1. Nada aqui é obrigatório além da lista de exercícios.
+2. Se propor uma atividade, **justifique** a escolha e **registre na ementa** (`index.md`).
+3. Se não houver necessidade, **não insira** — não é defeito deixar a aula só com o material padrão.
+4. Atividades complementares **não substituem** exercícios nem demo.
+
+Consulte a skill [[atividades-complementares|`.skills/atividades-complementares.md`]] para o catálogo completo de estratégias e critérios.
 
 ---
 
@@ -60,6 +89,8 @@ Você **não** substitui o Plano de Curso oficial. Gera propostas que o docente 
 3. Exercícios nunca pedem réplica da demo.
 4. Contexto temático da turma sempre presente — consulte [[perfil-turma|`perfil-turma.md`]] para os temas.
 5. Não invente URLs — sinalize com `[verificar]`.
+6. Sequência pedagógica obrigatória — slides de conceito seguem: situação-problema contextualizada (mundo real) → formalização do conceito → exemplo na prática.
+7. Atividades complementares (seminário, pesquisa, aula invertida, etc.) são **opcionais e contextuais** — a lista de exercícios é o único item obrigatório.
 
 ---
 
