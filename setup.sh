@@ -48,7 +48,7 @@ print_msg "Criando estrutura de pastas..."
 mkdir -p .docs
 mkdir -p .memory
 mkdir -p 00-MOC
-mkdir -p _templates
+mkdir -p .context
 mkdir -p AULAS/assets
 
 # 2. Copiar templates de memória
@@ -109,7 +109,24 @@ else
     print_warn "  → sintese_diario_classe.md já existe, pulando"
 fi
 
-# 4. Inicializar git (opcional)
+# 4. Assets de apoio em AULAS/assets/
+print_msg "Criando assets de apoio em AULAS/assets/..."
+
+if [ ! -f "AULAS/assets/slides.css" ]; then
+    echo "/* CSS padrão dos slides. Consulte .memory/padroes-tecnicos.md */" > AULAS/assets/slides.css
+    print_msg "  → assets/slides.css criado"
+else
+    print_warn "  → assets/slides.css já existe, pulando"
+fi
+
+if [ ! -f "AULAS/assets/exercicios.css" ]; then
+    echo "/* CSS padrão dos exercícios. Consulte .memory/padroes-tecnicos.md */" > AULAS/assets/exercicios.css
+    print_msg "  → assets/exercicios.css criado"
+else
+    print_warn "  → assets/exercicios.css já existe, pulando"
+fi
+
+# 5. Inicializar git (opcional)
 print_msg "Inicializando repositório git..."
 if [ ! -d ".git" ]; then
     git init
@@ -120,7 +137,7 @@ else
     print_warn "  → Repositório git já existe, pulando"
 fi
 
-# 5. Resumo
+# 6. Resumo
 echo ""
 echo "=========================================="
 echo "  Setup concluído!"

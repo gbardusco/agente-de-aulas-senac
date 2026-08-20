@@ -9,7 +9,9 @@
 .memory/feedback-aluno.md
 
 # Contexto agentico (gerado dinamicamente pelos agentes)
-.context/
+# Templates (.context/index.md, .context/agente-template.md) são rastreados
+.context/agente-*.md
+!.context/agente-template.md
 
 # Documentos oficiais (pode conter dados institucionais)
 .docs/

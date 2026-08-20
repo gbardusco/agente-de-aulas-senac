@@ -13,7 +13,9 @@ updated: 2026-07-31
 
 ## Como Usar
 
-1. **Copie** o template desejado para o local correto
+A maioria dos templates de memória é copiada **automaticamente** pelo `./setup.sh` ao criar uma nova turma. Use esta lista quando precisar:
+
+1. **Copie** o template desejado para o local correto (ou rode `./setup.sh` para a cópia automática)
 2. **Renomeie** removendo `-template` do nome
 3. **Preencha** os campos marcados com `TODO` ou `(preencher)`
 4. **Verifique** se os agentes conseguem ler o arquivo novo
@@ -49,20 +51,14 @@ updated: 2026-07-31
 
 ## Checklist de Novo Projeto
 
-Ao criar uma nova turma/UC:
+O trabalho braçal de cópia já é feito pelo `./setup.sh`. Restam as decisões pedagógicas:
 
-- [ ] Copiar `perfil-turma-template.md` → `.memory/perfil-turma.md`
-- [ ] Preencher perfil da turma
-- [ ] Copiar `decisoes-template.md` → `.memory/decisoes.md`
-- [ ] Copiar `feedback-aulas-template.md` → `.memory/feedback-aulas.md`
-- [ ] Copiar `status-aulas-template.md` → `.memory/status-aulas.md`
-- [ ] Copiar `feedback-aluno-template.md` → `.memory/feedback-aluno.md`
-- [ ] Copiar `sintese-diario-classe-template.md` → `AULAS/sintese_diario_classe.md`
+- [ ] Rodar `./setup.sh "Nome do Projeto"` — copia os templates de memória e monta a estrutura
+- [ ] Preencher o perfil da turma (`.memory/perfil-turma.md`)
 - [ ] Ajustar número de aulas em `status-aulas.md` se necessário
 - [ ] Manter `.memory/padroes-tecnicos.md` (reutilizável)
 - [ ] Verificar `.agents/AGENTS.md` — caminhos estão corretos?
 - [ ] Criar `.docs/` com novos documentos oficiais
-- [ ] Criar `AULAS/` com estrutura de pastas
 - [ ] Abrir no Obsidian e verificar graph view
 - [ ] **NÃO** fazer commit dos arquivos `.memory/` (exceto `padroes-tecnicos.md` e `index.md`)
 - [ ] Criar repositório **privado** se quiser versionar o material da turma
