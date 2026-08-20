@@ -64,6 +64,8 @@ O orquestrador (ou qualquer harness) processa esses blocos e atualiza os arquivo
 - Slides devem **caber em uma tela** (100vh). Se não cabe, divida em dois slides.
 - Exercícios exigem **produção autônoma** — nunca réplica da demo.
 - **Contexto temático** da turma deve estar presente em todo conteúdo — consulte [[perfil-turma|`perfil-turma.md`]] para os temas.
+- **Sequência pedagógica** — slides de conceito seguem: situação-problema contextualizada (mundo real, fácil entendimento) → formalização do conceito → exemplo na prática.
+- **Atividades complementares** (seminário, pesquisa, aula invertida, etc.) são **opcionais e contextuais** — a lista de exercícios é o único item obrigatório por aula.
 - Consulte [[padroes-tecnicos|`padroes-tecnicos.md`]] para templates e classes CSS.
 
 ### Regra 3b — Skills adotáveis
@@ -142,7 +144,8 @@ NOME-DO-PROJETO/
 │   ├── markdown-authoring.md
 │   ├── accessibility-check.md
 │   ├── code-formatting.md
-│   └── html-template.md
+│   ├── html-template.md
+│   └── atividades-complementares.md
 ├── 00-MOC/            # Mapas de Conteúdo (Obsidian)
 │   ├── Home.md
 │   ├── Agentes.md
