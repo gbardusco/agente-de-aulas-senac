@@ -31,6 +31,43 @@ created: 2026-08-01
 </html>
 ```
 
+## Sequência Pedagógica dos Slides
+
+Todo conceito novo em slides deve seguir a sequência pedagógica:
+
+1. **Situação-problema contextualizada** — slide de abertura do conceito com um problema do mundo real, de fácil entendimento e ligado ao contexto temático da turma.
+2. **Formalização do conceito** — slide que, partindo da situação-problema, apresenta e define formalmente o conceito da aula.
+3. **Exemplo na prática** — slide final que resolve a situação-problema do passo 1 com o exemplo prático.
+
+```html
+<!-- Passo 1: situação-problema -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Situação-problema</h2>
+    <p>Problema do mundo real, fácil de entender, ligado ao tema da turma.</p>
+  </div>
+</div>
+
+<!-- Passo 2: formalização do conceito -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>O conceito</h2>
+    <p>Definição formal que responde à situação-problema.</p>
+  </div>
+</div>
+
+<!-- Passo 3: exemplo na prática -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Exemplo na prática</h2>
+    <div class="two-columns">
+      <div class="code-block"><pre data-lang="HTML">...</pre></div>
+      <div class="preview-box"><span class="preview-label">Resultado</span></div>
+    </div>
+  </div>
+</div>
+```
+
 ## Estrutura Base de Exercícios
 
 ```html
