@@ -27,6 +27,14 @@ created: 2026-08-01
 </div>
 ```
 
+## Sequência Pedagógica de Slides
+
+Todo slide de conceito deve organizar-se em 3 passos pedagógicos:
+
+1. **Situação-problema** — abre com um problema do mundo real e de fácil entendimento (ex: `.tip-box` ou slide dedicado com a pergunta disparadora).
+2. **Formalização** — apresenta o conceito que resolve a situação-problema.
+3. **Exemplo na prática** — fecha com `.two-columns` (código + `.preview-box`) aplicando o conceito.
+
 ## Regras de Layout
 
 1. Cada slide deve caber em uma tela sem scroll.
