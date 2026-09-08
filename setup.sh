@@ -143,6 +143,8 @@ echo "  Rubricas e relatorios: modelos em _templates/; registros privados em AUL
 echo "  Slides HTML/PPTX: npm ci e npm run slides -- <slides.json> <pasta-de-saida>"
 echo "  4. Abra no Obsidian e verifique o graph view"
 echo ""
+echo "Professor novo? Comece pelo ONBOARDING.md (15 minutos, do zero a primeira aula)"
+echo ""
 echo "Para ajuda, consulte:"
 echo "  - README.md (documentação principal)"
 echo "  - _templates/README.md (lista de templates)"
