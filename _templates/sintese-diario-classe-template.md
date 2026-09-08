@@ -6,7 +6,7 @@ Este documento serve como apoio metodológico e técnico para a redação do **D
 
 *(Descrever o foco deste bloco de aulas)*
 
-### Indicadores Atingidos:
+### Indicadores previstos/trabalhados:
 - **Indicador X:** *(descrever)*
 - **Indicador Y:** *(descrever)*
 
@@ -25,7 +25,7 @@ Este documento serve como apoio metodológico e técnico para a redação do **D
 
 *(Descrever o foco deste bloco de aulas)*
 
-### Indicadores Atingidos:
+### Indicadores previstos/trabalhados:
 - **Indicador X:** *(descrever)*
 - **Indicador Y:** *(descrever)*
 
