@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Configuracao do sistema de diario v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["version", "instituicao", "sistema", "manual", "manualVersao", "campos"],
+    "properties": {
+        "version": { "const": 1 },
+        "instituicao": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "sistema": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "manual": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "manualVersao": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "revisadoEm": { "type": "string", "maxLength": 80 },
+        "campos": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "rotulo", "grupo", "obrigatorio"],
+                "properties": {
+                    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+){0,7}$" },
+                    "rotulo": { "type": "string", "minLength": 1, "maxLength": 160 },
+                    "grupo": { "enum": ["configuracao", "evidencia", "diario", "feedback", "personalizado"] },
+                    "obrigatorio": { "type": "boolean" },
+                    "limiteCaracteres": { "type": ["integer", "null"], "minimum": 0, "maximum": 20000 },
+                    "instrucoes": { "type": "string", "maxLength": 2000 }
+                }
+            }
+        }
+    }
+}
