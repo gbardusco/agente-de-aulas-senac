@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "instituicao": "Instituicao DEMO",
+    "sistema": "Sistema DEMO",
+    "manual": "Manual DEMO",
+    "manualVersao": "DEMO-1.0",
+    "revisadoEm": "2026-09-09",
+    "campos": [
+        {
+            "id": "configuracao",
+            "rotulo": "Rubrica, criterios, escala e preferencias de feedback aprovados",
+            "grupo": "configuracao",
+            "obrigatorio": false,
+            "limiteCaracteres": null
+        },
+        {
+            "id": "evidencias",
+            "rotulo": "Evidencias e rastreabilidade (privado)",
+            "grupo": "evidencia",
+            "obrigatorio": false,
+            "limiteCaracteres": null
+        },
+        {
+            "id": "atividades-chamada",
+            "rotulo": "Atividades Desenvolvidas (Chamada)",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": 1000
+        },
+        {
+            "id": "feedback-individual",
+            "rotulo": "Feedback Individual",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": 1000
+        },
+        {
+            "id": "atividades-indicadores",
+            "rotulo": "Atividades Desenvolvidas (Notas/Indicadores)",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": 1000
+        },
+        {
+            "id": "observacao-docente",
+            "rotulo": "Observacao Docente",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": 1000
+        },
+        {
+            "id": "recuperacao",
+            "rotulo": "Acoes de Recuperacao",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": 1000
+        }
+    ]
+}
