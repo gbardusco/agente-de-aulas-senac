@@ -1,0 +1,18 @@
+{
+    "aulaId": "aula-04",
+    "estadoFinal": "aplicado",
+    "pacote": [
+        "aula-04/exercicios.html",
+        "aula-04/index.md",
+        "aula-04/manifesto.json",
+        "aula-04/rubrica-atividade.md",
+        "aula-04/slides.html",
+        "aula-04/slides.json",
+        "aula-04/slides.pptx"
+    ],
+    "excluidosDoPacote": [
+        "relatorio.html",
+        "relatorio.json",
+        "aula-estado.json"
+    ]
+}
