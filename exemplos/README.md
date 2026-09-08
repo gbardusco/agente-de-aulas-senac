@@ -17,6 +17,8 @@
 
 | Exemplo | Agente | Descrição |
 |---------|--------|-----------|
+| [Avaliação e Exportação](avaliacao-e-exportacao.md) | Fluxo integrado | Rubrica configurável, diário HTML privado, biblioteca, HTML/PPTX e testes |
+| [Fluxo completo fictício](fluxo-completo-ficticio/roteiro.md) | Demonstração isolada | Aula sintética de ponta a ponta, sem dados reais |
 | [Planejar Aula](#planejar-aula) | `agente-planejador-didatico` | Criar slides e demo de uma aula |
 | [Gerar Exercícios](#gerar-exercícios) | `agente-gerador-de-exercicios` | Criar lista de exercícios com gabarito |
 | [Revisar Material](#revisar-material) | `agente-revisor-de-material` | Auditar qualidade de um material |
@@ -42,7 +44,7 @@ Incluir slides, demo e exercícios.
 1. Lê `perfil-turma.md` para entender o contexto
 2. Lê `status-aulas.md` para verificar progresso
 3. Cria pasta `AULAS/aula-05/`
-4. Gera `slides.html` com conteúdo sobre Flexbox
+4. Gera `slides.json` e executa o pipeline para `slides.html` e `slides.pptx` editável com conteúdo sobre Flexbox
 5. Gera `demo/index.html` com exemplo interativo
 6. Gera `exercicios.html` com 3 exercícios (básico, intermediário, desafio)
 7. Gera `gabarito/exercicio-01.html` (e subsequentes)
@@ -157,7 +159,7 @@ Contexto temático: sistemas de gestão de estoque
 3. Copia templates para `.memory/`
 4. Preenche `perfil-turma.md` com dados coletados
 5. Ajusta `status-aulas.md` para 20 aulas
-6. Inicializa git (se desejado)
+6. Prepara biblioteca privada e assets funcionais, sem inicializar Git ou fazer commit automático
 7. Confirma tudo com o professor
 
 ---
