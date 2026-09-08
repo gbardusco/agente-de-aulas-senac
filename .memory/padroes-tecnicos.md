@@ -43,6 +43,19 @@ NOME-DO-PROJETO/
 
 ## Slides (`slides.html`)
 
+Para novas entregas HTML + PPTX, use `slides.json` conforme `_templates/slides.schema.v2.json`
+para PBL; o schema v1 permanece apenas para exposição legada. Execute
+`npm run slides -- <fonte> <saida>`. Texto/formas editáveis via PptxGenJS,
+sem conversão arbitrária de HTML. Os exemplos HTML abaixo continuam como referência
+visual; a fonte estruturada é autoritativa para ambos os formatos. Veja
+`exemplos/avaliacao-e-exportacao.md` para comandos, tipos e limites.
+
+Assets funcionais estão em `_templates/assets/` e são copiados pelo setup sem
+sobrescrever os existentes. Relatório privado: `AULAS/registros-docentes/aula-XX/relatorio.html`,
+com CSS/JS `../../assets/relatorio.*`. Rubrica pública: `AULAS/aula-XX/rubrica-atividade.md`.
+Biblioteca privada: `.docs/materiais-consulta/index.md`. Nunca incluir registros docentes
+ou biblioteca em pacotes para alunos.
+
 ### Estrutura base
 ```html
 <!DOCTYPE html>
@@ -76,14 +89,16 @@ NOME-DO-PROJETO/
 - `.section-slide` — divisor de seção (ex: "Parte 2")
 - Slide normal — conteúdo com `.slide-content`
 
-### Sequência pedagógica dos slides
-Todo conceito novo deve ser apresentado em 3 passos:
+### Arco PBL condicional dos slides
+Aulas novas usam PBL sempre que o tema permitir um problema contextualizado:
 
-1. **Situação-problema contextualizada** — abrir com um problema do mundo real, de fácil entendimento e ligado ao contexto temático da turma (ex: "Como mostrar o cardápio de forma organizada?").
-2. **Formalização do conceito** — a partir da situação-problema, definir formalmente o conceito da aula.
-3. **Exemplo na prática** — resolver a situação-problema do passo 1 com um exemplo prático (idealmente com `.two-columns` + `.preview-box`).
+1. **Problema contextualizado** — situação realista e pergunta orientadora.
+2. **Conceito teórico** — formalização necessária para enfrentar o problema.
+3. **Aplicação condicional** — prática operacional ou análise teórica, conforme a modalidade.
+4. **Síntese** — transferência, reflexão e fechamento.
 
-Nunca partir direto do código: primeiro o problema, depois o conceito, por fim a aplicação.
+Hipóteses e investigação são recomendadas entre problema e conceito. Modalidade analítica
+não recebe tarefa operacional forçada. Exposição legada v1 só com justificativa registrada.
 
 ### Blocos visuais disponíveis
 - `.two-columns` — layout lado a lado (código + preview)
@@ -103,7 +118,7 @@ Nunca partir direto do código: primeiro o problema, depois o conceito, por fim 
 - `<span class="property">` — propriedades CSS/JSON
 
 ### ⚠️ Regras críticas
-1. **Todo conteúdo deve caber em 100vh** — sem scroll.
+1. **Em apresentação desktop, conteúdo deve caber em 100vh**. Em mobile/zoom, permita rolagem para acessibilidade, nunca corte conteúdo.
 2. **Identação exemplar** em todo código exibido.
 3. Se o slide ficou grande, **divida em dois** — nunca comprima.
 4. `font-size: 14px` no `<pre>` pode ser usado para tabelas grandes, mas sem sacrificar identação.
@@ -187,7 +202,20 @@ Catálogo disponível (ver skill [[atividades-complementares|`.skills/atividades
 
 > **Nota:** O momento exato de introduzir cada conceito depende do plano de aula da turma. Consulte [[perfil-turma|`.memory/perfil-turma.md`]] para a estrutura do curso e [[status-aulas|`.memory/status-aulas.md`]] para o progresso atual.
 
+## Operação por aula
+
+- Relatórios privados usam JSON canônico em `AULAS/registros-docentes/aula-XX/relatorio.json`.
+- Estados usam `AULAS/aula-XX/aula-estado.json`, com hash do conteúdo público aprovado.
+- Pacotes usam manifesto com hashes e lista explícita.
+- Comandos:
+  - `npm run relatorio -- gerar|exportar|importar|validar ...`
+  - `npm run aula:estado -- preparar|solicitar-revisao|aprovar|marcar-aplicada|avaliar|marcar-revisao ...`
+  - `npm run pacote:alunos -- --aula aula-XX ...`
+  - `npm run verificar -- --aula aula-XX --modo distribuicao`
+  - `npm run demo:fluxo -- --saida /tmp/opencode/demo`
+- Verificação técnica não aprova pedagogia. Testes não gravam dados reais.
+
 ## Navegação
 
-- Ver também: [[decisoes|Decisões]] · [[perfil-turma|Perfil]]
+- Ver também: [[decisoes|`.memory/decisoes.md`]] · [[perfil-turma|Perfil]]
 - Voltar para [[Home|Índice Principal]]
