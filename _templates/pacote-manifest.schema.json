@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Manifesto do pacote para alunos v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["version", "aulaId", "estado", "versao", "hash", "geradoEm", "gabaritoIncluido", "arquivos"],
+    "properties": {
+        "version": { "const": 1 },
+        "aulaId": { "type": "string", "pattern": "^aula-[0-9]{2,3}$" },
+        "estado": { "enum": ["aprovado", "aplicado"] },
+        "versao": { "type": "integer", "minimum": 1 },
+        "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "geradoEm": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" },
+        "gabaritoIncluido": { "type": "boolean" },
+        "arquivos": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["caminho", "tamanho", "hash"],
+                "properties": {
+                    "caminho": { "type": "string", "minLength": 1, "maxLength": 200 },
+                    "tamanho": { "type": "integer", "minimum": 1 },
+                    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+                }
+            }
+        }
+    }
+}
