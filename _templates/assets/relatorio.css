@@ -1,0 +1,30 @@
+:root { font-family: Arial, sans-serif; color: #172033; background: #f1f5f9; line-height: 1.5; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 900px; margin: auto; padding: 2rem 1rem; }
+header { border-bottom: 3px solid #0369a1; }
+.private-label { font-weight: bold; color: #7f1d1d; }
+section { margin: 2rem 0; }
+label { display: block; font-weight: bold; margin: 1.5rem 0 .5rem; }
+textarea { display: block; width: 100%; min-height: 8rem; padding: .8rem; font: inherit; color: #172033; background: white; border: 1px solid #64748b; border-radius: .3rem; resize: vertical; }
+textarea::placeholder { color: #526174; opacity: 1; }
+button { margin-top: .6rem; min-height: 44px; padding: .6rem 1rem; font: inherit; border: 1px solid #075985; border-radius: .3rem; background: #075985; color: white; cursor: pointer; }
+button:disabled { opacity: .7; }
+:focus-visible { outline: 3px solid #0369a1; outline-offset: 3px; }
+.copy-status, .save-status { min-height: 1.5rem; margin-top: .4rem; overflow-wrap: anywhere; }
+.toolbar { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.toolbar button { margin-top: 0; }
+.file-label, .checkbox-label { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid #075985; border-radius: .3rem; padding: .6rem 1rem; min-height: 44px; background: white; color: #075985; cursor: pointer; }
+.file-label input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.checkbox-label input { width: 1.1rem; height: 1.1rem; }
+.local-warning { font-weight: bold; }
+.print-value { display: none; }
+@media (max-width: 480px) { button { width: 100%; } main { padding: 1rem; } }
+@media print {
+    :root { background: white; color: black; }
+    main { max-width: none; padding: 0; }
+    button, .copy-status, #storage-warning, #persistencia { display: none; }
+    textarea:has(+ .print-value) { display: none; }
+    .print-value { display: block; white-space: pre-wrap; overflow-wrap: anywhere; margin: .5rem 0 1.5rem; }
+    label, h2 { break-after: avoid; }
+}
