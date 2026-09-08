@@ -19,6 +19,7 @@
 |---------|--------|-----------|
 | [Avaliação e Exportação](avaliacao-e-exportacao.md) | Fluxo integrado | Rubrica configurável, diário HTML privado, biblioteca, HTML/PPTX e testes |
 | [Fluxo completo fictício](fluxo-completo-ficticio/roteiro.md) | Demonstração isolada | Aula sintética de ponta a ponta, sem dados reais |
+| [Onboarding](../ONBOARDING.md) | Guia do professor | Do zero à primeira aula em 15 minutos |
 | [Planejar Aula](#planejar-aula) | `agente-planejador-didatico` | Criar slides e demo de uma aula |
 | [Gerar Exercícios](#gerar-exercícios) | `agente-gerador-de-exercicios` | Criar lista de exercícios com gabarito |
 | [Revisar Material](#revisar-material) | `agente-revisor-de-material` | Auditar qualidade de um material |
