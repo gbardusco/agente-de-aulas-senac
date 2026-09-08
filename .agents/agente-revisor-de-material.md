@@ -47,7 +47,7 @@ Cada item recebe uma severidade: 🔴 **Crítico** (bloqueia aplicação) · �
 ### 3.2 Visual / UX
 | Item | Severidade |
 |------|------------|
-| Slide cabe em 100vh (sem scroll) | 🔴 |
+| Slide cabe em 100vh no desktop; mobile/zoom não corta conteúdo | 🔴 |
 | Contraste e legibilidade do código | 🟡 |
 | Espaço suficiente para `.preview-box` | 🟡 |
 | Tamanho de fonte adequado | 🔵 |
@@ -60,6 +60,8 @@ Cada item recebe uma severidade: 🔴 **Crítico** (bloqueia aplicação) · �
 | Alinhamento com contexto temático da turma | 🟡 |
 | Dicas práticas em `<div class="hints">` | 🔵 |
 | Slide de conceito abre com situação-problema contextualizada (mundo real, fácil entendimento) | 🟡 |
+| Arco PBL completo em decks v2: problema → conceito → aplicação → síntese, na ordem | 🔴 |
+| Aplicação compatível com a modalidade; sem tarefa operacional forçada em modalidade analítica | 🔴 |
 | Formalização do conceito antes do exemplo na prática | 🟡 |
 | Exemplo prático presente fechando a sequência | 🟡 |
 | Atividades complementares, se propostas, são coerentes com o tema e a turma (e não substituem exercícios) | 🔵 |
@@ -77,6 +79,23 @@ Cada item recebe uma severidade: 🔴 **Crítico** (bloqueia aplicação) · �
 | Arquivo funcional (abre no navegador) | 🔴 |
 | Código identado e comentado | 🟡 |
 | Mesma estrutura HTML dos slides | 🔵 |
+
+### 3.6 Avaliação, relatórios e slides exportados
+
+- [ ] Consulte `.docs/materiais-consulta/index.md` e confira indicadores e referências oficiais citados; declare fontes indisponíveis.
+- [ ] Rubrica pedagógica separada desta rubrica técnica: critérios, escala, descritores/pesos e formato de feedback aprovados pelo professor, sem inferências.
+- [ ] Evidência esperada não foi tratada como observada; relatos/resultados têm fonte real e pendências não viraram reprovação.
+- [ ] Relatório em `AULAS/registros-docentes/aula-XX/relatorio.html` e JSON correspondente, sem dados individuais em rubrica pública, notas de slides ou pacotes para alunos.
+- [ ] Campos editáveis rotulados, cópia de texto puro por campo, status anunciado e fallback de seleção; teste falha/permissão negada, teclado, mobile e impressão de valores editados longos.
+- [ ] Persistência/exportação/importação do relatório sem perda; salvamento local desativado por padrão e sem envio externo.
+- [ ] Estado em `aula-estado.json` com transição válida, hash atual, fontes citadas e aprovação/aplicação explícitas; pacote com manifesto consistente.
+- [ ] `npm run verificar -- --aula aula-XX --modo distribuicao` sem erros antes de distribuir; verificação técnica não substitui aprovação pedagógica.
+- [ ] Fonte JSON válida e HTML/PPTX regenerados pelo pipeline; confira conteúdo, ordem, notas públicas e links equivalentes, não só a existência dos arquivos.
+- [ ] PPTX contém textos/formas editáveis (não screenshot); abra em PowerPoint/LibreOffice quando disponível e declare se essa revisão visual não foi possível.
+- [ ] HTML navega por botões/teclado e imprime todos os slides; confira legibilidade em desktop, mobile/zoom (rolagem permitida para acessibilidade) e limites do PPTX. Demos interativas possuem aviso de limitação.
+
+Ausência de aprovação/evidência, vazamento de registro docente ou PPTX não editável
+bloqueiam a entrega correspondente. Não marque aprovado só porque o comando terminou.
 
 ---
 
