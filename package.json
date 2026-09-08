@@ -1,0 +1,30 @@
+{
+    "name": "agente-aulas",
+    "private": true,
+    "type": "module",
+    "engines": { "node": ">=20" },
+    "scripts": {
+        "slides": "node scripts/gerar-slides.mjs",
+        "relatorio": "node scripts/relatorio-docente.mjs",
+        "aula:estado": "node scripts/aula-estado.mjs",
+        "pacote:alunos": "node scripts/pacote-alunos.mjs",
+        "fontes": "node scripts/fontes.mjs",
+        "demo:fluxo": "node scripts/demo-fluxo.mjs",
+        "verificar": "node scripts/verificar.mjs",
+        "test": "node --test tests/*.test.mjs",
+        "test:browser": "node --test tests/browser/*.test.mjs"
+    },
+    "dependencies": {
+        "ajv": "^8.17.1",
+        "jszip": "^3.10.1",
+        "pptxgenjs": "^4.0.1"
+    },
+    "overrides": {
+        "pptxgenjs": {
+            "image-size": "npm:image-size-next@1.2.2"
+        }
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.55.0"
+    }
+}
