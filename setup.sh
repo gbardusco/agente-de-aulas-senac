@@ -45,11 +45,16 @@ echo ""
 
 # 1. Criar estrutura de pastas
 print_msg "Criando estrutura de pastas..."
-mkdir -p .docs
+mkdir -p .docs/materiais-consulta
 mkdir -p .memory
 mkdir -p 00-MOC
 mkdir -p .context
 mkdir -p AULAS/assets
+mkdir -p AULAS/registros-docentes
+
+if [ ! -e ".docs/materiais-consulta/index.md" ]; then
+    cp _templates/materiais-consulta-index-template.md .docs/materiais-consulta/index.md
+fi
 
 # 2. Copiar templates de memória
 print_msg "Copiando templates de memória..."
@@ -112,30 +117,17 @@ fi
 # 4. Assets de apoio em AULAS/assets/
 print_msg "Criando assets de apoio em AULAS/assets/..."
 
-if [ ! -f "AULAS/assets/slides.css" ]; then
-    echo "/* CSS padrão dos slides. Consulte .memory/padroes-tecnicos.md */" > AULAS/assets/slides.css
-    print_msg "  → assets/slides.css criado"
-else
-    print_warn "  → assets/slides.css já existe, pulando"
-fi
+for asset in slides.css slides.js exercicios.css relatorio.css relatorio.js; do
+    if [ ! -e "AULAS/assets/$asset" ]; then
+        cp "_templates/assets/$asset" "AULAS/assets/$asset"
+        print_msg "  → assets/$asset criado"
+    else
+        print_warn "  → assets/$asset já existe, preservado"
+    fi
+done
 
-if [ ! -f "AULAS/assets/exercicios.css" ]; then
-    echo "/* CSS padrão dos exercícios. Consulte .memory/padroes-tecnicos.md */" > AULAS/assets/exercicios.css
-    print_msg "  → assets/exercicios.css criado"
-else
-    print_warn "  → assets/exercicios.css já existe, pulando"
-fi
-
-# 5. Inicializar git (opcional)
-print_msg "Inicializando repositório git..."
-if [ ! -d ".git" ]; then
-    git init
-    git add .
-    git commit -m "feat: setup inicial do projeto - $PROJECT_NAME"
-    print_msg "  → Repositório git inicializado"
-else
-    print_warn "  → Repositório git já existe, pulando"
-fi
+# Templates por aula permanecem em _templates/ ate o professor definir a aula.
+# Nao inicializar, adicionar ou commitar arquivos automaticamente.
 
 # 6. Resumo
 echo ""
@@ -146,7 +138,9 @@ echo ""
 echo "Próximos passos:"
 echo "  1. Edite .memory/perfil-turma.md com os dados da turma"
 echo "  2. Ajuste o número de aulas em .memory/status-aulas.md"
-echo "  3. Adicione documentos oficiais em .docs/"
+echo "  3. Adicione documentos oficiais em .docs/ e catalogue em .docs/materiais-consulta/index.md"
+echo "  Rubricas e relatorios: modelos em _templates/; registros privados em AULAS/registros-docentes/"
+echo "  Slides HTML/PPTX: npm ci e npm run slides -- <slides.json> <pasta-de-saida>"
 echo "  4. Abra no Obsidian e verifique o graph view"
 echo ""
 echo "Para ajuda, consulte:"
