@@ -36,7 +36,7 @@ Antes de criar anything, pergunte ao professor:
 ```
 NOME-DO-PROJETO/
 ├── .agents/          # Copiar do template
-├── .docs/            # Criar vazio
+├── .docs/            # Documentos oficiais e materiais-consulta/index.md privado
 ├── .memory/          # Criar com templates
 ├── 00-MOC/           # Copiar do template
 ├── _templates/       # Copiar do template
@@ -75,13 +75,24 @@ Edite `.memory/perfil-turma.md` com as informações coletadas:
 
 Se o número de aulas for diferente de 15, ajuste a tabela em `.memory/status-aulas.md`.
 
-### 2.6 Inicializar git (opcional)
+### 2.6 Biblioteca, avaliação e exportação
 
-```bash
-git init
-git add .
-git commit -m "feat: setup inicial do projeto [NOME]"
-```
+O `setup.sh` preserva arquivos existentes e copia assets funcionais de `_templates/assets/`
+(slides.css, slides.js, exercicios.css, relatorio.css, relatorio.js). Cria a biblioteca
+privada `.docs/materiais-consulta/index.md` e `AULAS/registros-docentes/`, sem criar
+relatos ou avaliações fictícios. Não inicializa Git nem faz add/commit/push.
+
+Oriente o professor a catalogar fontes, priorizando documentos oficiais. Pergunte
+critérios/escala de avaliação e preferências de feedback quando forem necessários;
+não adote valores padrão. Modelos por aula permanecem em `_templates/`:
+`rubrica-atividade-template.md`, `relatorio-docente-template.html` e
+`slides-fonte-template.json`/`slides.schema.json`. Copie-os ao criar a aula, para
+`AULAS/aula-XX/rubrica-atividade.md`, `AULAS/registros-docentes/aula-XX/relatorio.html`
+e `AULAS/aula-XX/slides.json`, respectivamente.
+
+Para slides, instale Node.js 20+ e rode `npm ci`; gere HTML/PPTX editável com
+`npm run slides -- AULAS/aula-XX/slides.json AULAS/aula-XX`. Não substitua assets já
+personalizados: se houver placeholders de setup antigo, proponha atualização explícita.
 
 ---
 
@@ -98,7 +109,11 @@ Confirme com o professor que tudo foi criado:
 - [ ] `AULAS/index.md` — criado
 - [ ] `.agents/AGENTS.md` — caminhos corretos
 - [ ] `.gitignore` — configurado
-- [ ] Git inicializado (se desejado)
+- [ ] Biblioteca privada criada e referências oficiais catalogadas pelo professor
+- [ ] Assets CSS/JS funcionais presentes, incluindo navegação e cópia dos relatórios
+- [ ] Templates de rubrica, relatório, configuração, fonte/schema de slides disponíveis
+- [ ] Dependências instaláveis com `npm ci`; comandos `relatorio`, `aula:estado`, `pacote:alunos`, `fontes`, `verificar` e `demo:fluxo` documentados
+- [ ] Registros docentes explicitamente excluídos dos pacotes para alunos
 
 ---
 
