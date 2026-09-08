@@ -1,0 +1,57 @@
+{
+    "version": 2,
+    "title": "Aula demo 03 - Estrutura de pagina",
+    "pedagogia": {
+        "abordagem": "pbl",
+        "modalidadeAplicacao": "pratica",
+        "problemaId": "problema-03-catalogo-demo-1",
+        "objetivos": ["Organizar conteudo com estrutura semantica"],
+        "fontes": ["fonte-plano-curso-ficticio"]
+    },
+    "slides": [
+        {
+            "title": "Problema ficticio: catalogo desorganizado",
+            "blocks": [
+                {
+                    "type": "problema",
+                    "contexto": "O catalogo ficticio mistura titulo e descricao dos produtos, dificultando a leitura.",
+                    "questao": "Como separar titulo e descricao de um produto ficticio para facilitar a leitura?"
+                }
+            ]
+        },
+        {
+            "title": "Conceito: estrutura semantica",
+            "blocks": [
+                {
+                    "type": "conceito",
+                    "items": ["Titulos organizam a hierarquia do documento.", "Paragrafos agrupam a descricao do produto ficticio."]
+                }
+            ],
+            "notes": "Material ficticio para validar o pipeline. Nao e evidencia de aprendizagem."
+        },
+        {
+            "title": "Aplicacao pratica",
+            "blocks": [
+                {
+                    "type": "aplicacao",
+                    "modalidade": "pratica",
+                    "texto": "Construa uma pagina sintetica aplicando a estrutura semantica ao catalogo ficticio.",
+                    "codigo": "<article>\n    <h2>Produto demo</h2>\n    <p>Descricao sintetica.</p>\n</article>",
+                    "demonstracao": {
+                        "texto": "Referencia oficial: elemento article",
+                        "url": "https://html.spec.whatwg.org/multipage/sections.html#the-article-element"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Sintese",
+            "blocks": [
+                {
+                    "type": "sintese",
+                    "items": ["Estrutura semantica separa titulo e descricao.", "A mesma estrategia vale para outros catalogos ficticios."]
+                }
+            ]
+        }
+    ]
+}
