@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro docente - Aula XX</title>
+    <link rel="stylesheet" href="../../assets/relatorio.css">
+    <script src="../../assets/relatorio.js" defer></script>
+</head>
+<body>
+<main data-aula="aula-XX">
+    <header>
+        <p class="private-label">Uso exclusivo do professor. Nao incluir em pacotes para alunos.</p>
+        <h1>Registro docente - Aula XX</h1>
+        <p>Rascunho para revisao. Preencha apenas fatos confirmados. Campos vazios sao pendencias, nao resultados.</p>
+        <p id="storage-warning">Edicoes ficam apenas nesta aba: nao ha salvamento automatico. Copie os campos antes de fechar ou recarregar. A impressao inclui os valores atuais.</p>
+        <script type="application/json" id="relatorio-dados">
+        {"version":1,"aulaId":"aula-XX","atualizadoEm":"[confirmar data]","sistema":{"instituicao":"[confirmar instituicao]","sistema":"[confirmar sistema de diario]","manual":"[confirmar manual oficial]","manualVersao":"[confirmar versao do manual]"},"campos":[],"evidencias":[],"fontes":[],"historico":[]}
+        </script>
+    </header>
+    <section id="persistencia" aria-labelledby="persistencia-title" data-grupo="configuracao">
+        <h2 id="persistencia-title">Salvar e recuperar</h2>
+        <p>Exporte um JSON para guardar os textos fora do navegador. Importe esse arquivo para continuar depois. Nenhum dado sai desta maquina automaticamente.</p>
+        <p class="save-status" id="relatorio-status" role="status" aria-live="polite" aria-atomic="true">Alteracoes ainda nao exportadas.</p>
+        <div class="toolbar">
+            <button type="button" id="exportar-json">Exportar JSON</button>
+            <label class="file-label" for="importar-json">Importar JSON<input type="file" id="importar-json" accept="application/json,.json"></label>
+            <label class="checkbox-label" for="salvamento-local"><input type="checkbox" id="salvamento-local">Salvar automaticamente neste navegador</label>
+            <button type="button" id="limpar-local" disabled>Apagar dados locais</button>
+        </div>
+        <p class="local-warning" id="local-warning" hidden>O salvamento local mantem dados neste navegador e computador. Desative e apague em computadores compartilhados.</p>
+    </section>
+    <section aria-labelledby="config-title" data-grupo="configuracao">
+        <h2 id="config-title">Configuracao da avaliacao e devolutiva</h2>
+        <label for="configuracao">Rubrica, criterios, escala e preferencias de feedback aprovados</label>
+        <textarea id="configuracao" rows="5" aria-describedby="storage-warning" placeholder="Informe a referencia da rubrica, aprovacao docente, tom, extensao, destinatario e estrutura de feedback. Nao adote uma escala por conta propria."></textarea>
+        <button type="button" data-copy="configuracao">Copiar configuracao</button>
+        <p class="copy-status" id="status-configuracao" role="status" aria-live="polite" aria-atomic="true"></p>
+        <label for="evidencias">Evidencias e rastreabilidade (privado)</label>
+        <textarea id="evidencias" rows="5" placeholder="Somente evidencias fornecidas: atividade, criterio/indicador, fonte, data e resultado confirmado pelo professor. Sem evidencia, deixe pendente."></textarea>
+        <button type="button" data-copy="evidencias">Copiar evidencias</button>
+        <p class="copy-status" id="status-evidencias" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+    <section aria-labelledby="diario-title" data-grupo="diario">
+        <h2 id="diario-title">Campos do diario de classe</h2>
+        <label for="atividades-chamada">Atividades Desenvolvidas (Chamada)</label>
+        <textarea id="atividades-chamada" rows="5" placeholder="Assunto, objetivo e como a aula foi efetivamente conduzida."></textarea>
+        <button type="button" data-copy="atividades-chamada">Copiar atividades da chamada</button>
+        <p class="copy-status" id="status-atividades-chamada" role="status" aria-live="polite" aria-atomic="true"></p>
+        <label for="feedback-individual">Feedback Individual</label>
+        <textarea id="feedback-individual" rows="5" placeholder="Use o formato aprovado e evidencias observadas. Nao deduza participacao, entregas ou evolucao."></textarea>
+        <button type="button" data-copy="feedback-individual">Copiar feedback individual</button>
+        <p class="copy-status" id="status-feedback-individual" role="status" aria-live="polite" aria-atomic="true"></p>
+        <label for="atividades-indicadores">Atividades Desenvolvidas (Notas/Indicadores)</label>
+        <textarea id="atividades-indicadores" rows="5" placeholder="Relacione a atividade realizada ao indicador oficial e a evidencia fornecida."></textarea>
+        <button type="button" data-copy="atividades-indicadores">Copiar atividades dos indicadores</button>
+        <p class="copy-status" id="status-atividades-indicadores" role="status" aria-live="polite" aria-atomic="true"></p>
+        <label for="observacao-docente">Observacao Docente</label>
+        <textarea id="observacao-docente" rows="5" placeholder="Fatos relevantes para a aprendizagem, sem juizos de carater."></textarea>
+        <button type="button" data-copy="observacao-docente">Copiar observacao docente</button>
+        <p class="copy-status" id="status-observacao-docente" role="status" aria-live="polite" aria-atomic="true"></p>
+        <label for="recuperacao">Acoes de Recuperacao</label>
+        <textarea id="recuperacao" rows="5" placeholder="Proposta, data e desfecho somente se confirmados. Diferencie proposta futura de acao realizada."></textarea>
+        <button type="button" data-copy="recuperacao">Copiar acoes de recuperacao</button>
+        <p class="copy-status" id="status-recuperacao" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+    <noscript><p>JavaScript desativado: selecione o texto de cada campo e copie manualmente. Para imprimir textos longos sem cortes, ative JavaScript.</p></noscript>
+</main>
+</body>
+</html>
