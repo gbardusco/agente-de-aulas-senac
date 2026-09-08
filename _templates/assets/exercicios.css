@@ -1,0 +1,25 @@
+:root { font-family: Arial, sans-serif; color: #172033; background: #f1f5f9; line-height: 1.6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.exercises-container { max-width: 960px; margin: auto; padding: 2rem 1rem; }
+.exercises-header { border-bottom: 3px solid #0369a1; margin-bottom: 2rem; }
+.exercise-card { border: 1px solid #cbd5e1; border-radius: .5rem; background: white; margin: 1.5rem 0; overflow-wrap: anywhere; }
+.card-header { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem; padding: 1rem; border-bottom: 1px solid #cbd5e1; }
+.number { background: #0f172a; color: white; padding: .3rem .8rem; border-radius: .3rem; }
+.card-title { flex: 1; font-weight: bold; }
+.difficulty { padding: .2rem .7rem; border-radius: 1rem; font-size: .9rem; }
+.easy { background: #dcfce7; color: #14532d; }
+.medium { background: #fef3c7; color: #78350f; }
+.challenge { background: #f3e8ff; color: #581c87; }
+.description { padding: 1rem; }
+.hints { background: #e0f2fe; border-left: 4px solid #0369a1; padding: 1rem; }
+.section-divider { font-size: 1.5rem; font-weight: bold; margin-top: 2rem; }
+.exercises-footer { text-align: center; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+a { color: #075985; }
+:focus-visible { outline: 3px solid #0369a1; outline-offset: 3px; }
+@media print {
+    :root { background: white; color: black; }
+    .exercises-container { max-width: none; padding: 0; }
+    .exercise-card { break-inside: avoid; }
+}
