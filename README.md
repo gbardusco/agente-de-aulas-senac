@@ -25,13 +25,13 @@ rm -rf .git && git init
 
 ### 2. Configure a turma — automatizado
 
-Rode o script de setup. Ele **copia todos os templates** e monta a estrutura completa de arquivos e pastas para você:
+Rode o script de setup. Ele **copia os templates iniciais e assets** e prepara a estrutura; os modelos por aula ficam disponíveis em `_templates/`:
 
 ```bash
 ./setup.sh "Nome do Projeto"
 ```
 
-O script cria os arquivos de memória (`.memory/perfil-turma.md`, `decisoes.md`, `feedback-aulas.md`, `status-aulas.md`, `feedback-aluno.md`), o índice de aulas, a síntese do diário de classe e os assets de apoio.
+O script cria os arquivos de memória (`.memory/perfil-turma.md`, `decisoes.md`, `feedback-aulas.md`, `status-aulas.md`, `feedback-aluno.md`), o índice de aulas, a síntese do diário de classe e os assets CSS/JS funcionais. Também prepara a biblioteca privada `.docs/materiais-consulta/index.md` e `AULAS/registros-docentes/`. Preserva arquivos existentes e não inicializa Git nem faz commit.
 
 Depois é só cuidar das **decisões pedagógicas** — preencha `.memory/perfil-turma.md` com os dados da turma (instituição, período, contexto temático) e ajuste o número de aulas em `.memory/status-aulas.md`.
 
@@ -120,9 +120,29 @@ O checklist confere se tudo foi registrado e, se necessário, aciona o `@[agente
 
 ## Novidades
 
+- **Avaliação configurável:** rubrica de atividade com critérios, escala, descritores/pesos e formato de feedback aprovados pelo professor, sem evidências ou resultados inventados.
+- **Diário HTML privado:** `AULAS/registros-docentes/aula-XX/relatorio.html`, campos editáveis, cópia de texto puro por campo, status acessível, seleção manual em caso de falha, mobile e impressão. Os textos podem ser exportados/importados em JSON; o salvamento local é opcional e desativado por padrão.
+- **Slides HTML + PPTX editável:** fonte JSON validada, renderização HTML navegável e PowerPoint com texto/formas nativos via PptxGenJS. Instale Node.js 20+ e execute `npm ci`, depois `npm run slides -- <slides.json> <pasta-de-saida>`.
+- **Guia completo:** [avaliação, referências oficiais, comandos, testes e limitações](exemplos/avaliacao-e-exportacao.md).
+
 - **Contexto agentico** — cada agente registra uma entrada em `.context/` após executar tarefas (Regra 7 do `AGENTS.md`), permitindo que qualquer agente ou harness posterior acesse o histórico de trabalho. Veja o fluxo completo no [cenário de uso guiado](#cenário-de-uso-guiado).
 - **Checkpoint de memória** — agentes emitem blocos `MEMORY-CHECKPOINT` ao final de cada tarefa; o orquestrador processa e atualiza a memória automaticamente, sem invocar o gestor de memória explicitamente.
 - **Skills** — capacidades reutilizáveis (CSS layout, markdown authoring, accessibility check, code formatting, HTML templates, atividades complementares) definidas em `.skills/` e adotadas pelos agentes.
+
+---
+
+## Operação auditável
+
+```bash
+npm ci
+npm run relatorio -- gerar --aula aula-03
+npm run aula:estado -- preparar --aula aula-03 --publicos slides.html,index.md
+npm run pacote:alunos -- --aula aula-03 --saida /tmp/opencode/aula-03.zip
+npm run verificar -- --aula aula-03 --modo distribuicao
+npm run demo:fluxo -- --saida /tmp/opencode/demo-fluxo
+```
+
+Aprovação, pacote e aplicação exigem validação explícita do professor. A verificação técnica não substitui a aprovação pedagógica.
 
 ---
 
@@ -151,9 +171,14 @@ O checklist confere se tudo foi registrado e, se necessário, aciona o `@[agente
 ├── 00-MOC/               # ✅ Mapas de Conteúdo genéricos
 ├── _templates/           # ✅ Templates para novas turmas
 │   ├── *.md              # Templates de memória e material
+│   ├── *.json            # Schemas, fontes e configurações
 │   └── *.html            # Templates HTML (slides, exercícios, demo)
-├── exemplos/             # ✅ Prompts prontos para testar os agentes
+├── exemplos/             # ✅ Prompts e demonstração fictícia
+├── scripts/              # ✅ Pipeline, relatórios, aprovação, pacote e verificação
+├── tests/                # ✅ Testes Node e de navegador
+├── .github/              # ✅ CI e Dependabot
 ├── AULAS/                # ❌ Material didático (NÃO sobe)
+├── saidas/               # ❌ Pacotes e demonstrações locais (NÃO sobem)
 ├── setup.sh              # ✅ Script de setup automatizado
 ├── verificar-integridade.sh  # ✅ Script de verificação
 └── .obsidian/            # Config do Obsidian (gitignored)
@@ -164,6 +189,11 @@ O checklist confere se tudo foi registrado e, se necessário, aciona o `@[agente
 ## Privacidade
 
 Este repositório é **público**. NÃO faça commit de dados sensíveis.
+
+Pacotes para alunos devem excluir explicitamente `AULAS/registros-docentes/`, `.docs/`,
+`.memory/`, `.context/`, diário/síntese e feedbacks individuais. Nunca compacte `AULAS/`
+inteira: use lista de arquivos públicos revisados. `.gitignore` não filtra exportações.
+Rubricas públicas contêm somente critérios/descritores, não resultados individuais.
 
 ### O que NUNCA deve subir ao GitHub
 
