@@ -19,6 +19,9 @@
 # Material didático (conteúdo específico da turma)
 AULAS/
 
+# Saídas locais (pacotes, demonstrações e artefatos gerados)
+saidas/
+
 # Artefatos de SO
 .DS_Store
 Thumbs.db
