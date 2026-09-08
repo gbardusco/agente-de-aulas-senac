@@ -1,0 +1,48 @@
+:root { color-scheme: dark; font-family: Arial, sans-serif; background: #0f172a; color: #f8fafc; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: #7dd3fc; overflow-wrap: anywhere; }
+button { min-height: 44px; padding: .6rem 1rem; border: 1px solid #94a3b8; border-radius: .3rem; background: #1e293b; color: #f8fafc; cursor: pointer; font: inherit; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 3px solid #fbbf24; outline-offset: 3px; }
+.lesson-badge { position: absolute; top: .5rem; left: 3vw; margin: 0; font-size: .85rem; color: #cbd5e1; max-width: 90%; }
+.slide { min-height: 100vh; padding: 4rem 5vw 6rem; display: flex; flex-direction: column; justify-content: center; }
+.slide[hidden] { display: none; }
+.slide-content { width: 100%; max-width: 1200px; margin: auto; }
+.slide h1, .slide h2 { font-size: clamp(1.7rem, 3vw, 2.8rem); margin: 0 0 1.2rem; overflow-wrap: anywhere; }
+.slide p, .slide li { font-size: clamp(1.1rem, 1.8vw, 1.65rem); line-height: 1.4; white-space: pre-wrap; overflow-wrap: anywhere; }
+.slide pre { font-size: clamp(.9rem, 1.4vw, 1.3rem); line-height: 1.4; white-space: pre-wrap; overflow-wrap: anywhere; background: #1e293b; padding: 1rem; border: 1px solid #475569; }
+.two-columns, .comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.preview-box, .tip-box, .warning-box, .info-box, .before, .after, .problem-box, .hypothesis-box, .investigation-box, .concept-box, .practice-box, .analysis-box, .synthesis-box { background: #1e293b; border: 1px solid #475569; padding: 1rem; border-radius: .4rem; }
+.problem-box { border-color: #38bdf8; }
+.practice-box, .analysis-box { border-color: #34d399; }
+.question { font-weight: bold; }
+.warning-box { border-color: #fbbf24; }
+.preview-label, .comparison-label { display: block; margin-bottom: .7rem; font-weight: bold; }
+.title-slide, .section-slide { text-align: center; }
+.tag, .property { color: #7dd3fc; }
+.attr { color: #fdba74; }
+.value { color: #86efac; }
+.comment { color: #cbd5e1; }
+.keyword { color: #d8b4fe; }
+.nav-arrows { position: fixed; bottom: 1rem; right: 3vw; display: flex; gap: .5rem; }
+.slide-counter { position: fixed; bottom: 1.7rem; left: 3vw; background: #0f172a; }
+.progress-bar { position: fixed; top: 0; width: 100%; height: 4px; background: #334155; }
+.progress-fill { height: 100%; background: #38bdf8; }
+details { margin-top: 1rem; }
+summary { cursor: pointer; min-height: 44px; }
+@media (max-width: 640px) {
+    .two-columns, .comparison { grid-template-columns: 1fr; }
+    .slide { padding: 4rem 1.2rem 6rem; justify-content: flex-start; }
+    .slide-content { margin: 0; }
+}
+@media print {
+    :root { color-scheme: light; background: white; color: black; }
+    .slide, .slide[hidden] { display: block !important; min-height: auto; padding: 1cm; break-after: page; }
+    .slide:last-of-type { break-after: auto; }
+    .nav-arrows, .slide-counter, .progress-bar, .lesson-badge { display: none; }
+    .slide pre, .tip-box, .preview-box, .warning-box, .info-box, .before, .after, .problem-box, .hypothesis-box, .investigation-box, .concept-box, .practice-box, .analysis-box, .synthesis-box { background: white; color: black; }
+    a, .tag, .attr, .value, .comment, .keyword, .property { color: black; }
+    details > * { display: block; }
+    details::details-content { content-visibility: visible; }
+}
