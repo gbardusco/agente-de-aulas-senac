@@ -1,0 +1,143 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Fonte PBL de slides v2",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["version", "title", "pedagogia", "slides"],
+    "properties": {
+        "version": { "const": 2 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "pedagogia": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["abordagem", "modalidadeAplicacao", "problemaId", "objetivos", "fontes"],
+            "properties": {
+                "abordagem": { "const": "pbl" },
+                "modalidadeAplicacao": { "enum": ["pratica", "analitica", "mista"] },
+                "problemaId": { "type": "string", "pattern": "^problema-[0-9]{2,3}-[a-z0-9-]{1,64}$" },
+                "objetivos": {
+                    "type": "array", "minItems": 1, "maxItems": 8,
+                    "items": { "type": "string", "minLength": 1, "maxLength": 120 }
+                },
+                "fontes": {
+                    "type": "array", "minItems": 1, "maxItems": 100,
+                    "items": { "type": "string", "pattern": "^fonte-[a-z0-9-]{1,80}$" }
+                }
+            }
+        },
+        "slides": {
+            "type": "array", "minItems": 1, "maxItems": 100,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["title", "blocks"],
+                "properties": {
+                    "title": { "type": "string", "minLength": 1, "maxLength": 80 },
+                    "notes": { "type": "string", "maxLength": 2000 },
+                    "blocks": {
+                        "type": "array", "minItems": 1, "maxItems": 4,
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "contexto", "questao"],
+                                    "properties": {
+                                        "type": { "const": "problema" },
+                                        "contexto": { "type": "string", "minLength": 1, "maxLength": 400 },
+                                        "questao": { "type": "string", "minLength": 1, "maxLength": 200 }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "items"],
+                                    "properties": {
+                                        "type": { "const": "hipoteses" },
+                                        "items": {
+                                            "type": "array", "minItems": 2, "maxItems": 6,
+                                            "items": { "type": "string", "minLength": 1, "maxLength": 150 }
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "texto"],
+                                    "properties": {
+                                        "type": { "const": "investigacao" },
+                                        "texto": { "type": "string", "minLength": 1, "maxLength": 500 }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "texto"],
+                                    "properties": {
+                                        "type": { "const": "conceito" },
+                                        "texto": { "type": "string", "minLength": 1, "maxLength": 600 }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "items"],
+                                    "properties": {
+                                        "type": { "const": "conceito" },
+                                        "items": {
+                                            "type": "array", "minItems": 1, "maxItems": 6,
+                                            "items": { "type": "string", "minLength": 1, "maxLength": 150 }
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "modalidade", "texto"],
+                                    "anyOf": [{ "required": ["codigo"] }, { "required": ["demonstracao"] }],
+                                    "properties": {
+                                        "type": { "const": "aplicacao" },
+                                        "modalidade": { "const": "pratica" },
+                                        "texto": { "type": "string", "minLength": 1, "maxLength": 600 },
+                                        "codigo": { "type": "string", "minLength": 1, "maxLength": 800 },
+                                        "demonstracao": {
+                                            "type": "object", "additionalProperties": false,
+                                            "required": ["texto", "url"],
+                                            "properties": {
+                                                "texto": { "type": "string", "minLength": 1, "maxLength": 150 },
+                                                "url": { "type": "string", "pattern": "^https://[^\\s<>\"\\\\]+$", "maxLength": 200 }
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "modalidade", "texto"],
+                                    "not": { "anyOf": [{ "required": ["codigo"] }, { "required": ["demonstracao"] }] },
+                                    "properties": {
+                                        "type": { "const": "aplicacao" },
+                                        "modalidade": { "const": "analitica" },
+                                        "texto": { "type": "string", "minLength": 1, "maxLength": 600 }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "texto"],
+                                    "properties": {
+                                        "type": { "const": "sintese" },
+                                        "texto": { "type": "string", "minLength": 1, "maxLength": 500 }
+                                    }
+                                },
+                                {
+                                    "type": "object", "additionalProperties": false,
+                                    "required": ["type", "items"],
+                                    "properties": {
+                                        "type": { "const": "sintese" },
+                                        "items": {
+                                            "type": "array", "minItems": 1, "maxItems": 6,
+                                            "items": { "type": "string", "minLength": 1, "maxLength": 150 }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
