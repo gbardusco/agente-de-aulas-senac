@@ -1,0 +1,66 @@
+{
+    "version": 1,
+    "instituicao": "[confirmar instituicao]",
+    "sistema": "[confirmar sistema de diario]",
+    "manual": "[confirmar manual oficial]",
+    "manualVersao": "[confirmar versao do manual]",
+    "revisadoEm": "[confirmar data da revisao]",
+    "campos": [
+        {
+            "id": "configuracao",
+            "rotulo": "Rubrica, criterios, escala e preferencias de feedback aprovados",
+            "grupo": "configuracao",
+            "obrigatorio": false,
+            "limiteCaracteres": null,
+            "instrucoes": "Registrar apenas configuracoes aprovadas pelo professor."
+        },
+        {
+            "id": "evidencias",
+            "rotulo": "Evidencias e rastreabilidade (privado)",
+            "grupo": "evidencia",
+            "obrigatorio": false,
+            "limiteCaracteres": null,
+            "instrucoes": "Registrar somente evidencias fornecidas, com fonte e data."
+        },
+        {
+            "id": "atividades-chamada",
+            "rotulo": "Atividades Desenvolvidas (Chamada)",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": null,
+            "instrucoes": "Descrever assunto, objetivo e conducao efetiva da aula."
+        },
+        {
+            "id": "feedback-individual",
+            "rotulo": "Feedback Individual",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": null,
+            "instrucoes": "Usar formato aprovado e evidencias observadas."
+        },
+        {
+            "id": "atividades-indicadores",
+            "rotulo": "Atividades Desenvolvidas (Notas/Indicadores)",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": null,
+            "instrucoes": "Relacionar atividade realizada, indicador oficial e evidencia."
+        },
+        {
+            "id": "observacao-docente",
+            "rotulo": "Observacao Docente",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": null,
+            "instrucoes": "Registrar fatos relevantes, sem juizos de carater."
+        },
+        {
+            "id": "recuperacao",
+            "rotulo": "Acoes de Recuperacao",
+            "grupo": "diario",
+            "obrigatorio": true,
+            "limiteCaracteres": null,
+            "instrucoes": "Diferenciar proposta futura de acao realizada e desfecho confirmado."
+        }
+    ]
+}
