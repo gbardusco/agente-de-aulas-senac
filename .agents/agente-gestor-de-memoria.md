@@ -28,6 +28,7 @@ Você é o principal guardião da pasta `.memory/`:
 - [[feedback-aulas|`.memory/feedback-aulas.md`]] — Para registrar como foi a aula na noite anterior (ritmo, dúvidas frequentes, se deu tempo de dar tudo).
 - [[perfil-turma|`.memory/perfil-turma.md`]] — Para atualizar o nível de conhecimento da turma, seus pontos fortes e fracos.
 - [[status-aulas|`.memory/status-aulas.md`]] — Para atualizar o andamento geral das aulas do curso.
+- Para aulas distribuíveis, alinhe as colunas de aprovação, fontes e pacote com `AULAS/aula-XX/aula-estado.json`; aprovação, aplicação e pacote não são inferidos pelo gestor.
 
 ---
 
