@@ -14,9 +14,14 @@
 | Arquivo | Descrição |
 |---------|-----------|
 | [slides.html](./slides.html) | Apresentação de slides |
+| [slides.pptx](./slides.pptx) | Apresentação editável gerada da mesma fonte `slides.json` |
 | [demo/index.html](./demo/index.html) | Demonstração em código (live coding) |
 | [exercicios.html](./exercicios.html) | Lista de exercícios |
 | [gabarito/](./gabarito/) | Resolução dos exercícios |
+
+Rubrica, quando houver avaliação: `rubrica-atividade.md`, com critérios/escala aprovados.
+Não incluir registros docentes, evidências ou resultados individuais neste índice.
+Antes de distribuir aos alunos, remover gabarito se não autorizado e revisar os links.
 
 ## Estrutura da Aula
 
