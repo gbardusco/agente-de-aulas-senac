@@ -11,6 +11,11 @@ created: 2026-08-01
 
 ## Estrutura Base de Slides
 
+Para HTML + PPTX editável, a fonte é JSON, não este exemplo HTML. Use
+`_templates/slides-fonte-template.json`, valide/ gere com `npm run slides -- <fonte> <saida>`.
+Veja `exemplos/avaliacao-e-exportacao.md`. PptxGenJS cria texto/formas nativos;
+HTML legado não é convertido automaticamente. Nunca coloque dados privados nas notas.
+
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -119,8 +124,10 @@ Todo conceito novo em slides deve seguir a sequência pedagógica:
 ## Regras
 
 1. Todos os HTMLs devem ter `lang="pt-BR"` no elemento `<html>`.
-2. Todos os HTMLs devem referenciar `assets/slides.css` para estilos consistentes.
+2. Use o CSS correspondente: slides/demo (`slides.css`), exercícios (`exercicios.css`), relatório (`relatorio.css`). O pipeline incorpora CSS/JS no HTML de slides para distribuição offline.
 3. Slides devem usar a classe `.slide` no container principal.
-4. Exercícios devem usar a classe `.exercise` e conter uma `.task` e opcionalmente uma `.hints`.
+4. Exercícios seguem `_templates/exercicios-template.html`: `.exercise-card`, `.card-header`, `.description` e `.hints`.
 5. Demos devem usar a classe `.demo` e conter um `.preview-box` para o resultado visual.
-6. Nunca use IDs em elementos de conteúdo — use apenas classes.
+6. Prefira classes para estilo; use IDs únicos para associação de labels, campos e status acessíveis no relatório. Siga `_templates/relatorio-docente-template.html` e assets correspondentes: cópia de `value`, nunca `innerHTML`, fallback seleção e espelho de texto para impressão sem cortes.
+7. Relatórios persistentes usam `relatorio.json` canônico; preserve IDs, ordem, escapes e blocos de dados embutidos ao regenerar HTML.
+8. Nunca inclua registros docentes, JSON privado ou estado de aprovação em HTML/ZIP para alunos; pacotes usam lista explícita e manifesto.
