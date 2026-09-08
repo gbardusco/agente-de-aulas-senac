@@ -1,0 +1,126 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Estado e aprovacao da aula v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["version", "aulaId", "versao", "estado", "atualizadoEm", "conteudoPublico", "fontes", "historico"],
+    "properties": {
+        "version": { "const": 1 },
+        "aulaId": { "type": "string", "pattern": "^aula-[0-9]{2,3}$" },
+        "versao": { "type": "integer", "minimum": 1, "maximum": 1000 },
+        "estado": { "enum": ["rascunho", "em-revisao", "aprovado", "aplicado", "revisao-necessaria"] },
+        "atualizadoEm": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" },
+        "conteudoPublico": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["hash", "arquivos"],
+            "properties": {
+                "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+                "arquivos": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 100,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["caminho", "hash"],
+                        "properties": {
+                            "caminho": { "type": "string", "minLength": 1, "maxLength": 200 },
+                            "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+                        }
+                    }
+                }
+            }
+        },
+        "atividadeId": { "type": "string", "pattern": "^atividade-[0-9]{2,3}-[a-z0-9-]{1,64}$" },
+        "pedagogia": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["abordagem", "modalidadeAplicacao", "problemaId", "objetivos", "fontes"],
+            "properties": {
+                "abordagem": { "const": "pbl" },
+                "modalidadeAplicacao": { "enum": ["pratica", "analitica", "mista"] },
+                "problemaId": { "type": "string", "pattern": "^problema-[0-9]{2,3}-[a-z0-9-]{1,64}$" },
+                "objetivos": {
+                    "type": "array", "minItems": 1, "maxItems": 8,
+                    "items": { "type": "string", "minLength": 1, "maxLength": 120 }
+                },
+                "fontes": {
+                    "type": "array", "minItems": 1, "maxItems": 100,
+                    "items": { "type": "string", "pattern": "^fonte-[a-z0-9-]{1,80}$" }
+                }
+            }
+        },
+        "rubrica": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rubricaId", "criteriosAprovados", "escalaAprovada", "aprovadoPor", "aprovadoEm"],
+            "properties": {
+                "rubricaId": { "type": "string", "pattern": "^rubrica-[0-9]{2,3}-[a-z0-9-]{1,64}-v[0-9]+$" },
+                "criteriosAprovados": { "type": "boolean" },
+                "escalaAprovada": { "type": "boolean" },
+                "aprovadoPor": { "type": "string", "minLength": 1, "maxLength": 160 },
+                "aprovadoEm": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "referencia": { "type": "string", "maxLength": 80 }
+            }
+        },
+        "fontes": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "titulo", "tipo", "situacaoLeitura", "dataConsulta"],
+                "properties": {
+                    "id": { "type": "string", "pattern": "^fonte-[a-z0-9-]{1,80}$" },
+                    "titulo": { "type": "string", "minLength": 1, "maxLength": 200 },
+                    "tipo": { "enum": ["oficial", "manual", "primaria", "complementar"] },
+                    "versaoData": { "type": "string", "maxLength": 80 },
+                    "secao": { "type": "string", "maxLength": 200 },
+                    "situacaoLeitura": { "enum": ["nao-lido", "consultado", "parcial", "nao-processado"] },
+                    "dataConsulta": { "type": "string", "minLength": 1, "maxLength": 80 },
+                    "aplicabilidade": { "type": "string", "maxLength": 1000 }
+                }
+            }
+        },
+        "registro": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["registroId"],
+            "properties": {
+                "registroId": { "type": "string", "pattern": "^registro-[0-9]{2,3}-[a-z0-9-]{1,64}$" },
+                "evidencias": {
+                    "type": "array",
+                    "maxItems": 200,
+                    "items": { "type": "string", "pattern": "^evidencia-[0-9]{2,3}-[a-z0-9-]{1,64}$" }
+                },
+                "observacao": { "type": "string", "maxLength": 1000 }
+            }
+        },
+        "aplicacao": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["data", "fonte"],
+            "properties": {
+                "data": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "fonte": { "type": "string", "minLength": 1, "maxLength": 200 }
+            }
+        },
+        "historico": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 300,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["quando", "acao"],
+                "properties": {
+                    "quando": { "type": "string", "minLength": 1, "maxLength": 80 },
+                    "acao": { "type": "string", "minLength": 1, "maxLength": 500 },
+                    "ator": { "type": "string", "maxLength": 160 },
+                    "detalhe": { "type": "string", "maxLength": 2000 }
+                }
+            }
+        }
+    }
+}
