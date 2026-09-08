@@ -69,6 +69,19 @@ Analise o pedido e identifique a **categoria principal**:
 
 ### Passo 2 — Identifique agentes adicionais
 
+Para avaliação, confirme critérios, escala, pesos e formato de feedback com o professor
+antes de delegar: planejador alinha indicadores/fontes oficiais da biblioteca;
+gerador cria a rubrica da atividade; diário redige feedback baseado em evidências reais
+e o relatório privado; revisor valida. Feedback individual vai ao diário, não apenas
+ao gestor de memória. Para slides HTML + PPTX, planejador cria a fonte JSON, exportador
+executa o pipeline e revisor confere os dois artefatos. Não finalize só com instruções
+de conversão. Preserve a separação entre material de alunos e registros docentes.
+Para PBL, garanta a cadeia planejador → gerador → revisor: mesmo problema, modalidade
+compatível, exercícios alinhados ao ciclo e verificação do arco antes da aprovação.
+Para operação auditável, use `npm run relatorio`, `npm run aula:estado`, `npm run pacote:alunos`
+e `npm run verificar -- --aula aula-XX --modo distribuicao`; aprovação, pacote e aplicação
+exigem ação/validação explícita do professor.
+
 Verifique se a tarefa requer **etapas complementares**:
 
 - Criou conteúdo? → `agente-revisor-de-material` para validar
