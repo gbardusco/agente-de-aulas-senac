@@ -1,0 +1,69 @@
+{
+    "version": 2,
+    "title": "Exemplo PBL teorico: interpretacao de texto normativo",
+    "pedagogia": {
+        "abordagem": "pbl",
+        "modalidadeAplicacao": "analitica",
+        "problemaId": "problema-00-norma-demo-1",
+        "objetivos": ["Comparar interpretacoes de um texto normativo ficticio"],
+        "fontes": ["fonte-manual-ficticio"]
+    },
+    "slides": [
+        {
+            "title": "Problema: duas leituras da mesma norma ficticia",
+            "blocks": [
+                {
+                    "type": "problema",
+                    "contexto": "Duas equipes interpretam de forma diferente o mesmo artigo ficticio sobre prazos.",
+                    "questao": "Quais criterios tornam uma interpretacao mais consistente que a outra?"
+                }
+            ]
+        },
+        {
+            "title": "Hipotese iniciais",
+            "blocks": [
+                {
+                    "type": "hipoteses",
+                    "items": ["O prazo conta da publicacao ficticia.", "O prazo conta da ciencia comprovada no cenario."]
+                }
+            ]
+        },
+        {
+            "title": "Investigacao orientada",
+            "blocks": [
+                {
+                    "type": "investigacao",
+                    "texto": "Compare os trechos indicados no manual ficticio e anote os criterios usados por cada equipe."
+                }
+            ]
+        },
+        {
+            "title": "Conceito: interpretacao sistematica",
+            "blocks": [
+                {
+                    "type": "conceito",
+                    "items": ["Ler o artigo no contexto do capitulo ficticio.", "Priorizar a finalidade declarada da norma ficticia."]
+                }
+            ]
+        },
+        {
+            "title": "Aplicacao analitica",
+            "blocks": [
+                {
+                    "type": "aplicacao",
+                    "modalidade": "analitica",
+                    "texto": "Analise os dois pareceres ficticios e indique qual interpretacao esta melhor fundamentada, sem executar nenhuma tarefa operacional."
+                }
+            ]
+        },
+        {
+            "title": "Sintese",
+            "blocks": [
+                {
+                    "type": "sintese",
+                    "texto": "A interpretacao mais consistente combina texto, contexto e finalidade declarada no cenario ficticio."
+                }
+            ]
+        }
+    ]
+}
