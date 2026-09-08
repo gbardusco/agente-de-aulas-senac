@@ -1,0 +1,57 @@
+{
+    "version": 2,
+    "title": "Exemplo PBL pratico: estrutura de uma pagina",
+    "pedagogia": {
+        "abordagem": "pbl",
+        "modalidadeAplicacao": "pratica",
+        "problemaId": "problema-00-catalogo-demo-1",
+        "objetivos": ["Organizar conteudo com estrutura semantica"],
+        "fontes": ["fonte-plano-curso-vigente"]
+    },
+    "slides": [
+        {
+            "title": "Problema: organizar um catalogo",
+            "blocks": [
+                {
+                    "type": "problema",
+                    "contexto": "O catalogo ficticio mistura titulo e descricao dos produtos, dificultando a leitura.",
+                    "questao": "Como separar essas informacoes com estrutura semantica?"
+                }
+            ]
+        },
+        {
+            "title": "Conceito: estrutura semantica",
+            "blocks": [
+                {
+                    "type": "conceito",
+                    "items": ["Titulos organizam a hierarquia do documento.", "Paragrafos agrupam o texto descritivo."]
+                }
+            ],
+            "notes": "Confirmar o alinhamento com o Plano de Curso. Esta nota tambem aparece no HTML."
+        },
+        {
+            "title": "Aplicacao pratica",
+            "blocks": [
+                {
+                    "type": "aplicacao",
+                    "modalidade": "pratica",
+                    "texto": "Construa uma pagina sintetica com titulo e descricao do produto ficticio.",
+                    "codigo": "<article>\n    <h2>Caderno</h2>\n</article>",
+                    "demonstracao": {
+                        "texto": "Referencia oficial: elemento article",
+                        "url": "https://html.spec.whatwg.org/multipage/sections.html#the-article-element"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Sintese",
+            "blocks": [
+                {
+                    "type": "sintese",
+                    "items": ["Estrutura semantica separa titulo e descricao.", "A mesma estrategia vale para outros catalogos ficticios."]
+                }
+            ]
+        }
+    ]
+}
