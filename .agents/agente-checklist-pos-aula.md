@@ -37,6 +37,13 @@ Para cada aula aplicada, verifique:
 - [ ] O feedback mencionou ritmo da turma?
 - [ ] O feedback mencionou dificuldades específicas?
 - [ ] Houve alguma decisão que afeta aulas futuras?
+- [ ] Se houve avaliação: rubrica aprovada pelo professor, escala/critérios confirmados e evidências reais rastreáveis, sem resultados inferidos?
+- [ ] Feedback segue tom, extensão e estrutura escolhidos pelo docente e aponta próximo passo quando solicitado?
+- [ ] Diário/relatório solicitado está em `AULAS/registros-docentes/aula-XX/relatorio.html` e `relatorio.json`, com campos editáveis, cópia funcional, persistência/exportação verificada e sem exposição em pacotes de alunos?
+- [ ] Estado da aula, fontes citadas e pacote/manifesto estão consistentes? `npm run verificar -- --aula aula-XX --modo distribuicao` foi executado antes de distribuir?
+- [ ] Metadados PBL registrados e compatíveis: abordagem, modalidade, problema, objetivos e aplicação condicional?
+- [ ] Referências consultadas em `.docs/materiais-consulta/index.md` priorizam documentos oficiais? Lacunas e conflitos foram informados?
+- [ ] Recuperação proposta e realizada estão diferenciadas? Sem evidência, registrar pendência e perguntar, jamais inventar desfecho.
 
 ---
 
