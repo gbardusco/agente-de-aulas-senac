@@ -12,7 +12,7 @@ created: 2026-08-01
 ## Convenções
 
 - Toda classe CSS deve usar **notação kebab-case** (ex: `.slide-container`, `.code-block`).
-- Slides usam **100vh** de altura. Nenhum slide pode exceder a altura da viewport.
+- Slides devem caber em **100vh no desktop**. Em mobile/zoom, permita rolagem para não cortar conteúdo.
 - O sistema de slides customizado em `assets/slides.css` é a fonte de verdade para estilos de apresentação.
 - Classes de utilidade seguem o padrão `.tag`, `.attr`, `.value`, `.comment` para blocos de código.
 
@@ -37,7 +37,7 @@ Todo slide de conceito deve organizar-se em 3 passos pedagógicos:
 
 ## Regras de Layout
 
-1. Cada slide deve caber em uma tela sem scroll.
+1. Cada slide deve caber em uma tela desktop sem scroll; mobile/zoom preserva legibilidade com rolagem quando necessária.
 2. Se o conteúdo não cabe, divida em dois slides.
 3. Use `display: flex` ou `display: grid` para posicionamento.
 4. Evite `position: absolute` exceto para elementos decorativos.
@@ -46,6 +46,6 @@ Todo slide de conceito deve organizar-se em 3 passos pedagógicos:
 ## Verificação
 
 Ao revisar slides, confirme:
-- Nenhum slide excede 100vh
+- Nenhum slide excede 100vh no modo de apresentação desktop; mobile/zoom não corta conteúdo
 - Todas as classes CSS estão definidas em `assets/slides.css`
 - Não há classes duplicadas com propriedades conflitantes
