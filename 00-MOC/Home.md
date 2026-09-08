@@ -54,6 +54,7 @@ Para usar, copie os arquivos para um novo projeto e preencha o perfil da turma e
 - [[padroes-tecnicos|Padrões Técnicos]] — convenções de código e CSS
 
 ### Para Começar um Novo Projeto
+- 🚀 **Professor novo? Comece pelo [Onboarding](../ONBOARDING.md)** — do zero à primeira aula em 15 minutos
 - `_templates/perfil-turma-template.md` — copie para `.memory/perfil-turma.md`
 - `_templates/README.md` — checklist completo de setup
 
