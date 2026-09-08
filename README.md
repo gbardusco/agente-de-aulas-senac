@@ -6,6 +6,8 @@ Funciona como **Vault do Obsidian** e como **workspace para agentes** (opencode,
 > [!warning] Atenção: repositório público
 > Este repositório manipula **dados sensíveis de alunos** (perfis, feedbacks, decisões). Leia a seção [Privacidade](#privacidade) antes do seu **primeiro commit**.
 
+> 🚀 **É professor e está começando agora?** Siga o [Onboarding em 15 minutos](ONBOARDING.md).
+
 ---
 
 ## Como Usar
