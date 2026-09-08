@@ -82,6 +82,9 @@ Use um dos prefixos:
 ### 4. Teste
 
 ```bash
+npm ci
+npm test
+npm run verificar -- --modo distribuicao
 ./verificar-integridade.sh
 ```
 
