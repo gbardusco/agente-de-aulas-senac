@@ -36,21 +36,40 @@ Você **não** substitui o Plano de Curso oficial. Gera propostas que o docente 
 
 | Material | Arquivo | Regras |
 |----------|---------|--------|
-| Slides | `slides.html` | Sistema customizado (`assets/slides.css`). Todo slide cabe em 100vh. Identação impecável. Segue a sequência pedagógica: situação-problema → formalização → exemplo na prática. |
+| Slides | `slides.json` → `slides.html` + `slides.pptx` | Fonte v2 PBL validada por `_templates/slides.schema.v2.json` para aulas novas; v1 permanece apenas como legado expositivo. Geração via `npm run slides`. Texto/formas editáveis no PPTX. PBL condicional como padrão, com modalidade prática, analítica ou mista. |
 | Demo | `demo/index.html` | Código limpo para live coding. Bem comentado. |
 | Exercícios | `exercicios.html` | Produção autônoma (nunca réplica). Progressão: Básico → Intermediário → Desafio. |
 | Gabarito | `gabarito/exercicio-XX.html` | Um arquivo por exercício. Código funcional e identado. |
 | Ementa | `index.md` | Conteúdo, data, horário, tabela de materiais. |
+| Rubrica de atividade | `rubrica-atividade.md` | Critérios, escala e descritores aprovados pelo professor; sem resultados individuais. |
 
-### Sequência pedagógica dos slides
+Consulte `.docs/materiais-consulta/index.md` e as fontes oficiais relevantes antes de
+alinhar objetivos, indicadores e avaliação. Registre referências verificáveis. Pergunte
+critérios/escala/pesos e preferências de feedback que faltarem. Use o template de rubrica;
+evidências esperadas no planejamento nunca são evidências observadas. Encaminhe registros
+reais ao diário em `AULAS/registros-docentes/aula-XX/relatorio.html`.
 
-Todo slide que apresenta um **conceito novo** deve seguir esta ordem:
+Use `_templates/slides-fonte-template.json` como exemplo técnico, não como conteúdo
+pedagógico aprovado. Gere ambos os formatos e divida slides se a validação acusar excesso.
+Demos interativas continuam no navegador; inclua links HTTPS verificados e limitações.
+Não edite somente um dos formatos gerados nem prometa reprodução de DOM/CSS no PPTX.
 
-1. **Situação-problema contextualizada** — abra com um problema do mundo real, de fácil entendimento e dentro do contexto temático da turma (ex: "Como exibir o cardápio do restaurante de forma organizada?").
-2. **Formalização do conceito** — a partir da situação-problema, apresente e formalize o conceito que será tratado na aula (ex: "Para isso usamos tabelas HTML — veja como elas funcionam").
-3. **Exemplo na prática** — feche com o exemplo prático resolvendo a situação-problema apresentada no passo 1.
+### Arco PBL condicional dos slides
 
-Aplicável também a demos e exercícios: o enunciado deve remeter à situação-problema, nunca partir direto do código.
+Use PBL como padrão sempre que o tema permitir um problema contextualizado. Antes de gerar,
+confirme com o professor abordagem, modalidade da aplicação, contexto do problema, objetivos
+e restrições práticas. Registre a decisão na ementa e no estado da aula.
+
+Ordem mínima do deck PBL:
+
+1. **Problema contextualizado** — situação realista e pergunta orientadora.
+2. **Conceito teórico** — formalização necessária para enfrentar o problema.
+3. **Aplicação condicional** — prática operacional ou análise teórica, conforme a modalidade.
+4. **Síntese** — transferência, reflexão e fechamento.
+
+Hipóteses e investigação são recomendadas entre problema e conceito. Para disciplinas
+teóricas, use aplicação analítica; nunca invente uma tarefa operacional apenas para
+cumprir a sequência. Exposição contextualizada legada só com justificativa registrada.
 
 ### Atividades complementares (opcionais)
 
@@ -78,18 +97,18 @@ Consulte a skill [[atividades-complementares|`.skills/atividades-complementares.
 1. **Identifique:** Qual aula? Criar, expandir ou corrigir?
 2. **Se houver feedback:** Ajuste o conteúdo ao ritmo observado.
 3. **Se for vago:** Pergunte antes de gerar.
-4. **Após executar:** Atualize [[status-aulas|`.memory/status-aulas.md`]] e [[decisoes|`.memory/decisoes.md`]] se aplicável.
+4. **Após executar:** Atualize [[status-aulas|`.memory/status-aulas.md`]] e [[decisoes|`.memory/decisoes.md`]] se aplicável. Para distribuição, prepare o estado com `npm run aula:estado`, solicite revisão docente e só trate aprovação/aplicação como ações explícitas do professor.
 
 ---
 
 ## 5. Regras invioláveis
 
 1. Identação exemplar em todo código exibido — sem atalhos, sem compressão.
-2. Slides cabem em uma tela — se não cabe, divida.
+2. Slides cabem em uma tela desktop — se não cabe, divida. Em mobile/zoom, permita rolagem para acessibilidade.
 3. Exercícios nunca pedem réplica da demo.
 4. Contexto temático da turma sempre presente — consulte [[perfil-turma|`perfil-turma.md`]] para os temas.
 5. Não invente URLs — sinalize com `[verificar]`.
-6. Sequência pedagógica obrigatória — slides de conceito seguem: situação-problema contextualizada (mundo real) → formalização do conceito → exemplo na prática.
+6. Arco PBL condicional obrigatório em decks v2 — problema → conceito → aplicação compatível com a modalidade → síntese; sem prática operacional forçada em modalidade analítica.
 7. Atividades complementares (seminário, pesquisa, aula invertida, etc.) são **opcionais e contextuais** — a lista de exercícios é o único item obrigatório.
 
 ---
