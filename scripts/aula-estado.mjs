@@ -34,7 +34,7 @@ export async function inventariarPublicos(raiz, aulaId, publicos) {
     const arquivos = [];
     for (const caminho of publicos) {
         if (caminho.includes('\\') || caminho.startsWith('/') || caminho === '.' || caminho.startsWith('./')) {
-            throw new Error(`Caminho publico invalido: ${caminho}.`);
+            throw new Error(`Caminho público inválido: ${caminho}.`);
         }
         const absoluto = resolverCaminhoSeguro(raiz, 'AULAS', aulaId, caminho);
         await exigirArquivoRegular(absoluto);
@@ -46,16 +46,16 @@ export async function inventariarPublicos(raiz, aulaId, publicos) {
 
 export function validarPedagogiaEstado(pedagogia) {
     if (!pedagogia) return undefined;
-    if (pedagogia.abordagem !== 'pbl') throw new Error('Estado com abordagem pedagogica invalida.');
+    if (pedagogia.abordagem !== 'pbl') throw new Error('Estado com abordagem pedagógica inválida.');
     if (!['pratica', 'analitica', 'mista'].includes(pedagogia.modalidadeAplicacao)) {
-        throw new Error('Estado com modalidade de aplicacao invalida.');
+        throw new Error('Estado com modalidade de aplicação inválida.');
     }
     validarIdentificador('problema', pedagogia.problemaId);
     if (!Array.isArray(pedagogia.objetivos) || pedagogia.objetivos.length === 0 || pedagogia.objetivos.some((objetivo) => typeof objetivo !== 'string' || !objetivo.trim())) {
-        throw new Error('Estado sem objetivos pedagogicos validos.');
+        throw new Error('Estado sem objetivos pedagógicos válidos.');
     }
     if (!Array.isArray(pedagogia.fontes) || pedagogia.fontes.length === 0) {
-        throw new Error('Estado sem fontes pedagogicas.');
+        throw new Error('Estado sem fontes pedagógicas.');
     }
     for (const fonte of pedagogia.fontes) validarIdentificador('fonte', fonte);
     return {
@@ -74,7 +74,7 @@ export async function extrairPedagogia(raiz, aulaId, publicos) {
     try {
         fonte = JSON.parse(await readFile(await exigirArquivoRegular(caminho), 'utf8'));
     } catch {
-        throw new Error('Fonte slides.json invalida para extrair a pedagogia.');
+        throw new Error('Fonte slides.json inválida para extrair a pedagogia.');
     }
     if (fonte.version !== 2 || !fonte.pedagogia) return undefined;
     return validarPedagogiaEstado(fonte.pedagogia);
@@ -97,7 +97,7 @@ async function exigirNovo(caminho, sobrescrever) {
     } catch {
         return;
     }
-    if (!sobrescrever) throw new Error(`Estado ja existe: ${caminho}.`);
+    if (!sobrescrever) throw new Error(`Estado já existe: ${caminho}.`);
 }
 
 async function carregarEstado(raiz, aulaId) {
@@ -113,7 +113,7 @@ function registrar(estado, agora, acao, ator = '', detalhe = '') {
 
 function transitar(estado, destino) {
     if (!TRANSICOES[estado.estado]?.includes(destino)) {
-        throw new Error(`Transicao invalida: ${estado.estado} para ${destino}.`);
+        throw new Error(`Transição inválida: ${estado.estado} para ${destino}.`);
     }
     estado.estado = destino;
     estado.versao += 1;
@@ -152,7 +152,7 @@ export async function solicitarRevisao({ raiz = RAIZ, aulaId, publicos, agora = 
     else delete estado.pedagogia;
     transitar(estado, 'em-revisao');
     estado.atualizadoEm = agora;
-    registrar(estado, agora, 'Enviado para revisao docente.', '', motivo);
+    registrar(estado, agora, 'Enviado para revisão docente.', '', motivo);
     await escreverArquivoAtomico(caminho, `${JSON.stringify(validarSchema(SCHEMA, estado, 'Estado da aula'), null, 2)}\n`);
     return { caminho, estado };
 }
@@ -160,10 +160,10 @@ export async function solicitarRevisao({ raiz = RAIZ, aulaId, publicos, agora = 
 export async function aprovarEstado({ raiz = RAIZ, aulaId, publicos, rubricaId, aprovadoPor, aprovadoEm, referencia = '', fontes, registro, agora = new Date().toISOString() } = {}) {
     const { caminho, estado } = await carregarEstado(raiz, aulaId);
     if (!['em-revisao', 'revisao-necessaria'].includes(estado.estado)) {
-        throw new Error('Apenas conteudo em revisao pode ser aprovado.');
+        throw new Error('Apenas conteúdo em revisão pode ser aprovado.');
     }
     validarIdentificador('rubrica', rubricaId);
-    if (!aprovadoPor || !aprovadoEm) throw new Error('Aprovacao exige responsavel e data.');
+    if (!aprovadoPor || !aprovadoEm) throw new Error('Aprovação exige responsável e data.');
     const lista = publicos ? (Array.isArray(publicos) ? publicos : dividirLista(publicos, '--publicos')) : estado.conteudoPublico.arquivos.map((arquivo) => arquivo.caminho);
     estado.conteudoPublico = await inventariarPublicos(raiz, aulaId, lista);
     const pedagogia = await extrairPedagogia(raiz, aulaId, lista);
@@ -178,18 +178,18 @@ export async function aprovarEstado({ raiz = RAIZ, aulaId, publicos, rubricaId, 
     }
     transitar(estado, 'aprovado');
     estado.atualizadoEm = agora;
-    registrar(estado, agora, 'Conteudo aprovado pelo professor.', aprovadoPor, referencia);
+    registrar(estado, agora, 'Conteúdo aprovado pelo professor.', aprovadoPor, referencia);
     await escreverArquivoAtomico(caminho, `${JSON.stringify(validarSchema(SCHEMA, estado, 'Estado da aula'), null, 2)}\n`);
     return { caminho, estado };
 }
 
 export async function marcarAplicada({ raiz = RAIZ, aulaId, data, fonte, agora = new Date().toISOString() } = {}) {
     const { caminho, estado } = await carregarEstado(raiz, aulaId);
-    if (estado.estado !== 'aprovado') throw new Error('Apenas conteudo aprovado pode ser marcado como aplicado.');
-    if (!data || !fonte) throw new Error('Aplicacao exige data e fonte fornecidas pelo professor.');
+    if (estado.estado !== 'aprovado') throw new Error('Apenas conteúdo aprovado pode ser marcado como aplicado.');
+    if (!data || !fonte) throw new Error('Aplicação exige data e fonte fornecidas pelo professor.');
     const atual = await inventariarPublicos(raiz, aulaId, estado.conteudoPublico.arquivos.map((arquivo) => arquivo.caminho));
     if (atual.hash !== estado.conteudoPublico.hash) {
-        throw new Error('Conteudo alterado apos a aprovacao. Solicite nova revisao antes de marcar como aplicado.');
+        throw new Error('Conteúdo alterado após a aprovação. Solicite nova revisão antes de marcar como aplicado.');
     }
     estado.aplicacao = { data, fonte };
     transitar(estado, 'aplicado');
@@ -218,14 +218,14 @@ export async function avaliarEstado({ raiz = RAIZ, aulaId } = {}) {
 
 export async function marcarRevisao({ raiz = RAIZ, aulaId, motivo, agora = new Date().toISOString() } = {}) {
     const { caminho, estado } = await carregarEstado(raiz, aulaId);
-    if (!['aprovado', 'aplicado'].includes(estado.estado)) throw new Error('Apenas conteudo aprovado ou aplicado pode exigir revisao.');
-    if (!motivo) throw new Error('Informe o motivo da revisao.');
+    if (!['aprovado', 'aplicado'].includes(estado.estado)) throw new Error('Apenas conteúdo aprovado ou aplicado pode exigir revisão.');
+    if (!motivo) throw new Error('Informe o motivo da revisão.');
     const atual = await inventariarPublicos(raiz, aulaId, estado.conteudoPublico.arquivos.map((arquivo) => arquivo.caminho));
-    if (atual.hash === estado.conteudoPublico.hash) throw new Error('Nenhuma alteracao detectada no conteudo aprovado.');
+    if (atual.hash === estado.conteudoPublico.hash) throw new Error('Nenhuma alteração detectada no conteúdo aprovado.');
     estado.conteudoPublico = atual;
     transitar(estado, 'revisao-necessaria');
     estado.atualizadoEm = agora;
-    registrar(estado, agora, 'Revisao exigida apos alteracao do conteudo aprovado.', '', motivo);
+    registrar(estado, agora, 'Revisão exigida após alteração do conteúdo aprovado.', '', motivo);
     await escreverArquivoAtomico(caminho, `${JSON.stringify(validarSchema(SCHEMA, estado, 'Estado da aula'), null, 2)}\n`);
     return { caminho, estado };
 }
@@ -247,7 +247,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
             console.log(`Estado preparado: ${resultado.caminho}`);
         } else if (comando === 'solicitar-revisao' && opcoes.aula) {
             const resultado = await solicitarRevisao({ aulaId: opcoes.aula, publicos: opcoes.publicos, motivo: opcoes.motivo || '' });
-            console.log(`Revisao solicitada: ${resultado.caminho}`);
+            console.log(`Revisão solicitada: ${resultado.caminho}`);
         } else if (comando === 'aprovar' && opcoes.aula && opcoes.rubrica && opcoes.aprovadoPor && opcoes.aprovadoEm && opcoes.fontes) {
             const resultado = await aprovarEstado({
                 aulaId: opcoes.aula,
@@ -258,7 +258,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
                 referencia: opcoes.referencia || '',
                 fontes: await lerJsonEntrada(opcoes.fontes)
             });
-            console.log(`Conteudo aprovado: ${resultado.caminho}`);
+            console.log(`Conteúdo aprovado: ${resultado.caminho}`);
         } else if (comando === 'marcar-aplicada' && opcoes.aula && opcoes.data && opcoes.fonte) {
             const resultado = await marcarAplicada({ aulaId: opcoes.aula, data: opcoes.data, fonte: opcoes.fonte });
             console.log(`Aula aplicada: ${resultado.caminho}`);
@@ -266,7 +266,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
             console.log(JSON.stringify(await avaliarEstado({ aulaId: opcoes.aula }), null, 2));
         } else if (comando === 'marcar-revisao' && opcoes.aula && opcoes.motivo) {
             const resultado = await marcarRevisao({ aulaId: opcoes.aula, motivo: opcoes.motivo });
-            console.log(`Revisao exigida: ${resultado.caminho}`);
+            console.log(`Revisão exigida: ${resultado.caminho}`);
         } else {
             throw new Error('Uso: node scripts/aula-estado.mjs <preparar|solicitar-revisao|aprovar|marcar-aplicada|avaliar|marcar-revisao> --opcoes');
         }
