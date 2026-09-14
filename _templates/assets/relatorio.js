@@ -53,14 +53,14 @@
             botao.disabled = true;
             status.textContent = 'Copiando...';
             try {
-                if (!navigator.clipboard?.writeText) throw new Error('Clipboard indisponivel');
+                if (!navigator.clipboard?.writeText) throw new Error('Área de transferência indisponível');
                 await navigator.clipboard.writeText(campo.value);
                 status.textContent = 'Texto copiado.';
             } catch {
                 campo.focus();
                 campo.select();
                 campo.setSelectionRange(0, campo.value.length);
-                status.textContent = 'Copia automatica indisponivel. Texto selecionado: use Ctrl+C, Command+C ou a opcao Copiar do dispositivo.';
+                status.textContent = 'Cópia automática indisponível. Texto selecionado: use Ctrl+C, Command+C ou a opção Copiar do dispositivo.';
             } finally {
                 botao.disabled = false;
             }
@@ -101,7 +101,7 @@
         if (!dadosEmbutidos) return { campos: [], evidencias: [], fontes: [], historico: [] };
         try {
             const dados = JSON.parse(dadosEmbutidos.textContent);
-            if (dados.version !== 1 || dados.aulaId !== aula || !Array.isArray(dados.campos)) throw new Error('dados invalidos');
+            if (dados.version !== 1 || dados.aulaId !== aula || !Array.isArray(dados.campos)) throw new Error('dados inválidos');
             return { evidencias: [], fontes: [], historico: [], ...dados };
         } catch {
             return { campos: [], evidencias: [], fontes: [], historico: [] };
@@ -124,7 +124,7 @@
             version: 1,
             aulaId: aula,
             atualizadoEm: new Date().toISOString(),
-            campos: coletarCampos()
+            campos: coletarCampos().map((campo) => ({ ...(embutidos.campos.find((item) => item.id === campo.id) || {}), ...campo }))
         };
     }
 
@@ -132,13 +132,20 @@
         alteracoesPendentes = pendentes;
         if (!statusRelatorio) return;
         if (mensagem) statusRelatorio.textContent = mensagem;
-        else if (pendentes) statusRelatorio.textContent = 'Alteracoes ainda nao exportadas.';
+        else if (pendentes) statusRelatorio.textContent = 'Alterações ainda não exportadas.';
         else statusRelatorio.textContent = `Exportado em ${new Date().toLocaleString('pt-BR')}.`;
     }
 
     function aplicarJson(dados, origem) {
         if (!dados || dados.version !== 1 || dados.aulaId !== aula || !Array.isArray(dados.campos)) {
-            throw new Error('Arquivo JSON incompativel com este relatorio.');
+            throw new Error('Arquivo JSON incompatível com este relatório.');
+        }
+        const ids = new Set();
+        for (const campo of dados.campos) {
+            if (!campo || !/^[a-z0-9]+(?:-[a-z0-9]+){0,7}$/.test(campo.id) || typeof campo.valor !== 'string' || typeof campo.rotulo !== 'string' || ids.has(campo.id)) throw new Error('Campo inválido ou duplicado.');
+            const existente = document.getElementById(campo.id);
+            if (existente && !(existente instanceof HTMLTextAreaElement)) throw new Error('Identificador reservado.');
+            ids.add(campo.id);
         }
         for (const campo of dados.campos) {
             if (!campo || typeof campo.id !== 'string') continue;
@@ -154,7 +161,7 @@
     function salvarLocal() {
         if (!automatico?.checked) return;
         const ok = armazenamento.gravar(chaveDados, JSON.stringify(montarJson()));
-        if (statusRelatorio) statusRelatorio.textContent = ok ? `Salvo neste navegador em ${new Date().toLocaleString('pt-BR')}. Exporte o JSON para guarda permanente.` : 'Nao foi possivel salvar neste navegador. Exporte o JSON.';
+        if (statusRelatorio) statusRelatorio.textContent = ok ? `Salvo neste navegador em ${new Date().toLocaleString('pt-BR')}. Exporte o JSON para guarda permanente.` : 'Não foi possível salvar neste navegador. Exporte o JSON.';
     }
 
     function agendarSalvamento() {
@@ -175,7 +182,7 @@
                 const salvos = armazenamento.ler(chaveDados);
                 if (salvos) aplicarJson(JSON.parse(salvos), 'Dados locais restaurados');
             } catch {
-                if (statusRelatorio) statusRelatorio.textContent = 'Dados locais invalidos. Exporte novamente a partir dos campos.';
+                if (statusRelatorio) statusRelatorio.textContent = 'Dados locais inválidos. Exporte novamente a partir dos campos.';
             }
         }
         automatico.addEventListener('change', () => {
@@ -185,7 +192,7 @@
                 salvarLocal();
             } else {
                 armazenamento.apagar(chavePreferencia);
-                marcarAlteracoes(true, 'Salvamento local desativado. Exporte o JSON para guardar as alteracoes.');
+                marcarAlteracoes(true, 'Salvamento local desativado. Exporte o JSON para guardar as alterações.');
             }
             limpar.disabled = !armazenamento.ler(chaveDados);
         });
@@ -195,7 +202,7 @@
             automatico.checked = false;
             avisoLocal.hidden = true;
             limpar.disabled = true;
-            marcarAlteracoes(true, 'Dados locais apagados. Exporte o JSON para guardar as alteracoes.');
+            marcarAlteracoes(true, 'Dados locais apagados. Exporte o JSON para guardar as alterações.');
         });
     }
 
@@ -231,7 +238,7 @@
         try {
             aplicarJson(JSON.parse(await arquivo.text()), 'Arquivo importado');
         } catch {
-            if (statusRelatorio) statusRelatorio.textContent = 'Arquivo JSON invalido ou incompativel. Nenhum campo foi alterado.';
+            if (statusRelatorio) statusRelatorio.textContent = 'Arquivo JSON inválido ou incompatível. Nenhum campo foi alterado.';
         } finally {
             importar.value = '';
         }
