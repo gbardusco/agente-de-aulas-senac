@@ -1,21 +1,21 @@
-# Rubrica ficticia aprovada - Aula demo 04
+# Rubrica fictícia aprovada - Aula demo 04
 
-Status: APROVADA em ambiente de demonstracao. Atividade: `atividade-04-interpretacao-demo-1`.
+Status: APROVADA em ambiente de demonstração. Atividade: `atividade-04-interpretacao-demo-1`.
 Rubrica: `rubrica-04-interpretacao-demo-1-v1`. Problema: `problema-04-norma-demo-1`.
 Nenhum desempenho real foi avaliado.
 
-## Configuracao
+## Configuração
 
-- Indicador ficticio: `IND-DEMO-04`, fonte `fonte-manual-diario-ficticio`, capitulo 2.
-- Escala ficticia: `inicial`, `em-desenvolvimento`, `consolidado`.
-- Pesos: nao se aplica.
-- Aprovacao ficticia: Docente DEMO em 2026-09-09.
+- Indicador fictício: `IND-DEMO-04`, fonte `fonte-manual-diario-ficticio`, capítulo 2.
+- Escala fictícia: `inicial`, `em-desenvolvimento`, `consolidado`.
+- Pesos: não se aplicam.
+- Aprovação fictícia: Docente DEMO em 2026-09-09.
 
 ## Descritores
 
-| Criterio | Evidencia esperada | Inicial | Em desenvolvimento | Consolidado |
+| Critério | Evidência esperada | Inicial | Em desenvolvimento | Consolidado |
 |----------|-------------------|---------|-------------------|-------------|
-| Fundamentacao da interpretacao | Parecer sintetico com criterios explicitos | Apenas repete uma das leituras | Compara as leituras com criterios parciais | Compara as leituras com criterios completos e conclusao justificada |
-| Uso das fontes ficticias | Citacao dos trechos indicados | Nao cita trechos | Cita trechos sem relaciona-los | Cita e relaciona os trechos a conclusao |
+| Fundamentação da interpretação | Parecer sintético com critérios explícitos | Apenas repete uma das leituras | Compara as leituras com critérios parciais | Compara as leituras com critérios completos e conclusão justificada |
+| Uso das fontes fictícias | Citação dos trechos indicados | Não cita trechos | Cita trechos sem relacioná-los | Cita e relaciona os trechos à conclusão |
 
-Rubrica publica: contem apenas criterios. Evidencias e feedback ficam no relatorio privado ficticio.
+Rubrica pública: contém apenas critérios e descritores. Evidências e feedback ficam no relatório privado fictício.
