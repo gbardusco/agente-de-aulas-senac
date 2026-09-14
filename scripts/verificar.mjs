@@ -185,7 +185,7 @@ export function resolverWikilink(mapa, origem, destino) {
 }
 
 export async function verificarRepositorio({ raiz = RAIZ, modo = 'desenvolvimento' } = {}) {
-    if (!MODOS.includes(modo)) throw new Error('Modo invalido.');
+    if (!MODOS.includes(modo)) throw new Error('Modo inválido.');
     const relatorio = criarRelatorio();
     const pacote = JSON.parse(await readFile(join(raiz, 'package.json'), 'utf8'));
     for (const arquivo of ARQUIVOS_ESSENCIAIS) {
@@ -200,7 +200,7 @@ export async function verificarRepositorio({ raiz = RAIZ, modo = 'desenvolviment
     }
     const ignorados = await readFile(join(raiz, '.gitignore'), 'utf8');
     for (const entrada of ['AULAS/', '.docs/', '.memory/perfil-turma.md', 'saidas/']) {
-        if (!ignorados.includes(entrada)) registrar(relatorio, modo, `Protecao ausente no .gitignore: ${entrada}.`);
+        if (!ignorados.includes(entrada)) registrar(relatorio, modo, `Proteção ausente no .gitignore: ${entrada}.`);
     }
 
     const arquivos = [];
@@ -228,7 +228,7 @@ export async function verificarRepositorio({ raiz = RAIZ, modo = 'desenvolviment
                     const tentativasRotulo = [join(dirname(arquivo), rotulo), rotulo];
                     if (await existe(raiz, tentativasRotulo[0]) || await existe(raiz, tentativasRotulo[1])) continue;
                 }
-                registrar(relatorio, modo, `Wikilink ambiguo em ${arquivo}: ${match[1]}.`, false, resolvido.arquivos.join(', '));
+                registrar(relatorio, modo, `Wikilink ambíguo em ${arquivo}: ${match[1]}.`, false, resolvido.arquivos.join(', '));
                 continue;
             }
             if (resolvido.arquivo) continue;
@@ -244,7 +244,7 @@ export async function verificarRepositorio({ raiz = RAIZ, modo = 'desenvolviment
         }
     }
     if (turmasAusentes.size > 0) {
-        registrar(relatorio, modo, 'Links para arquivos de turma ausentes no repositorio base.', false, `${[...turmasAusentes].join(', ')}. Configure a turma para validar esses destinos.`);
+        registrar(relatorio, modo, 'Links para arquivos de turma ausentes no repositório base.', false, `${[...turmasAusentes].join(', ')}. Configure a turma para validar esses destinos.`);
     }
     return relatorio;
 }
@@ -259,21 +259,21 @@ export async function verificarAula({ raiz = RAIZ, aulaId, biblioteca, modo = 'd
     try {
         avaliacao = await avaliarEstado({ raiz, aulaId });
     } catch (erro) {
-        registrar(relatorio, modo, `Estado da aula indisponivel: ${erro.message}.`);
+        registrar(relatorio, modo, `Estado da aula indisponível: ${erro.message}.`);
         return relatorio;
     }
     if (!avaliacao.atualizado) {
-        registrar(relatorio, modo, `Conteudo divergente da aprovacao em ${aulaId}.`, true, `Esperado ${avaliacao.esperado}; atual ${avaliacao.atual}.`);
+        registrar(relatorio, modo, `Conteúdo divergente da aprovação em ${aulaId}.`, true, `Esperado ${avaliacao.esperado}; atual ${avaliacao.atual}.`);
     }
     if (!['aprovado', 'aplicado'].includes(avaliacao.estado)) {
-        registrar(relatorio, modo, `Aula ${aulaId} fora de estado distribuivel: ${avaliacao.estado}.`, true);
+        registrar(relatorio, modo, `Aula ${aulaId} fora de estado distribuível: ${avaliacao.estado}.`, true);
     }
     const bibliotecaValidada = await validarBiblioteca({ raiz, biblioteca });
     for (const erro of bibliotecaValidada.erros) registrar(relatorio, modo, `Biblioteca com erro: ${erro}.`);
-    for (const aviso of bibliotecaValidada.avisos) registrar(relatorio, modo, `Biblioteca exige revisao: ${aviso}.`, true);
+    for (const aviso of bibliotecaValidada.avisos) registrar(relatorio, modo, `Biblioteca exige revisão: ${aviso}.`, true);
     const citacoes = verificarCitacoes(avaliacao.fontes, bibliotecaValidada.registros);
-    for (const erro of citacoes.erros) registrar(relatorio, modo, `Citacao invalida em ${aulaId}: ${erro}.`);
-    for (const aviso of citacoes.avisos) registrar(relatorio, modo, `Citacao exige revisao em ${aulaId}: ${aviso}.`, true);
+    for (const erro of citacoes.erros) registrar(relatorio, modo, `Citação inválida em ${aulaId}: ${erro}.`);
+    for (const aviso of citacoes.avisos) registrar(relatorio, modo, `Citação exige revisão em ${aulaId}: ${aviso}.`, true);
     const pasta = join(raiz, 'AULAS', aulaId);
     const fonteSlides = join(pasta, 'slides.json');
     if (await existe(raiz, join('AULAS', aulaId, 'slides.json'))) {
@@ -292,20 +292,20 @@ export async function verificarAula({ raiz = RAIZ, aulaId, biblioteca, modo = 'd
             }
             if (!deck.slides.length) registrar(relatorio, modo, `Fonte de slides vazia em ${aulaId}.`);
             if (deck.version === 1) {
-                registrar(relatorio, modo, `Fonte legada v1 em ${aulaId}; migre para o contrato PBL v2 quando aplicavel.`, false);
+                registrar(relatorio, modo, `Fonte legada v1 em ${aulaId}; migre para o contrato PBL v2 quando aplicável.`, false);
             }
             if (avaliacao.pedagogia) {
                 for (const alvo of ['exercicios.html', 'rubrica-atividade.md']) {
                     if (avaliacao.arquivos.some((arquivo) => arquivo.caminho === alvo)) {
                         const conteudo = await readFile(join(pasta, alvo), 'utf8').catch(() => null);
                         if (conteudo !== null && !conteudo.includes(avaliacao.pedagogia.problemaId)) {
-                            registrar(relatorio, modo, `${alvo} nao referencia o problema ${avaliacao.pedagogia.problemaId} em ${aulaId}.`, true);
+                            registrar(relatorio, modo, `${alvo} não referencia o problema ${avaliacao.pedagogia.problemaId} em ${aulaId}.`, true);
                         }
                     }
                 }
             }
         } catch (erro) {
-            registrar(relatorio, modo, `Fonte de slides invalida em ${aulaId}: ${erro.message}.`);
+            registrar(relatorio, modo, `Fonte de slides inválida em ${aulaId}: ${erro.message}.`);
         }
     } else {
         registrar(relatorio, modo, `Fonte de slides ausente em ${aulaId}: slides.json.`, false);
@@ -313,7 +313,7 @@ export async function verificarAula({ raiz = RAIZ, aulaId, biblioteca, modo = 'd
     for (const arquivo of avaliacao.arquivos.map((item) => item.caminho)) {
         const conteudo = await readFile(join(pasta, arquivo), 'utf8').catch(() => null);
         if (conteudo === null) {
-            registrar(relatorio, modo, `Arquivo aprovado ilegivel em ${aulaId}: ${arquivo}.`);
+            registrar(relatorio, modo, `Arquivo aprovado ilegível em ${aulaId}: ${arquivo}.`);
             continue;
         }
         const placeholders = trechosComPlaceholder(conteudo);
@@ -329,16 +329,16 @@ export async function verificarAula({ raiz = RAIZ, aulaId, biblioteca, modo = 'd
         const configPath = join(pastaDocente, 'diario-config.json');
         if (await existe(raiz, join('AULAS', 'registros-docentes', aulaId, 'diario-config.json'))) {
             try {
-                config = validarJsonSchema(JSON.parse(await readFile(configPath, 'utf8')), JSON.parse(await readFile(join(raiz, '_templates/diario-sistema.schema.json'), 'utf8')), 'Configuracao do diario');
+                config = validarJsonSchema(JSON.parse(await readFile(configPath, 'utf8')), JSON.parse(await readFile(join(raiz, '_templates/diario-sistema.schema.json'), 'utf8')), 'Configuração do diário');
             } catch (erro) {
-                registrar(relatorio, modo, `Configuracao do diario invalida em ${aulaId}: ${erro.message}.`);
+                registrar(relatorio, modo, `Configuração do diário inválida em ${aulaId}: ${erro.message}.`);
             }
         }
         const validacao = validarRelatorioHtml(html, config);
-        for (const erro of validacao.erros) registrar(relatorio, modo, `Relatorio docente com erro em ${aulaId}: ${erro}.`);
-        for (const aviso of validacao.avisos) registrar(relatorio, modo, `Relatorio docente exige revisao em ${aulaId}: ${aviso}.`, modo === 'distribuicao');
+        for (const erro of validacao.erros) registrar(relatorio, modo, `Relatório docente com erro em ${aulaId}: ${erro}.`);
+        for (const aviso of validacao.avisos) registrar(relatorio, modo, `Relatório docente exige revisão em ${aulaId}: ${aviso}.`, modo === 'distribuicao');
     } else {
-        registrar(relatorio, modo, `Relatorio docente ausente em ${aulaId}.`, false);
+        registrar(relatorio, modo, `Relatório docente ausente em ${aulaId}.`, false);
     }
     try {
         const plano = await planejarPacote({ raiz, aulaId });
@@ -355,8 +355,8 @@ function analisarArgumentos(argumentos) {
     const { comando, opcoes } = analisarArgumentosCli(argumentos);
     if (comando) throw new Error(`Argumento inesperado: ${comando}.`);
     const final = { modo: 'desenvolvimento', formato: 'texto', ...opcoes };
-    if (!MODOS.includes(final.modo)) throw new Error('Modo invalido. Use desenvolvimento ou distribuicao.');
-    if (!['texto', 'json'].includes(final.formato)) throw new Error('Formato invalido. Use texto ou json.');
+    if (!MODOS.includes(final.modo)) throw new Error('Modo inválido. Use desenvolvimento ou distribuicao.');
+    if (!['texto', 'json'].includes(final.formato)) throw new Error('Formato inválido. Use texto ou json.');
     return final;
 }
 
@@ -374,7 +374,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
         } else {
             for (const erro of relatorio.erros) console.error(`ERRO: ${erro.mensagem}${erro.detalhe ? ` (${erro.detalhe})` : ''}`);
             for (const aviso of relatorio.avisos) console.log(`AVISO: ${aviso.mensagem}${aviso.detalhe ? ` (${aviso.detalhe})` : ''}`);
-            console.log(`Erros: ${relatorio.erros.length}; avisos: ${relatorio.avisos.length}. Verificacao tecnica concluida; aprovacao pedagogica continua manual.`);
+            console.log(`Erros: ${relatorio.erros.length}; avisos: ${relatorio.avisos.length}. Verificação técnica concluída; aprovação pedagógica continua manual.`);
         }
         if (relatorio.erros.length > 0) process.exitCode = 1;
     } catch (erro) {
