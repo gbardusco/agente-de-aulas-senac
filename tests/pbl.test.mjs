@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import JSZip from 'jszip';
 import { generateSlides, validateDeck, textosDoBloco } from '../scripts/gerar-slides.mjs';
@@ -25,7 +26,7 @@ async function textosPptx(file) {
 }
 
 test('PBL pratico e teorico geram HTML e PPTX equivalentes e editaveis', async () => {
-    const temp = await mkdtemp('/tmp/opencode/pbl-teste-');
+    const temp = await mkdtemp(join(tmpdir(), 'pbl-teste-'));
     try {
         for (const [fonte, rotulos] of [[pratica, ['Problema', 'Conceito', 'Aplicacao pratica', 'Sintese']], [teorica, ['Problema', 'Hipoteses', 'Investigacao', 'Conceito', 'Aplicacao analitica', 'Sintese']]]) {
             const saida = join(temp, String(rotulos.length));
