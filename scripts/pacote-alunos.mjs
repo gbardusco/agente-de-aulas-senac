@@ -37,22 +37,22 @@ async function exigirNovo(caminho, sobrescrever) {
     } catch {
         return;
     }
-    if (!sobrescrever) throw new Error(`Pacote ja existe: ${caminho}. Use --sobrescrever para substituir.`);
+    if (!sobrescrever) throw new Error(`Pacote já existe: ${caminho}. Use --sobrescrever para substituir.`);
 }
 
 export async function planejarPacote({ raiz = RAIZ, aulaId, arquivos, incluirGabarito = false, geradoEm = new Date().toISOString() } = {}) {
     validarIdentificador('aula', aulaId);
     const avaliacao = await avaliarEstado({ raiz, aulaId });
     if (!['aprovado', 'aplicado'].includes(avaliacao.estado)) {
-        throw new Error(`Aula ${aulaId} nao esta aprovada para distribuicao. Estado atual: ${avaliacao.estado}.`);
+        throw new Error(`Aula ${aulaId} não está aprovada para distribuição. Estado atual: ${avaliacao.estado}.`);
     }
     if (!avaliacao.atualizado) {
-        throw new Error(`Conteudo da aula ${aulaId} mudou apos a aprovacao. Solicite nova revisao.`);
+        throw new Error(`Conteúdo da aula ${aulaId} mudou após a aprovação. Solicite nova revisão.`);
     }
     const selecionados = arquivos
         ? String(arquivos).split(',').map((item) => item.trim()).filter(Boolean)
         : avaliacao.arquivos?.map((arquivo) => arquivo.caminho);
-    if (!selecionados || selecionados.length === 0) throw new Error('Nenhum arquivo publico selecionado.');
+    if (!selecionados || selecionados.length === 0) throw new Error('Nenhum arquivo público selecionado.');
     const conteudos = [];
     const manifestoArquivos = [];
     for (const caminho of selecionados) {
@@ -69,7 +69,7 @@ export async function planejarPacote({ raiz = RAIZ, aulaId, arquivos, incluirGab
         };
         const esperado = avaliacao.arquivos?.find((arquivo) => arquivo.caminho === caminho);
         if (!esperado || esperado.hash !== entrada.hash) {
-            throw new Error(`Arquivo fora da aprovacao atual: ${caminho}.`);
+            throw new Error(`Arquivo fora da aprovação atual: ${caminho}.`);
         }
         conteudos.push({ caminho, conteudo });
         manifestoArquivos.push(entrada);
@@ -117,7 +117,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
                 });
                 console.log(`Pacote criado: ${resultado.caminhoSaida}`);
                 for (const arquivo of resultado.manifesto.arquivos) console.log(`- ${arquivo.caminho} (${arquivo.tamanho} bytes, sha256 ${arquivo.hash})`);
-                if (resultado.manifesto.gabaritoIncluido) console.log('Aviso: gabarito incluido por solicitacao explicita.');
+                if (resultado.manifesto.gabaritoIncluido) console.log('Aviso: gabarito incluído por solicitação explícita.');
             }
         } else {
             throw new Error('Uso: node scripts/pacote-alunos.mjs [empacotar] --aula aula-XX [--arquivos a,b] [--saida caminho] [--incluir-gabarito] [--listar]');
