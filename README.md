@@ -6,7 +6,7 @@ Funciona como **Vault do Obsidian** e como **workspace para agentes** (opencode,
 > [!warning] Atenção: repositório público
 > Este repositório manipula **dados sensíveis de alunos** (perfis, feedbacks, decisões). Leia a seção [Privacidade](#privacidade) antes do seu **primeiro commit**.
 
-> 🚀 **É professor e está começando agora?** Siga o [Onboarding em 15 minutos](ONBOARDING.md).
+> 🚀 **Comece em três ações:** obter/abrir a pasta, preparar e conversar. [Guia rápido e instalações](ONBOARDING.md).
 
 ---
 
@@ -19,31 +19,28 @@ git clone https://github.com/gbardusco/agente-de-aulas-senac.git ~/meu-novo-curs
 cd ~/meu-novo-curso
 ```
 
-Se quiser começar com um histórico git novo (sem o histórico original):
+### 2. Prepare a pasta
+
+Com Node.js 20+ e npm instalados, rode no Terminal (Linux/macOS) ou Git Bash (Windows). O comando verifica pré-requisitos, instala dependências e prepara a estrutura:
 
 ```bash
-rm -rf .git && git init
-```
-
-### 2. Configure a turma — automatizado
-
-Rode o script de setup. Ele **copia os templates iniciais e assets** e prepara a estrutura; os modelos por aula ficam disponíveis em `_templates/`:
-
-```bash
-./setup.sh "Nome do Projeto"
+bash preparar.sh "Nome do Projeto"
 ```
 
 O script cria os arquivos de memória (`.memory/perfil-turma.md`, `decisoes.md`, `feedback-aulas.md`, `status-aulas.md`, `feedback-aluno.md`), o índice de aulas, a síntese do diário de classe e os assets CSS/JS funcionais. Também prepara a biblioteca privada `.docs/materiais-consulta/index.md` e `AULAS/registros-docentes/`. Preserva arquivos existentes e não inicializa Git nem faz commit.
 
-Depois é só cuidar das **decisões pedagógicas** — preencha `.memory/perfil-turma.md` com os dados da turma (instituição, período, contexto temático) e ajuste o número de aulas em `.memory/status-aulas.md`.
+### 3. Converse com o assistente
 
-### 3. Abra no Obsidian
+Abra a pasta no OpenCode ou outro assistente com acesso aos arquivos. Configure seu provedor de IA (pode haver cobrança; veja [onboarding](ONBOARDING.md)). Cole:
 
-Abra a pasta como vault no Obsidian. Navegue pelo `00-MOC/Home.md`.
+```text
+Leia .agents/AGENTS.md e .agents/agente-setup-inicial.md.
+Ajude-me a cadastrar a turma e criar a primeira aula sobre [tema].
+```
 
-### 4. Use os agentes
-
-No opencode, invoque os agentes via `@[nome-do-agente]`:
+`.agents/` contém contratos genéricos, não agentes registrados nativamente no OpenCode.
+Nos prompts abaixo, `@[nome]` indica o papel: peça a leitura do arquivo correspondente.
+Obsidian é opcional; abra a pasta como vault e navegue por `00-MOC/Home.md`.
 
 | Agente | Uso |
 |--------|-----|
@@ -75,7 +72,7 @@ O orquestrador aciona `@[agente-planejador-didatico]`, que lê o perfil da turma
 
 ### Passo 2 — Acompanhe o checkpoint de memória
 
-Ao terminar, o agente emite um bloco `MEMORY-CHECKPOINT`. O harness/orquestrador processa e atualiza a memória **automaticamente** — sem invocar o gestor de memória:
+Ao terminar, o agente emite um bloco `MEMORY-CHECKPOINT`. O agente que coordena a tarefa deve aplicar as entradas e confirmar os arquivos atualizados; o bloco sozinho não executa gravações:
 
 ```
 <!-- MEMORY-CHECKPOINT -->
@@ -128,7 +125,7 @@ O checklist confere se tudo foi registrado e, se necessário, aciona o `@[agente
 - **Guia completo:** [avaliação, referências oficiais, comandos, testes e limitações](exemplos/avaliacao-e-exportacao.md).
 
 - **Contexto agentico** — cada agente registra uma entrada em `.context/` após executar tarefas (Regra 7 do `AGENTS.md`), permitindo que qualquer agente ou harness posterior acesse o histórico de trabalho. Veja o fluxo completo no [cenário de uso guiado](#cenário-de-uso-guiado).
-- **Checkpoint de memória** — agentes emitem blocos `MEMORY-CHECKPOINT` ao final de cada tarefa; o orquestrador processa e atualiza a memória automaticamente, sem invocar o gestor de memória explicitamente.
+- **Checkpoint de memória** — agentes emitem blocos `MEMORY-CHECKPOINT` ao final de cada tarefa; o agente coordenador aplica as entradas nos arquivos.
 - **Skills** — capacidades reutilizáveis (CSS layout, markdown authoring, accessibility check, code formatting, HTML templates, atividades complementares) definidas em `.skills/` e adotadas pelos agentes.
 
 ---
@@ -137,7 +134,7 @@ O checklist confere se tudo foi registrado e, se necessário, aciona o `@[agente
 
 ```bash
 npm ci
-npm run relatorio -- gerar --aula aula-03
+npm run relatorio -- gerar --aula aula-03 --valores AULAS/registros-docentes/aula-03/redacao.json
 npm run aula:estado -- preparar --aula aula-03 --publicos slides.html,index.md
 npm run pacote:alunos -- --aula aula-03 --saida /tmp/opencode/aula-03.zip
 npm run verificar -- --aula aula-03 --modo distribuicao
@@ -145,6 +142,12 @@ npm run demo:fluxo -- --saida /tmp/opencode/demo-fluxo
 ```
 
 Aprovação, pacote e aplicação exigem validação explícita do professor. A verificação técnica não substitui a aprovação pedagógica.
+
+`redacao.json` é escrito pelo agente diário a partir do relato livre, aula, rubrica e registro anterior.
+O gerador valida e renderiza; não chama IA nem produz frases automáticas. Sem texto, recusa a geração.
+Para criar deliberadamente um formulário vazio: `npm run relatorio -- gerar --aula aula-03 --modelo`.
+Textos finais aparecem primeiro; pendências, evidências e histórico têm espaços próprios.
+Slides v1/v2 recebem capa automática com `title` e `subtitle` opcional; `disciplina`, `professor` e `data` só aparecem quando fornecidos.
 
 ---
 
@@ -239,7 +242,7 @@ Se você precisa versionar o material específico de uma turma, crie um **reposi
 
 A parte braçal (copiar templates, montar pastas) já é feita pelo `./setup.sh`. Este checklist foca no que é **decisão pedagógica sua**:
 
-- [ ] Rodar `./setup.sh "Nome do Projeto"` — copia templates e monta a estrutura
+- [ ] Rodar `bash preparar.sh "Nome do Projeto"` — verifica, instala dependências e monta a estrutura
 - [ ] Preencher `.memory/perfil-turma.md` (instituição, período, contexto temático)
 - [ ] Ajustar número de aulas em `.memory/status-aulas.md` se necessário
 - [ ] Manter `.memory/padroes-tecnicos.md` (reutilizável)
