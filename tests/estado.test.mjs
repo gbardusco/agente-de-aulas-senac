@@ -29,7 +29,7 @@ test('fluxo de aprovacao exige revisao, responsavel e conteudo inalterado', asyn
             aprovadoEm: '2026-09-09',
             fontes: FONTES,
             agora: AGORA
-        }), /Apenas conteudo em revisao/);
+        }), /Apenas conteúdo em revisão/);
         await solicitarRevisao({ raiz, aulaId: 'aula-03', agora: AGORA });
         await assert.rejects(aprovarEstado({
             raiz,
@@ -39,7 +39,7 @@ test('fluxo de aprovacao exige revisao, responsavel e conteudo inalterado', asyn
             aprovadoEm: '2026-09-09',
             fontes: FONTES,
             agora: AGORA
-        }), /responsavel/);
+        }), /responsável/);
         const aprovado = await aprovarEstado({
             raiz,
             aulaId: 'aula-03',
@@ -78,7 +78,7 @@ test('alteracao apos aprovacao exige nova revisao antes de aplicar', async () =>
         const avaliacao = await avaliarEstado({ raiz, aulaId: 'aula-03' });
         assert.equal(avaliacao.atualizado, false);
         assert.equal(avaliacao.revisaoRecomendada, true);
-        await assert.rejects(marcarAplicada({ raiz, aulaId: 'aula-03', data: '2026-09-10', fonte: 'Registro', agora: AGORA }), /alterado apos/);
+        await assert.rejects(marcarAplicada({ raiz, aulaId: 'aula-03', data: '2026-09-10', fonte: 'Registro', agora: AGORA }), /alterado após/);
         const revisao = await marcarRevisao({ raiz, aulaId: 'aula-03', motivo: 'Slide corrigido.', agora: AGORA });
         assert.equal(revisao.estado.estado, 'revisao-necessaria');
         await assert.rejects(marcarRevisao({ raiz, aulaId: 'aula-03', motivo: 'x', agora: AGORA }), /aprovado ou aplicado/);
