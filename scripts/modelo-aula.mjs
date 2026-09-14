@@ -20,7 +20,7 @@ export function validarIdentificador(tipo, valor) {
     const padrao = IDENTIFICADORES[tipo];
     if (!padrao) throw new Error(`Tipo de identificador desconhecido: ${tipo}.`);
     if (typeof valor !== 'string' || !padrao.test(valor)) {
-        throw new Error(`Identificador invalido para ${tipo}: ${valor}.`);
+        throw new Error(`Identificador inválido para ${tipo}: ${valor}.`);
     }
     return valor;
 }
@@ -50,7 +50,7 @@ export function validarSchema(schema, dados, rotulo = 'Documento') {
         validators.set(chave, validar);
     }
     if (!validar(dados)) {
-        throw new Error(`${rotulo} invalido: ${ajv.errorsText(validar.errors, { separator: '; ' })}`);
+        throw new Error(`${rotulo}: documento inválido. ${ajv.errorsText(validar.errors, { separator: '; ' })}`);
     }
     return dados;
 }
@@ -59,21 +59,21 @@ export function resolverCaminhoSeguro(raiz, ...segmentos) {
     if (!isAbsolute(raiz)) throw new Error('A raiz precisa ser um caminho absoluto.');
     for (const segmento of segmentos) {
         if (typeof segmento !== 'string' || segmento.length === 0 || segmento.includes('\0')) {
-            throw new Error('Segmento de caminho invalido.');
+            throw new Error('Segmento de caminho inválido.');
         }
     }
     const caminho = resolve(raiz, ...segmentos);
     const relativo = relative(raiz, caminho);
     if (relativo === '' || relativo === '..' || relativo.startsWith(`..${sep}`) || isAbsolute(relativo)) {
-        throw new Error('Caminho fora do diretorio permitido.');
+        throw new Error('Caminho fora do diretório permitido.');
     }
     return caminho;
 }
 
 export async function exigirArquivoRegular(caminho) {
-    const info = await lstat(caminho).catch(() => { throw new Error(`Arquivo nao encontrado: ${caminho}.`); });
-    if (info.isSymbolicLink()) throw new Error(`Symlink nao permitido: ${caminho}.`);
-    if (!info.isFile()) throw new Error(`Caminho nao e arquivo regular: ${caminho}.`);
+    const info = await lstat(caminho).catch(() => { throw new Error(`Arquivo não encontrado: ${caminho}.`); });
+    if (info.isSymbolicLink()) throw new Error(`Link simbólico não permitido: ${caminho}.`);
+    if (!info.isFile()) throw new Error(`Caminho não é arquivo regular: ${caminho}.`);
     return caminho;
 }
 
@@ -135,17 +135,17 @@ export function analisarTabelaMarkdown(texto, cabecalhosObrigatorios = []) {
         if (!/^\s*\|[\s:||-]+\|\s*$/.test(linhas[indice + 1])) continue;
         const cabecalhos = dividirLinhaTabela(linhas[indice]);
         const faltando = cabecalhosObrigatorios.filter((cabecalho) => !cabecalhos.includes(cabecalho));
-        if (faltando.length > 0) throw new Error(`Tabela sem cabecalhos obrigatorios: ${faltando.join(', ')}.`);
+        if (faltando.length > 0) throw new Error(`Tabela sem cabeçalhos obrigatórios: ${faltando.join(', ')}.`);
         const registros = [];
         for (let linha = indice + 2; linha < linhas.length; linha += 1) {
             if (!/^\s*\|.*\|\s*$/.test(linhas[linha])) break;
             const celulas = dividirLinhaTabela(linhas[linha]);
             if (celulas.length !== cabecalhos.length) {
-                throw new Error(`Linha ${linha + 1} com numero de colunas incompativel.`);
+                throw new Error(`Linha ${linha + 1} com número de colunas incompatível.`);
             }
             registros.push(Object.fromEntries(cabecalhos.map((cabecalho, coluna) => [cabecalho, celulas[coluna]])));
         }
         return registros;
     }
-    throw new Error('Tabela Markdown nao encontrada.');
+    throw new Error('Tabela Markdown não encontrada.');
 }
