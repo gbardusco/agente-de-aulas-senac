@@ -1,55 +1,55 @@
 {
     "version": 2,
-    "title": "Exemplo PBL pratico: estrutura de uma pagina",
+    "title": "Exemplo PBL prático: estrutura de uma página",
     "pedagogia": {
         "abordagem": "pbl",
         "modalidadeAplicacao": "pratica",
         "problemaId": "problema-00-catalogo-demo-1",
-        "objetivos": ["Organizar conteudo com estrutura semantica"],
+        "objetivos": ["Organizar conteúdo com estrutura semântica"],
         "fontes": ["fonte-plano-curso-vigente"]
     },
     "slides": [
         {
-            "title": "Problema: organizar um catalogo",
+            "title": "Problema: organizar um catálogo",
             "blocks": [
                 {
                     "type": "problema",
-                    "contexto": "O catalogo ficticio mistura titulo e descricao dos produtos, dificultando a leitura.",
-                    "questao": "Como separar essas informacoes com estrutura semantica?"
+                    "contexto": "O catálogo fictício mistura título e descrição dos produtos, dificultando a leitura.",
+                    "questao": "Como separar essas informações com estrutura semântica?"
                 }
             ]
         },
         {
-            "title": "Conceito: estrutura semantica",
+            "title": "Conceito: estrutura semântica",
             "blocks": [
                 {
                     "type": "conceito",
-                    "items": ["Titulos organizam a hierarquia do documento.", "Paragrafos agrupam o texto descritivo."]
+                    "items": ["Títulos organizam a hierarquia do documento.", "Parágrafos agrupam o texto descritivo."]
                 }
             ],
-            "notes": "Confirmar o alinhamento com o Plano de Curso. Esta nota tambem aparece no HTML."
+            "notes": "Confirmar o alinhamento com o Plano de Curso. Esta nota também aparece no HTML."
         },
         {
-            "title": "Aplicacao pratica",
+            "title": "Aplicação prática",
             "blocks": [
                 {
                     "type": "aplicacao",
                     "modalidade": "pratica",
-                    "texto": "Construa uma pagina sintetica com titulo e descricao do produto ficticio.",
+                    "texto": "Construa uma página sintética com título e descrição do produto fictício.",
                     "codigo": "<article>\n    <h2>Caderno</h2>\n</article>",
                     "demonstracao": {
-                        "texto": "Referencia oficial: elemento article",
+                        "texto": "Referência oficial: elemento article",
                         "url": "https://html.spec.whatwg.org/multipage/sections.html#the-article-element"
                     }
                 }
             ]
         },
         {
-            "title": "Sintese",
+            "title": "Síntese",
             "blocks": [
                 {
                     "type": "sintese",
-                    "items": ["Estrutura semantica separa titulo e descricao.", "A mesma estrategia vale para outros catalogos ficticios."]
+                    "items": ["Estrutura semântica separa título e descrição.", "A mesma estratégia vale para outros catálogos fictícios."]
                 }
             ]
         }
