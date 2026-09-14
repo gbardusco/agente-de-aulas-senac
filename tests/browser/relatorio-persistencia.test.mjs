@@ -23,7 +23,7 @@ test('report saves, restores and keeps local data explicit and private', async (
         assert.equal(await page.evaluate(() => window.localStorage.length), 0);
 
         await page.locator('#observacao-docente').fill('Texto editado para exportacao.');
-        await page.waitForFunction(() => document.getElementById('relatorio-status').textContent.includes('ainda nao exportadas'));
+        await page.waitForFunction(() => document.getElementById('relatorio-status').textContent.includes('ainda não exportadas'));
         const [download] = await Promise.all([page.waitForEvent('download'), page.locator('#exportar-json').click()]);
         assert.equal(download.suggestedFilename(), 'relatorio-aula-XX.json');
         const exported = JSON.parse(await readFile(await download.path(), 'utf8'));
