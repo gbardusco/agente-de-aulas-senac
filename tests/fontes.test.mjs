@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { validarBiblioteca, verificarCitacoes } from '../scripts/fontes.mjs';
 
 const CABECALHO = '| ID | Titulo | Tipo | Autor ou orgao | Versao / data | Caminho local ou URL verificada | Tema / indicador | Secao / paginas | Situacao de leitura | Aplicabilidade | Data da consulta | Restricoes de uso |';
@@ -16,7 +17,7 @@ async function escreverIndice(raiz, linhas) {
 }
 
 test('biblioteca valida arquivos locais, URLs e situacao de leitura', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/fontes-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'fontes-teste-'));
     try {
         await mkdir(join(raiz, '.docs'), { recursive: true });
         await writeFile(join(raiz, '.docs', 'plano.md'), '# Plano');
@@ -34,7 +35,7 @@ test('biblioteca valida arquivos locais, URLs e situacao de leitura', async () =
 });
 
 test('biblioteca rejeita duplicados, arquivos ausentes e citacoes sem leitura', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/fontes-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'fontes-teste-'));
     try {
         const indice = await escreverIndice(raiz, [
             '| fonte-x | Titulo | oficial | Orgao | 2026 | .docs/ausente.md | Tema | Secao | consultado | Aula | 2026-09-09 | Interno |',
