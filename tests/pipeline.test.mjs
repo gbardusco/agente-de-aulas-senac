@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, writeFile, cp, mkdir, access, readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import JSZip from 'jszip';
@@ -10,7 +11,7 @@ import { generateSlides, validateDeck, blockText, demoNotice } from '../scripts/
 const root = resolve(fileURLToPath(new URL('../', import.meta.url)));
 const source = join(root, '_templates/slides-fonte-template.json');
 const deck = JSON.parse(await readFile(source, 'utf8'));
-const temp = await mkdtemp('/tmp/opencode/agente-aulas-test-');
+const temp = await mkdtemp(join(tmpdir(), 'agente-aulas-test-'));
 const decode = (text) => text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
 async function slideTexts(file) {
     const zip = await JSZip.loadAsync(await readFile(file));
