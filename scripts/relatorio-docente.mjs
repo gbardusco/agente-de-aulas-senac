@@ -28,7 +28,7 @@ export function serializarJsonEmbutido(valor) {
 export function analisarCampos(html) {
     const rotulos = new Map();
     for (const match of html.matchAll(/<label\s+[^>]*for="([^"]+)"[^>]*>([\s\S]*?)<\/label>/g)) {
-        if (rotulos.has(match[1])) throw new Error(`Rotulo duplicado para o campo ${match[1]}.`);
+        if (rotulos.has(match[1])) throw new Error(`Rótulo duplicado para o campo ${match[1]}.`);
         rotulos.set(match[1], removerTags(match[2]));
     }
     const campos = [];
@@ -37,7 +37,7 @@ export function analisarCampos(html) {
         const id = match[1].match(/(?:^|\s)id="([^"]+)"/)?.[1];
         if (!id) throw new Error('Campo textarea sem identificador.');
         if (vistos.has(id)) throw new Error(`Campo duplicado: ${id}.`);
-        if (!rotulos.has(id)) throw new Error(`Campo sem rotulo: ${id}.`);
+        if (!rotulos.has(id)) throw new Error(`Campo sem rótulo: ${id}.`);
         vistos.add(id);
         const secao = html.slice(0, match.index).match(/<section\b[^>]*data-grupo="([^"]+)"[^>]*>(?!.*<section\b[^>]*data-grupo="[^"]+"[^>]*>)/s);
         campos.push({
@@ -52,7 +52,7 @@ export function analisarCampos(html) {
 
 export function analisarAula(html) {
     const aula = html.match(/<main\b[^>]*data-aula="([^"]+)"[^>]*>/)?.[1];
-    if (!aula) throw new Error('Identificador da aula ausente no relatorio HTML.');
+    if (!aula) throw new Error('Identificador da aula ausente no relatório HTML.');
     return validarIdentificador('aula', aula);
 }
 
@@ -62,26 +62,26 @@ export function analisarDadosEmbutidos(html) {
     try {
         return JSON.parse(match[1]);
     } catch {
-        throw new Error('Bloco de dados do relatorio invalido.');
+        throw new Error('Bloco de dados do relatório inválido.');
     }
 }
 
 export async function carregarConfiguracao(caminho) {
     const origem = caminho ? resolve(process.cwd(), caminho) : fileURLToPath(TEMPLATE_CONFIG);
     const config = JSON.parse(await readFile(await exigirArquivoRegular(origem), 'utf8'));
-    return validarSchema(SCHEMA_CONFIG, config, 'Configuracao do diario');
+    return validarSchema(SCHEMA_CONFIG, config, 'Configuração do diário');
 }
 
 export function montarRelatorio({ aulaId, config, valores = {}, atualizadoEm = new Date().toISOString() }) {
     validarIdentificador('aula', aulaId);
-    validarSchema(SCHEMA_CONFIG, config, 'Configuracao do diario');
+    validarSchema(SCHEMA_CONFIG, config, 'Configuração do diário');
     if (valores.aulaId && valores.aulaId !== aulaId) throw new Error('Valores de outra aula.');
     const porId = new Map(config.campos.map((campo) => [campo.id, campo]));
     const listaSubstituicoes = valores.campos ?? [];
-    if (!Array.isArray(listaSubstituicoes)) throw new Error('Lista de campos invalida.');
+    if (!Array.isArray(listaSubstituicoes)) throw new Error('Lista de campos inválida.');
     const substituicoes = new Map();
     for (const campo of listaSubstituicoes) {
-        if (!campo?.id) throw new Error('Campo personalizado precisa de id, rotulo e valor em texto.');
+        if (!campo?.id) throw new Error('Campo personalizado precisa de id, rotulo e valor em texto (identificador, rótulo e conteúdo).');
         if (substituicoes.has(campo.id)) throw new Error(`Campo duplicado: ${campo.id}.`);
         substituicoes.set(campo.id, campo);
     }
@@ -89,7 +89,7 @@ export function montarRelatorio({ aulaId, config, valores = {}, atualizadoEm = n
     for (const base of config.campos) {
         const substituto = substituicoes.get(base.id) || {};
         if (substituto.valor !== undefined && typeof substituto.valor !== 'string') {
-            throw new Error(`Valor invalido para o campo ${base.id}.`);
+            throw new Error(`Valor inválido para o campo ${base.id}.`);
         }
         campos.push({
             id: base.id,
@@ -104,7 +104,7 @@ export function montarRelatorio({ aulaId, config, valores = {}, atualizadoEm = n
     }
     for (const extra of substituicoes.values()) {
         if (!extra?.id || typeof extra.valor !== 'string' || !extra.rotulo) {
-            throw new Error('Campo personalizado precisa de id, rotulo e valor em texto.');
+            throw new Error('Campo personalizado precisa de id, rotulo e valor em texto (identificador, rótulo e conteúdo).');
         }
         campos.push({
             id: extra.id,
@@ -118,6 +118,8 @@ export function montarRelatorio({ aulaId, config, valores = {}, atualizadoEm = n
     }
     const relatorio = {
         version: 1,
+        modelo: Boolean(valores.modelo),
+        pendencias: valores.pendencias || [],
         aulaId,
         atualizadoEm,
         sistema: valores.sistema || {
@@ -137,12 +139,12 @@ export function montarRelatorio({ aulaId, config, valores = {}, atualizadoEm = n
         if (ids.has(campo.id)) throw new Error(`Campo duplicado: ${campo.id}.`);
         ids.add(campo.id);
     }
-    return validarSchema(SCHEMA_RELATORIO, relatorio, 'Relatorio docente');
+    return validarSchema(SCHEMA_RELATORIO, relatorio, 'Relatório docente');
 }
 
 function resolverSaida(raiz, destino) {
     if (isAbsolute(destino)) {
-        if (!destino.startsWith(`${raiz}/`)) throw new Error('Saida fora do diretorio permitido.');
+        if (!destino.startsWith(`${raiz}/`)) throw new Error('Saída fora do diretório permitido.');
         return resolverCaminhoSeguro(raiz, destino.slice(raiz.length + 1));
     }
     return resolverCaminhoSeguro(raiz, destino);
@@ -154,7 +156,7 @@ async function exigirNovo(caminho, sobrescrever) {
     } catch {
         return;
     }
-    if (!sobrescrever) throw new Error(`Arquivo ja existe: ${caminho}. Use --sobrescrever para substituir.`);
+    if (!sobrescrever) throw new Error(`Arquivo já existe: ${caminho}. Use --sobrescrever para substituir.`);
 }
 
 function definirAulaHtml(html, aulaId) {
@@ -166,12 +168,24 @@ function definirAulaHtml(html, aulaId) {
 }
 
 function injetarValores(html, relatorio) {
+    // Rebuild from canonical fields, including labels and metadata, for import as well as generation.
+    const campoHtml = (campo) => `<section data-grupo="${campo.grupo}"><label for="${campo.id}">${escaparTextarea(campo.rotulo)}</label><textarea id="${campo.id}" rows="5">${escaparTextarea(campo.valor)}</textarea><button type="button" data-copy="${campo.id}">Copiar ${escaparTextarea(campo.rotulo)}</button><p class="copy-status" id="status-${campo.id}" role="status" aria-live="polite"></p></section>`;
+    const finais = relatorio.campos.filter((campo) => !['configuracao', 'evidencia'].includes(campo.grupo) && campo.valor.trim());
+    const apoio = relatorio.campos.filter((campo) => !finais.includes(campo));
+    const pendencias = [...relatorio.pendencias || [], ...relatorio.campos.filter((campo) => campo.obrigatorio && !campo.valor.trim()).map((campo) => `${campo.rotulo}: ${campo.instrucoes || 'forneça os fatos para redigir este campo.'}`)];
+    const persistencia = html.match(/<section id="persistencia"[\s\S]*?<\/section>/)?.[0] || '';
+    html = html.replace(/<\/header>[\s\S]*?<noscript>/, () => `</header>
+        <section id="textos-finais"><h2>${relatorio.modelo ? 'Modelo vazio — ainda sem redação' : 'Textos prontos para revisar e copiar'}</h2>${finais.map(campoHtml).join('')}</section>
+        <section id="pendencias"><h2>Pendências específicas</h2>${pendencias.length ? `<ul>${pendencias.map((texto) => `<li>${escaparTextarea(texto)}</li>`).join('')}</ul>` : '<p>Nenhuma pendência registrada.</p>'}</section>
+        <details><summary>Evidências, configuração e campos sem redação</summary>${apoio.map(campoHtml).join('')}<pre>${escaparTextarea(JSON.stringify({ evidencias: relatorio.evidencias, fontes: relatorio.fontes, sistema: relatorio.sistema }, null, 2))}</pre></details>
+        <details><summary>Histórico</summary><pre>${escaparTextarea(JSON.stringify(relatorio.historico, null, 2))}</pre></details>
+        <details><summary>Salvar e recuperar (JSON)</summary>${persistencia}</details><noscript>`);
     let resultado = definirAulaHtml(html, relatorio.aulaId);
     const ausentes = [];
     for (const campo of relatorio.campos) {
         const padrao = new RegExp(`(<textarea\\b[^>]*\\bid="${escaparRegex(campo.id)}"[^>]*>)([\\s\\S]*?)(<\\/textarea>)`);
         if (padrao.test(resultado)) {
-            resultado = resultado.replace(padrao, `$1${escaparTextarea(campo.valor)}$3`);
+            resultado = resultado.replace(padrao, (_, inicio, anterior, fim) => `${inicio}${escaparTextarea(campo.valor)}${fim}`);
         } else {
             ausentes.push(campo);
         }
@@ -193,20 +207,24 @@ function injetarValores(html, relatorio) {
     );
 }
 
-export async function gerarRelatorio({ raiz = RAIZ, aulaId, configPath, valores = {}, valoresPath, destinoHtml, destinoJson, sobrescrever = false, atualizadoEm } = {}) {
+export async function gerarRelatorio({ raiz = RAIZ, aulaId, configPath, valores = {}, valoresPath, destinoHtml, destinoJson, sobrescrever = false, atualizadoEm, modelo = false } = {}) {
     validarIdentificador('aula', aulaId);
     const config = await carregarConfiguracao(configPath);
     const valoresArquivo = valoresPath ? JSON.parse(await readFile(await exigirArquivoRegular(resolve(process.cwd(), valoresPath)), 'utf8')) : {};
     const relatorio = montarRelatorio({ aulaId, config, valores: { ...valoresArquivo, ...valores }, atualizadoEm });
+    relatorio.modelo = modelo;
+    if (!modelo && !relatorio.campos.some((campo) => !['configuracao', 'evidencia'].includes(campo.grupo) && campo.valor.trim())) {
+        throw new Error('Nenhum texto redigido. No chat, carregue .agents/AGENTS.md e agente-diario-de-classe.md, forneça o relato e peça JSON para --valores. Para um modelo vazio, use --modelo explicitamente.');
+    }
     const pasta = resolverCaminhoSeguro(raiz, 'AULAS', 'registros-docentes', aulaId);
     await mkdir(pasta, { recursive: true });
     const htmlPath = destinoHtml ? resolverSaida(raiz, destinoHtml) : join(pasta, 'relatorio.html');
     const jsonPath = destinoJson ? resolverSaida(raiz, destinoJson) : join(pasta, 'relatorio.json');
     await exigirNovo(htmlPath, sobrescrever);
     await exigirNovo(jsonPath, sobrescrever);
-    const modelo = await readFile(TEMPLATE_HTML, 'utf8');
+    const template = await readFile(TEMPLATE_HTML, 'utf8');
     await escreverArquivoAtomico(jsonPath, `${JSON.stringify(relatorio, null, 2)}\n`);
-    await escreverArquivoAtomico(htmlPath, injetarValores(modelo, relatorio));
+    await escreverArquivoAtomico(htmlPath, injetarValores(template, relatorio));
     return { relatorio, htmlPath, jsonPath };
 }
 
@@ -223,7 +241,9 @@ export async function exportarRelatorio({ raiz = RAIZ, origemHtml, destinoJson, 
         campos: analisarCampos(html).map((campo) => ({ ...campo, ...(mapa.get(campo.id) || {}) })),
         evidencias: embutidos.evidencias || [],
         fontes: embutidos.fontes || [],
-        historico: embutidos.historico || []
+        historico: embutidos.historico || [],
+        pendencias: embutidos.pendencias || [],
+        modelo: embutidos.modelo || false
     };
     const relatorio = montarRelatorio({ aulaId: aula, config: config || await carregarConfiguracao(), valores, atualizadoEm });
     const destino = resolverSaida(raiz, destinoJson);
@@ -234,7 +254,7 @@ export async function exportarRelatorio({ raiz = RAIZ, origemHtml, destinoJson, 
 
 export async function importarRelatorio({ origemJson, destinoHtml } = {}) {
     const origem = await exigirArquivoRegular(resolve(process.cwd(), origemJson));
-    const relatorio = validarSchema(SCHEMA_RELATORIO, JSON.parse(await readFile(origem, 'utf8')), 'Relatorio docente');
+    const relatorio = validarSchema(SCHEMA_RELATORIO, JSON.parse(await readFile(origem, 'utf8')), 'Relatório docente');
     const destino = await exigirArquivoRegular(resolve(process.cwd(), destinoHtml));
     const html = await readFile(destino, 'utf8');
     if (analisarAula(html) !== relatorio.aulaId) throw new Error('JSON de outra aula.');
@@ -259,7 +279,7 @@ export function validarRelatorioHtml(html, config = null) {
     }
     try {
         const embutidos = analisarDadosEmbutidos(html);
-        if (!embutidos) avisos.push('Bloco de dados para exportacao ausente.');
+        if (!embutidos) avisos.push('Bloco de dados para exportação ausente.');
         else if (aula && embutidos.aulaId !== aula) erros.push('Bloco de dados de outra aula.');
     } catch (erro) {
         erros.push(erro.message);
@@ -269,10 +289,10 @@ export function validarRelatorioHtml(html, config = null) {
         for (const campo of campos) {
             const esperado = mapa.get(campo.id);
             if (!esperado) {
-                avisos.push(`Campo personalizado fora da configuracao: ${campo.id}.`);
+                avisos.push(`Campo personalizado fora da configuração: ${campo.id}.`);
                 continue;
             }
-            if (esperado.obrigatorio && !campo.valor.trim()) avisos.push(`Campo obrigatorio vazio: ${campo.id}.`);
+            if (esperado.obrigatorio && !campo.valor.trim()) avisos.push(`Campo obrigatório vazio: ${campo.id}.`);
             if (esperado.limiteCaracteres !== null && esperado.limiteCaracteres !== undefined && campo.valor.length > esperado.limiteCaracteres) {
                 avisos.push(`Campo acima do limite configurado: ${campo.id}.`);
             }
@@ -280,7 +300,7 @@ export function validarRelatorioHtml(html, config = null) {
     }
     for (const campo of campos) {
         if (!html.includes(`data-copy="${campo.id}"`) || !html.includes(`id="status-${campo.id}"`)) {
-            erros.push(`Copia inacessivel para o campo ${campo.id}.`);
+            erros.push(`Cópia inacessível para o campo ${campo.id}.`);
         }
     }
     return { aula, erros, avisos };
@@ -301,11 +321,12 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
                 aulaId: opcoes.aula,
                 configPath: opcoes.config,
                 valoresPath: opcoes.valores,
+                modelo: Boolean(opcoes.modelo),
                 destinoHtml: opcoes.html,
                 destinoJson: opcoes.json,
                 sobrescrever: Boolean(opcoes.sobrescrever)
             });
-            console.log(`Relatorio gerado: ${resultado.htmlPath} e ${resultado.jsonPath}`);
+            console.log(`${resultado.relatorio.modelo ? 'Modelo vazio criado (não é resultado redigido)' : 'Textos renderizados para revisão'}: ${resultado.htmlPath} e ${resultado.jsonPath}`);
         } else if (comando === 'exportar' && opcoes.origem && opcoes.destino) {
             const resultado = await exportarRelatorio({
                 origemHtml: opcoes.origem,
@@ -314,14 +335,14 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
                 aulaId: opcoes.aula,
                 sobrescrever: Boolean(opcoes.sobrescrever)
             });
-            console.log(`Relatorio exportado: ${resultado.destino}`);
+            console.log(`Relatório exportado: ${resultado.destino}`);
         } else if (comando === 'importar' && opcoes.origem && opcoes.destino) {
             const resultado = await importarRelatorio({ origemJson: opcoes.origem, destinoHtml: opcoes.destino });
-            console.log(`Relatorio importado: ${resultado.destino}`);
+            console.log(`Relatório importado: ${resultado.destino}`);
         } else if (comando === 'validar' && opcoes.origem) {
             const resultado = await validarRelatorio({ origemHtml: opcoes.origem, configPath: opcoes.config });
             if (resultado.erros.length > 0) throw new Error(resultado.erros.join('; '));
-            console.log(resultado.avisos.length === 0 ? 'Relatorio valido.' : `Avisos: ${resultado.avisos.join('; ')}`);
+            console.log(resultado.avisos.length === 0 ? 'Relatório válido.' : `Avisos: ${resultado.avisos.join('; ')}`);
         } else {
             throw new Error('Uso: node scripts/relatorio-docente.mjs <gerar|exportar|importar|validar> --opcoes');
         }
