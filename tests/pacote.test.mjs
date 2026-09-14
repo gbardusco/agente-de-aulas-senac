@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import JSZip from 'jszip';
 import { aprovarEstado, prepararEstado, solicitarRevisao } from '../scripts/aula-estado.mjs';
 import { arquivoPermitido, empacotarAula } from '../scripts/pacote-alunos.mjs';
@@ -37,7 +38,7 @@ async function entradas(zipPath) {
 }
 
 test('pacote contem somente arquivos publicos aprovados e manifesto verificavel', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/pacote-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'pacote-teste-'));
     try {
         await escreverAula(raiz, {
             'slides.html': '<h1>Aula</h1>',
@@ -62,7 +63,7 @@ test('pacote contem somente arquivos publicos aprovados e manifesto verificavel'
 });
 
 test('pacote falha fechado para aula nao aprovada, desatualizada ou com caminho proibido', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/pacote-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'pacote-teste-'));
     try {
         await escreverAula(raiz, { 'slides.html': '<h1>Aula</h1>' });
         await prepararEstado({ raiz, aulaId: 'aula-03', publicos: ['slides.html'], agora: AGORA });
@@ -90,7 +91,7 @@ test('pacote falha fechado para aula nao aprovada, desatualizada ou com caminho 
 });
 
 test('gabarito entra somente com autorizacao explicita', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/pacote-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'pacote-teste-'));
     try {
         await escreverAula(raiz, { 'slides.html': '<h1>Aula</h1>', 'gabarito/exercicio-01.html': '<p>Resposta</p>' });
         await aprovarAula(raiz, ['slides.html', 'gabarito/exercicio-01.html']);
