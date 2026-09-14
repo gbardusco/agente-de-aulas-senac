@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, rm, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { analisarArgumentosCli, analisarTabelaMarkdown, canonicalizar, exigirArquivoRegular, hashBytes, hashConteudo, resolverCaminhoSeguro, validarIdentificador, validarSchema } from '../scripts/modelo-aula.mjs';
 
 test('canonicalizacao e hash sao estaveis independentemente da ordem das chaves', () => {
@@ -37,7 +38,7 @@ test('schemas invalidos sao rejeitados com mensagem acionavel', () => {
 });
 
 test('caminhos ficam contidos na raiz e symlinks sao recusados', async () => {
-    const diretorio = await mkdtemp('/tmp/opencode/modelo-teste-');
+    const diretorio = await mkdtemp(join(tmpdir(), 'modelo-teste-'));
     try {
         const arquivo = join(diretorio, 'aula', 'estado.json');
         await mkdir(join(diretorio, 'aula'), { recursive: true });
