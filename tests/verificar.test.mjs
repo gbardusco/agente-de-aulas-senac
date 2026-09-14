@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { aprovarEstado, prepararEstado, solicitarRevisao } from '../scripts/aula-estado.mjs';
 import { gerarRelatorio } from '../scripts/relatorio-docente.mjs';
@@ -59,7 +60,7 @@ test('severidade separa bloqueio de revisao humana', () => {
 });
 
 test('aula completa e aprovada passa na verificacao de distribuicao', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/verificar-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'verificar-teste-'));
     try {
         const aula = join(raiz, 'AULAS', 'aula-03');
         await mkdir(aula, { recursive: true });
@@ -92,7 +93,7 @@ test('aula completa e aprovada passa na verificacao de distribuicao', async () =
 });
 
 test('placeholder em arquivo aprovado bloqueia distribuicao', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/verificar-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'verificar-teste-'));
     try {
         const aula = join(raiz, 'AULAS', 'aula-03');
         await mkdir(aula, { recursive: true });
