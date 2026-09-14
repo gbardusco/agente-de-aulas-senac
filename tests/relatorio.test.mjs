@@ -2,12 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { carregarConfiguracao, exportarRelatorio, gerarRelatorio, importarRelatorio, montarRelatorio, validarRelatorio } from '../scripts/relatorio-docente.mjs';
 
 const configPath = new URL('../_templates/diario-sistema-template.json', import.meta.url).pathname;
 
 test('relatorio vazio exige modelo explicito; textos redigidos ficam antes do apoio', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/relatorio-fluxo-');
+    const raiz = await mkdtemp(join(tmpdir(), 'relatorio-fluxo-'));
     try {
         await assert.rejects(gerarRelatorio({ raiz, aulaId: 'aula-01', configPath }), /Nenhum texto redigido/);
         const modelo = await gerarRelatorio({ raiz, aulaId: 'aula-01', configPath, modelo: true });
@@ -49,7 +50,7 @@ test('relatorio canonico usa configuracao, preserva rastreabilidade e rejeita du
 });
 
 test('gerar, exportar e importar preservam texto, escapam HTML e nao sobrescrevem sem autorizacao', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/relatorio-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'relatorio-teste-'));
     try {
         const malicioso = '</script><script>alert("x")</script>';
         const { htmlPath, jsonPath, relatorio } = await gerarRelatorio({
