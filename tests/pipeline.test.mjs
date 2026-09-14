@@ -41,7 +41,7 @@ test('schema rejects invalid types, unsupported fields, unsafe URLs and overflow
         { ...deck, slides: [{ title: 'X\nY', blocks: [{ type: 'text', text: 'X' }] }] },
         { ...deck, slides: [{ title: 'X', blocks: [{ type: 'text', text: 'X\u0000Y' }] }] },
         { ...deck, slides: [{ title: 'X', blocks: [{ type: 'bullets', items: [' '] }] }] },
-        { ...deck, slides: [{ title: 'X', blocks: Array.from({ length: 4 }, () => ({ type: 'text', text: 'x'.repeat(600) })) }] }
+        { ...deck, slides: [{ title: 'X', blocks: [{ type: 'text', text: 'x\n'.repeat(100) }] }] }
     ]) assert.throws(() => validateDeck(invalid));
 });
 
@@ -50,7 +50,8 @@ test('HTML and native PPTX preserve content, order, notes and demo limitations',
     await generateSlides(source, output);
     const html = await readFile(join(output, 'slides.html'), 'utf8');
     const { zip, texts } = await slideTexts(join(output, 'slides.pptx'));
-    assert.equal(texts.length, deck.slides.length);
+    assert.equal(texts.length, deck.slides.length + 1);
+    assert.ok(texts.shift().includes(deck.title));
     assert.match(html, /lang="pt-BR"/);
     for (const [index, slide] of deck.slides.entries()) {
         assert.ok(texts[index].includes(slide.title));
@@ -63,12 +64,12 @@ test('HTML and native PPTX preserve content, order, notes and demo limitations',
         }
         if (slide.notes) {
             assert.ok(html.includes(slide.notes));
-            const notes = await zip.file(`ppt/notesSlides/notesSlide${index + 1}.xml`).async('string');
+            const notes = await zip.file(`ppt/notesSlides/notesSlide${index + 2}.xml`).async('string');
             assert.ok(decode(notes).includes(slide.notes));
         }
     }
     assert.ok(html.includes(demoNotice));
-    const rels = await zip.file('ppt/slides/_rels/slide3.xml.rels').async('string');
+    const rels = await zip.file('ppt/slides/_rels/slide4.xml.rels').async('string');
     assert.ok(rels.includes(deck.slides[2].blocks[0].demonstracao.url));
     console.log(`Artefatos de teste: ${output}`);
 });
@@ -79,9 +80,9 @@ test('invalid input cannot overwrite existing outputs; HTML content is escaped',
     await writeFile(join(output, 'slides.html'), 'preservar');
     const invalid = join(temp, 'invalid.json');
     await writeFile(invalid, JSON.stringify({ version: 1 }));
-    await assert.rejects(generateSlides(invalid, output), /Fonte invalida/);
+    await assert.rejects(generateSlides(invalid, output), /Fonte inválida/);
     assert.equal(await readFile(join(output, 'slides.html'), 'utf8'), 'preservar');
-    await assert.rejects(generateSlides(join(output, 'slides.html'), output), /fonte nao pode/);
+    await assert.rejects(generateSlides(join(output, 'slides.html'), output), /fonte não pode/);
     await assert.rejects(access(join(output, 'slides.pptx')));
     const malicious = join(temp, 'escape.json');
     await writeFile(malicious, JSON.stringify({ version: 1, title: 'Test', slides: [{ title: 'Texto', blocks: [{ type: 'code', text: '</script><script>alert("x")</script>' }] }] }));
@@ -91,7 +92,7 @@ test('invalid input cannot overwrite existing outputs; HTML content is escaped',
     assert.equal((html.match(/<script>/g) || []).length, 1);
     const cli = spawnSync(process.execPath, [join(root, 'scripts/gerar-slides.mjs'), invalid, output], { encoding: 'utf8' });
     assert.equal(cli.status, 1);
-    assert.match(cli.stderr, /Fonte invalida/);
+    assert.match(cli.stderr, /Fonte inválida/);
 });
 
 test('setup is idempotent, preserves existing content, prepares private library and functional assets without Git', async () => {
@@ -133,7 +134,8 @@ test('LibreOffice opens and re-exports the PPTX with editable content', async (t
     const profile = pathToFileURL(join(temp, 'lo-profile')).href;
     execFileSync('libreoffice', [`-env:UserInstallation=${profile}`, '--headless', '--convert-to', 'pptx', '--outdir', converted, join(output, 'slides.pptx')], { timeout: 90000, encoding: 'utf8' });
     const { texts } = await slideTexts(join(converted, 'slides.pptx'));
-    assert.equal(texts.length, deck.slides.length);
+    assert.equal(texts.length, deck.slides.length + 1);
+    assert.ok(texts.shift().includes(deck.title));
     for (const [index, slide] of deck.slides.entries()) {
         assert.ok(texts[index].includes(slide.title));
         for (const block of slide.blocks) {
