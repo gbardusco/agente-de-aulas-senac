@@ -1,7 +1,7 @@
-# Manual de diario ficticio
+# Manual de diário fictício
 
-Documento sintetico para demonstracao. Nenhum sistema real ou dado pessoal.
+Documento sintético para demonstração. Nenhum sistema real ou dado pessoal.
 
-## Capitulo 2 — Campos ficticios
+## Capítulo 2 — Campos fictícios
 
-Use textos objetivos, evidencias observadas e proximo passo quando aplicavel.
+Use textos objetivos, evidências observadas e próximo passo quando aplicável.
