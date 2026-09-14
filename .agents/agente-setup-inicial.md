@@ -49,7 +49,7 @@ NOME-DO-PROJETO/
 └── .gitignore        # Copiar do template
 ```
 
-> **Dica:** Execute `./setup.sh "Nome do Projeto"` para automatizar a criação da estrutura.
+> **Entrada recomendada:** `bash preparar.sh "Nome do Projeto"` verifica Node.js/npm, instala dependências e executa setup preservando arquivos. No Windows use Git Bash; Linux/macOS, Terminal. Peça explicitamente a leitura de `.agents/AGENTS.md` no chat; não prometa registro nativo dos contratos no OpenCode. Veja `ONBOARDING.md` para instalações e provedor de IA.
 
 ### 2.3 Copiar templates
 
