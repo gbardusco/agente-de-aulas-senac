@@ -1,55 +1,55 @@
 {
     "version": 2,
-    "title": "Aula demo 03 - Estrutura de pagina",
+    "title": "Aula demo 03 - Estrutura de página",
     "pedagogia": {
         "abordagem": "pbl",
         "modalidadeAplicacao": "pratica",
         "problemaId": "problema-03-catalogo-demo-1",
-        "objetivos": ["Organizar conteudo com estrutura semantica"],
+        "objetivos": ["Organizar conteúdo com estrutura semântica"],
         "fontes": ["fonte-plano-curso-ficticio"]
     },
     "slides": [
         {
-            "title": "Problema ficticio: catalogo desorganizado",
+            "title": "Problema fictício: catálogo desorganizado",
             "blocks": [
                 {
                     "type": "problema",
-                    "contexto": "O catalogo ficticio mistura titulo e descricao dos produtos, dificultando a leitura.",
-                    "questao": "Como separar titulo e descricao de um produto ficticio para facilitar a leitura?"
+                    "contexto": "O catálogo fictício mistura título e descrição dos produtos, dificultando a leitura.",
+                    "questao": "Como separar título e descrição de um produto fictício para facilitar a leitura?"
                 }
             ]
         },
         {
-            "title": "Conceito: estrutura semantica",
+            "title": "Conceito: estrutura semântica",
             "blocks": [
                 {
                     "type": "conceito",
-                    "items": ["Titulos organizam a hierarquia do documento.", "Paragrafos agrupam a descricao do produto ficticio."]
+                    "items": ["Títulos organizam a hierarquia do documento.", "Parágrafos agrupam a descrição do produto fictício."]
                 }
             ],
-            "notes": "Material ficticio para validar o pipeline. Nao e evidencia de aprendizagem."
+            "notes": "Material fictício para validar o pipeline. Não é evidência de aprendizagem."
         },
         {
-            "title": "Aplicacao pratica",
+            "title": "Aplicação prática",
             "blocks": [
                 {
                     "type": "aplicacao",
                     "modalidade": "pratica",
-                    "texto": "Construa uma pagina sintetica aplicando a estrutura semantica ao catalogo ficticio.",
-                    "codigo": "<article>\n    <h2>Produto demo</h2>\n    <p>Descricao sintetica.</p>\n</article>",
+                    "texto": "Construa uma página sintética aplicando a estrutura semântica ao catálogo fictício.",
+                    "codigo": "<article>\n    <h2>Produto demo</h2>\n    <p>Descrição sintética.</p>\n</article>",
                     "demonstracao": {
-                        "texto": "Referencia oficial: elemento article",
+                        "texto": "Referência oficial: elemento article",
                         "url": "https://html.spec.whatwg.org/multipage/sections.html#the-article-element"
                     }
                 }
             ]
         },
         {
-            "title": "Sintese",
+            "title": "Síntese",
             "blocks": [
                 {
                     "type": "sintese",
-                    "items": ["Estrutura semantica separa titulo e descricao.", "A mesma estrategia vale para outros catalogos ficticios."]
+                    "items": ["Estrutura semântica separa título e descrição.", "A mesma estratégia vale para outros catálogos fictícios."]
                 }
             ]
         }
