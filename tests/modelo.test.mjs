@@ -19,7 +19,7 @@ test('identificadores aceitam o padrao e rejeitam valores inesperados', () => {
     assert.equal(validarIdentificador('fonte', 'fonte-plano-curso-vigente'), 'fonte-plano-curso-vigente');
     assert.equal(validarIdentificador('problema', 'problema-03-catalogo-demo-1'), 'problema-03-catalogo-demo-1');
     for (const [tipo, valor] of [['aula', 'aula3'], ['atividade', '../x'], ['fonte', 'FONTE-X']]) {
-        assert.throws(() => validarIdentificador(tipo, valor), /Identificador invalido/);
+        assert.throws(() => validarIdentificador(tipo, valor), /Identificador inválido/);
     }
     assert.throws(() => validarIdentificador('desconhecido', 'x'), /desconhecido/);
 });
@@ -33,7 +33,7 @@ test('argumentos aceitam valores separados ou com igual e sinalizadores', () => 
 test('schemas invalidos sao rejeitados com mensagem acionavel', () => {
     const schema = { type: 'object', required: ['nome'], additionalProperties: false, properties: { nome: { type: 'string' } } };
     assert.equal(validarSchema(schema, { nome: 'Aula' }, 'Teste').nome, 'Aula');
-    assert.throws(() => validarSchema(schema, { nome: 3 }, 'Teste'), /Teste invalido/);
+    assert.throws(() => validarSchema(schema, { nome: 3 }, 'Teste'), /Teste: documento inválido/);
 });
 
 test('caminhos ficam contidos na raiz e symlinks sao recusados', async () => {
@@ -49,9 +49,9 @@ test('caminhos ficam contidos na raiz e symlinks sao recusados', async () => {
         }
         const elo = join(diretorio, 'elo');
         await symlink(arquivo, elo);
-        await assert.rejects(exigirArquivoRegular(elo), /Symlink/);
-        await assert.rejects(exigirArquivoRegular(join(diretorio, 'ausente.json')), /nao encontrado/);
-        await assert.rejects(exigirArquivoRegular(join(diretorio, 'aula')), /nao e arquivo regular/);
+        await assert.rejects(exigirArquivoRegular(elo), /Link simbólico/);
+        await assert.rejects(exigirArquivoRegular(join(diretorio, 'ausente.json')), /não encontrado/);
+        await assert.rejects(exigirArquivoRegular(join(diretorio, 'aula')), /não é arquivo regular/);
     } finally {
         await rm(diretorio, { recursive: true, force: true });
     }
@@ -60,6 +60,6 @@ test('caminhos ficam contidos na raiz e symlinks sao recusados', async () => {
 test('tabela Markdown exige cabecalhos e formato consistente', () => {
     const tabela = ['| ID | Titulo |', '|----|--------|', '| a | b |', '| c | d |'].join('\n');
     assert.deepEqual(analisarTabelaMarkdown(tabela, ['ID', 'Titulo']), [{ ID: 'a', Titulo: 'b' }, { ID: 'c', Titulo: 'd' }]);
-    assert.throws(() => analisarTabelaMarkdown(tabela, ['Ausente']), /cabecalhos obrigatorios/);
+    assert.throws(() => analisarTabelaMarkdown(tabela, ['Ausente']), /cabeçalhos obrigatórios/);
     assert.throws(() => analisarTabelaMarkdown('sem tabela'), /Tabela Markdown/);
 });
