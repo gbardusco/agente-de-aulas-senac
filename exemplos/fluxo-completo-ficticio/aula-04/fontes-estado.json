@@ -1,22 +1,22 @@
 [
     {
         "id": "fonte-plano-curso-ficticio",
-        "titulo": "Plano de curso ficticio",
+        "titulo": "Plano de curso fictício",
         "tipo": "oficial",
         "versaoData": "2026-01",
-        "secao": "Secao 1",
+        "secao": "Seção 1",
         "situacaoLeitura": "consultado",
         "dataConsulta": "2026-09-09",
-        "aplicabilidade": "Indicador ficticio da aula demo."
+        "aplicabilidade": "Indicador fictício da aula demo."
     },
     {
         "id": "fonte-manual-diario-ficticio",
-        "titulo": "Manual de diario ficticio",
+        "titulo": "Manual de diário fictício",
         "tipo": "manual",
         "versaoData": "DEMO-1.0",
-        "secao": "Capitulo 2",
+        "secao": "Capítulo 2",
         "situacaoLeitura": "consultado",
         "dataConsulta": "2026-09-09",
-        "aplicabilidade": "Campos do relatorio ficticio."
+        "aplicabilidade": "Campos do relatório fictício."
     }
 ]
