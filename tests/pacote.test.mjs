@@ -66,7 +66,7 @@ test('pacote falha fechado para aula nao aprovada, desatualizada ou com caminho 
     try {
         await escreverAula(raiz, { 'slides.html': '<h1>Aula</h1>' });
         await prepararEstado({ raiz, aulaId: 'aula-03', publicos: ['slides.html'], agora: AGORA });
-        await assert.rejects(empacotarAula({ raiz, aulaId: 'aula-03', destino: join(raiz, 'a.zip') }), /nao esta aprovada/);
+        await assert.rejects(empacotarAula({ raiz, aulaId: 'aula-03', destino: join(raiz, 'a.zip') }), /não está aprovada/);
         await solicitarRevisao({ raiz, aulaId: 'aula-03', agora: AGORA });
         await aprovarEstado({
             raiz,
@@ -78,7 +78,7 @@ test('pacote falha fechado para aula nao aprovada, desatualizada ou com caminho 
             agora: AGORA
         });
         await writeFile(join(raiz, 'AULAS', 'aula-03', 'slides.html'), '<h1>Alterada</h1>');
-        await assert.rejects(empacotarAula({ raiz, aulaId: 'aula-03', destino: join(raiz, 'b.zip') }), /mudou apos/);
+        await assert.rejects(empacotarAula({ raiz, aulaId: 'aula-03', destino: join(raiz, 'b.zip') }), /mudou após/);
         assert.equal(arquivoPermitido('../fora.zip'), false);
         assert.equal(arquivoPermitido('slides.json'), true);
         assert.equal(arquivoPermitido('registros-docentes/relatorio.html'), false);
