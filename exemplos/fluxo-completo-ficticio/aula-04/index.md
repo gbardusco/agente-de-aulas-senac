@@ -1,12 +1,12 @@
-# Aula demo 04 — Interpretacao de texto normativo
+# Aula demo 04 — Interpretação de texto normativo
 
-Material publico e ficticio para validar o fluxo PBL teorico. Nenhum dado real de turma ou aluno.
+Material público e fictício para validar o fluxo PBL teórico. Nenhum dado real de turma ou aluno.
 
 ## Materiais
 
-| Arquivo | Descricao |
+| Arquivo | Descrição |
 |---------|-----------|
-| [slides.html](./slides.html) | Apresentacao gerada da fonte JSON |
-| [slides.pptx](./slides.pptx) | Apresentacao editavel gerada da mesma fonte |
-| [exercicios.html](./exercicios.html) | Exercicio analitico sintetico |
+| [slides.html](./slides.html) | Apresentação gerada da fonte JSON |
+| [slides.pptx](./slides.pptx) | Apresentação editável gerada da mesma fonte |
+| [exercicios.html](./exercicios.html) | Exercício analítico sintético |
 | [rubrica-atividade.md](./rubrica-atividade.md) | Rubrica ficticia aprovada |
