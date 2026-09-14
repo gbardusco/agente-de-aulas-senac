@@ -2,13 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { aprovarEstado, avaliarEstado, marcarAplicada, marcarRevisao, prepararEstado, solicitarRevisao } from '../scripts/aula-estado.mjs';
 
 const AGORA = '2026-09-09T10:00:00-03:00';
 const FONTES = [{ id: 'fonte-plano-ficticio', titulo: 'Plano ficticio', tipo: 'oficial', situacaoLeitura: 'consultado', dataConsulta: '2026-09-09' }];
 
 async function prepararAula() {
-    const raiz = await mkdtemp('/tmp/opencode/estado-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'estado-teste-'));
     const aula = join(raiz, 'AULAS', 'aula-03');
     await mkdir(aula, { recursive: true });
     await writeFile(join(aula, 'slides.json'), '{"version":1}');
@@ -88,7 +89,7 @@ test('alteracao apos aprovacao exige nova revisao antes de aplicar', async () =>
 });
 
 test('estado extrai a pedagogia PBL da fonte de slides', async () => {
-    const raiz = await mkdtemp('/tmp/opencode/estado-teste-');
+    const raiz = await mkdtemp(join(tmpdir(), 'estado-teste-'));
     try {
         const aula = join(raiz, 'AULAS', 'aula-03');
         await mkdir(aula, { recursive: true });
