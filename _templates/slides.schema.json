@@ -7,6 +7,10 @@
     "properties": {
         "version": { "const": 1 },
         "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "subtitle": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "disciplina": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "professor": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "data": { "type": "string", "minLength": 1, "maxLength": 40 },
         "slides": {
             "type": "array", "minItems": 1, "maxItems": 100,
             "items": {
