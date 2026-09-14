@@ -37,6 +37,8 @@ test('report saves, restores and keeps local data explicit and private', async (
         const upload = join(temp, 'relatorio-importacao.json');
         await writeFile(upload, JSON.stringify(exported));
         await page.locator('#importar-json').setInputFiles(upload);
+        await page.waitForFunction(() => document.getElementById('feedback-individual').value === 'Texto importado.');
+        await page.waitForFunction(() => document.getElementById('feedback-aluno-demo-1')?.value === 'Campo adicional.');
         assert.equal(await page.locator('#feedback-individual').inputValue(), 'Texto importado.');
         assert.equal(await page.locator('#feedback-aluno-demo-1').inputValue(), 'Campo adicional.');
         assert.equal(await page.locator('[data-copy="feedback-aluno-demo-1"]').count(), 1);
