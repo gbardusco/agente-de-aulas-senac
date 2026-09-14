@@ -1,7 +1,7 @@
-# Plano de curso ficticio
+# Plano de curso fictício
 
-Documento sintetico para demonstracao. Nenhuma instituicao, turma ou aluno real.
+Documento sintético para demonstração. Nenhuma instituição, turma ou aluno real.
 
-## Secao 1 — Indicador ficticio
+## Seção 1 — Indicador fictício
 
-`IND-DEMO-03`: organizar conteudo ficticio com estrutura semantica observavel.
+`IND-DEMO-03`: organizar conteúdo fictício com estrutura semântica observável.
