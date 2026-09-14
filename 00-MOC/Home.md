@@ -54,7 +54,7 @@ Para usar, copie os arquivos para um novo projeto e preencha o perfil da turma e
 - [[padroes-tecnicos|Padrões Técnicos]] — convenções de código e CSS
 
 ### Para Começar um Novo Projeto
-- 🚀 **Professor novo? Comece pelo [Onboarding](../ONBOARDING.md)** — do zero à primeira aula em 15 minutos
+- 🚀 **Comece pelo [Onboarding](../ONBOARDING.md)** — obter/abrir a pasta, `bash preparar.sh "Disciplina"` e conversar
 - `_templates/perfil-turma-template.md` — copie para `.memory/perfil-turma.md`
 - `_templates/README.md` — checklist completo de setup
 
@@ -66,7 +66,7 @@ Para usar, copie os arquivos para um novo projeto e preencha o perfil da turma e
 Abra a pasta do projeto como vault no Obsidian.
 
 ### Com Agentes de IA (opencode, etc.)
-Os agentes leem `.agents/AGENTS.md` automaticamente. As memórias ficam em `.memory/`.
+No chat, peça explicitamente: “Leia `.agents/AGENTS.md` e o arquivo do agente solicitado”. Esses contratos não são registro nativo automático no OpenCode. As memórias ficam em `.memory/`.
 
 ### Reutilização
 1. Copie todo este repositório para um novo diretório
