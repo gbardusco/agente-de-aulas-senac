@@ -60,9 +60,12 @@ Ao final de cada tarefa, **todo agente deve emitir um bloco MEMORY-CHECKPOINT** 
 <!-- /MEMORY-CHECKPOINT -->
 ```
 
-O orquestrador (ou qualquer harness) processa esses blocos e atualiza os arquivos de memória automaticamente. Não é necessário invocar `@[agente-gestor-de-memoria]` explicitamente para isso.
+O agente coordenador deve processar esses blocos, editar os arquivos e confirmar a gravação. O bloco não executa alterações sozinho e não pressupõe integração nativa do harness.
 
 ## Regra 3 — Padrões de código são invioláveis
+
+- Produza toda prosa em **português brasileiro natural, com acentuação e codificação UTF-8**: títulos, enunciados, slides HTML/PPTX, notas, rubricas, relatórios, diário, documentação, interface e avisos CLI. Revise concordância (por exemplo, **Hipóteses iniciais**) e preserve os acentos na exportação/importação. Não translitere textos para ASCII.
+- Caminhos, nomes de arquivos, comandos, funções públicas, identificadores, classes, IDs, chaves e enums JSON são contratos técnicos: preserve sua grafia. Em exemplos de código, revise apenas a prosa visível sem modificar a sintaxe. Ao atualizar cabeçalhos consumidos por parsers, mantenha compatibilidade com os formatos anteriores.
 
 - Todo código exibido aos alunos deve ter **identação perfeita com 4 espaços**.
 - Slides devem **caber em uma tela desktop** (100vh). Se não cabe, divida em dois slides; em mobile/zoom, permita rolagem para não cortar conteúdo.
@@ -125,6 +128,8 @@ visíveis no HTML e no PPTX: nunca inclua registros privados nelas.
 Use `npm run aula:estado` para rascunho, revisão, aprovação e aplicação; `npm run pacote:alunos`
 para ZIP com manifesto; e `npm run verificar -- --aula aula-XX --modo distribuicao` antes de distribuir.
 Relatórios usam JSON persistente em `relatorio.json`; salvamento local no navegador é opcional e desativado por padrão.
+O diário recebe relato livre, consulta aula/rubrica/registro anterior e redige `redacao.json` para `relatorio -- gerar --valores`. Textos sustentados por fatos vêm primeiro; perguntas específicas vão em `pendencias`. O gerador não é IA e recusa resultado sem texto; `--modelo` permite formulário vazio explicitamente.
+Slides v1/v2 recebem capa automática separada do arco PBL. Use `title`, `subtitle` opcional e `disciplina`/`professor`/`data` apenas fornecidos. Não duplique a capa na lista de conteúdo. Blocos são paginados sem reduzir fonte; um bloco excessivo deve ser dividido na fonte pelo agente.
 
 ## Regra 6 — Conflitos e resolução
 
@@ -152,7 +157,7 @@ O registro de contexto é obrigatório após cada tarefa concluída. Não é opc
 ```
 NOME-DO-PROJETO/
 ├── .agents/           # Agentes e regras (este arquivo)
-│   ├── AGENTS.md      # ← Regras globais (lidas automaticamente)
+│   ├── AGENTS.md      # ← Regras globais (peça leitura explícita no chat)
 │   └── agente-*.md    # Agentes especializados
 ├── .context/           # Contexto agentico (gitignored)
 │   ├── index.md
