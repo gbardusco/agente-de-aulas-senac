@@ -8,6 +8,16 @@ version: "2.0"
 
 # Padrões Técnicos — Materiais Didáticos
 
+## Idioma e codificação das saídas
+
+Use pt-BR natural e UTF-8 com acentuação em toda prosa: títulos, enunciados,
+rubricas, diário, relatórios, interface, mensagens e slides HTML/PPTX, inclusive
+notas e metadados visíveis. Exemplos: aplicação prática, análise teórica, síntese,
+hipótese, evidência, configuração, página e código. Revise concordância e preserve
+esses textos nos ciclos de geração, cópia, exportação e importação.
+Não remova acentos para produzir ASCII. Preserve caminhos, nomes de arquivos,
+comandos, funções, classes, IDs, chaves e enums; são contratos, não prosa.
+
 ## Versão
 
 | Campo | Valor |
