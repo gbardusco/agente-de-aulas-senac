@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
 
 const require = createRequire(import.meta.url);
@@ -17,7 +18,7 @@ test('PptxGenJS resolves the fixed fork with the compatible 1.x API', async () =
     assert.equal(metadata.version, '1.2.2');
     assert.equal(imageSize.imageSize, imageSize);
     assert.equal((await import(pathToFileURL(parserPath).href)).default, imageSize);
-    const directory = await mkdtemp('/tmp/opencode/image-size-test-');
+    const directory = await mkdtemp(join(tmpdir(), 'image-size-test-'));
     try {
         const fixtures = [
             ['png', Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aD1sAAAAASUVORK5CYII=', 'base64'), 1, 1],
