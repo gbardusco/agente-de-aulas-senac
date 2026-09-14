@@ -1,5 +1,24 @@
 # Exemplos Práticos de Uso dos Agentes
 
+## Slides prontos para visualizar
+
+Exemplos com dados fictícios, capa automática e o novo tema visual:
+
+| Exemplo | Abrir no navegador | Abrir no PowerPoint |
+|---------|--------------------|---------------------|
+| Aula prática — estrutura de página | [Slides HTML](slides-praticos/slides.html) | [Slides PPTX](slides-praticos/slides.pptx) |
+| Aula teórica — interpretação de texto normativo | [Slides HTML](slides-teoricos/slides.html) | [Slides PPTX](slides-teoricos/slides.pptx) |
+
+Abra o arquivo HTML localmente com um duplo clique. No GitHub, baixe o arquivo para
+visualizar a apresentação no navegador. Os arquivos PPTX têm textos editáveis.
+
+Para regenerar os exemplos na raiz do projeto:
+
+```bash
+npm run slides -- exemplos/fluxo-completo-ficticio/aula-03/slides.json exemplos/slides-praticos
+npm run slides -- exemplos/fluxo-completo-ficticio/aula-04/slides.json exemplos/slides-teoricos
+```
+
 > Prompts reais que você pode copiar e colar no opencode para testar os agentes.
 
 ---
@@ -19,7 +38,7 @@
 |---------|--------|-----------|
 | [Avaliação e Exportação](avaliacao-e-exportacao.md) | Fluxo integrado | Rubrica configurável, diário HTML privado, biblioteca, HTML/PPTX e testes |
 | [Fluxo completo fictício](fluxo-completo-ficticio/roteiro.md) | Demonstração isolada | Aula sintética de ponta a ponta, sem dados reais |
-| [Onboarding](../ONBOARDING.md) | Guia do professor | Do zero à primeira aula em 15 minutos |
+| [Onboarding](../ONBOARDING.md) | Guia do professor | Obter/abrir, preparar e conversar |
 | [Planejar Aula](#planejar-aula) | `agente-planejador-didatico` | Criar slides e demo de uma aula |
 | [Gerar Exercícios](#gerar-exercícios) | `agente-gerador-de-exercicios` | Criar lista de exercícios com gabarito |
 | [Revisar Material](#revisar-material) | `agente-revisor-de-material` | Auditar qualidade de um material |
