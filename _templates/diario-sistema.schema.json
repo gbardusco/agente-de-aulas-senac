@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Configuracao do sistema de diario v1",
+    "title": "Configuração do sistema de diário v1",
     "type": "object",
     "additionalProperties": false,
     "required": ["version", "instituicao", "sistema", "manual", "manualVersao", "campos"],
