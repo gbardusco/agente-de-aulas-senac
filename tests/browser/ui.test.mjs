@@ -78,12 +78,16 @@ test('slides: offline assets, buttons, keyboard, boundaries, content, mobile and
         await page.goto(pathToFileURL(join(temp, 'AULAS/aula-01/slides.html')).href);
         assert.equal(requests.length, 1, 'HTML must be self-contained');
         const deck = JSON.parse(await readFile(join(root, '_templates/slides-fonte-template.json'), 'utf8'));
+        const contentSlides = deck.slides;
+        deck.slides = [{ title: deck.title }, ...contentSlides];
+        await page.screenshot({ path: join(temp, 'capa-desktop.png') });
         assert.equal(await page.locator('.slide:visible').count(), 1);
         assert.equal(await page.locator('.nav-prev').isDisabled(), true);
         for (const [index, slide] of deck.slides.entries()) {
             assert.equal(await page.locator('.slide:visible h2').textContent(), slide.title);
             assert.equal(await page.locator('.slide-counter').textContent(), `${index + 1} / ${deck.slides.length}`);
             assert.ok(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight), 'desktop content fits viewport');
+            await page.screenshot({ path: join(temp, `slide-${index + 1}.png`) });
             if (index < deck.slides.length - 1) await page.locator('.nav-next').click();
         }
         assert.equal(await page.locator('.nav-next').isDisabled(), true);
@@ -110,7 +114,7 @@ test('slides: offline assets, buttons, keyboard, boundaries, content, mobile and
         assert.equal(await page.locator('.nav-arrows').isVisible(), false);
         await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
         assert.equal(await page.locator('details p').isVisible(), true);
-        assert.equal(await page.locator('details p').textContent(), deck.slides[1].notes);
+        assert.equal(await page.locator('details p').textContent(), contentSlides[1].notes);
         await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
         await page.pdf({ path: join(temp, 'slides.pdf'), format: 'A4', landscape: true });
         assert.deepEqual(errors, []);
