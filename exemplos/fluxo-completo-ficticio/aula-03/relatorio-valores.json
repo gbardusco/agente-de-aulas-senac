@@ -1,7 +1,7 @@
 {
     "aulaId": "aula-03",
     "sistema": {
-        "instituicao": "Instituicao DEMO",
+        "instituicao": "Instituição DEMO",
         "sistema": "Sistema DEMO",
         "manual": "Manual DEMO",
         "manualVersao": "DEMO-1.0",
@@ -10,72 +10,72 @@
     "campos": [
         {
             "id": "configuracao",
-            "valor": "Rubrica rubrica-03-estrutura-demo-1-v1 aprovada. Escala ficticia: inicial, em-desenvolvimento e consolidado."
+            "valor": "Rubrica rubrica-03-estrutura-demo-1-v1 aprovada. Escala fictícia: inicial, em-desenvolvimento e consolidado."
         },
         {
             "id": "evidencias",
-            "valor": "evidencia-03-estrutura-demo-a: pagina sintetica entregue em 2026-09-09, sem dados reais."
+            "valor": "evidencia-03-estrutura-demo-a: página sintética entregue em 2026-09-09, sem dados reais."
         },
         {
             "id": "atividades-chamada",
-            "valor": "Aula ficticia sobre estrutura semantica, com exposicao dialogada e pratica sintetica."
+            "valor": "Aula fictícia sobre estrutura semântica, com exposição dialogada e prática sintética."
         },
         {
             "id": "feedback-individual",
-            "valor": "ALUNO-DEMO-01 organizou o conteudo com titulos e paragrafos na atividade sintetica. Proximo passo: revisar listas."
+            "valor": "ALUNO-DEMO-01 organizou o conteúdo com títulos e parágrafos na atividade sintética. Próximo passo: revisar listas."
         },
         {
             "id": "atividades-indicadores",
-            "valor": "Atividade sintetica relacionada ao indicador ficticio IND-DEMO-03, com evidencia observada em ambiente de demonstracao."
+            "valor": "Atividade sintética relacionada ao indicador fictício IND-DEMO-03, com evidência observada em ambiente de demonstração."
         },
         {
             "id": "observacao-docente",
-            "valor": "Demonstracao executada sem intercorrencias tecnicas."
+            "valor": "Demonstração executada sem intercorrências técnicas."
         },
         {
             "id": "recuperacao",
-            "valor": "Nenhuma acao de recuperacao necessaria neste cenario ficticio."
+            "valor": "Nenhuma ação de recuperação necessária neste cenário fictício."
         }
     ],
     "evidencias": [
         {
             "id": "evidencia-03-estrutura-demo-a",
-            "descricao": "Pagina sintetica com estrutura semantica completa.",
+            "descricao": "Página sintética com estrutura semântica completa.",
             "atividadeId": "atividade-03-estrutura-demo-1",
-            "criterio": "Estrutura semantica",
+            "criterio": "Estrutura semântica",
             "indicador": "IND-DEMO-03",
             "fonteId": "fonte-plano-curso-ficticio",
             "data": "2026-09-09",
             "situacao": "observada",
-            "resultado": "Desempenho ficticio no nivel consolidado para fins de demonstracao."
+            "resultado": "Desempenho fictício no nível consolidado para fins de demonstração."
         }
     ],
     "fontes": [
         {
             "id": "fonte-plano-curso-ficticio",
-            "titulo": "Plano de curso ficticio",
+            "titulo": "Plano de curso fictício",
             "tipo": "oficial",
             "versaoData": "2026-01",
-            "secao": "Secao 1",
+            "secao": "Seção 1",
             "situacaoLeitura": "consultado",
             "dataConsulta": "2026-09-09",
-            "aplicabilidade": "Indicador ficticio da aula demo."
+            "aplicabilidade": "Indicador fictício da aula demo."
         },
         {
             "id": "fonte-manual-diario-ficticio",
-            "titulo": "Manual de diario ficticio",
+            "titulo": "Manual de diário fictício",
             "tipo": "manual",
             "versaoData": "DEMO-1.0",
-            "secao": "Capitulo 2",
+            "secao": "Capítulo 2",
             "situacaoLeitura": "consultado",
             "dataConsulta": "2026-09-09",
-            "aplicabilidade": "Campos do relatorio ficticio."
+            "aplicabilidade": "Campos do relatório fictício."
         }
     ],
     "historico": [
         {
             "quando": "2026-09-09",
-            "acao": "Rascunho ficticio criado para demonstracao.",
+            "acao": "Rascunho fictício criado para demonstração.",
             "ator": "Docente DEMO"
         }
     ]
