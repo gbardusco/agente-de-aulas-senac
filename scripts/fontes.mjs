@@ -5,6 +5,7 @@ import { analisarArgumentosCli, analisarTabelaMarkdown, exigirArquivoRegular, re
 
 const RAIZ = resolve(fileURLToPath(new URL('../', import.meta.url)));
 const CABECALHOS = ['ID', 'Titulo', 'Tipo', 'Autor ou orgao', 'Versao / data', 'Caminho local ou URL verificada', 'Tema / indicador', 'Secao / paginas', 'Situacao de leitura', 'Aplicabilidade', 'Data da consulta', 'Restricoes de uso'];
+const ROTULOS_CABECALHOS = ['ID', 'Título', 'Tipo', 'Autor ou órgão', 'Versão / data', 'Caminho local ou URL verificada', 'Tema / indicador', 'Seção / páginas', 'Situação de leitura', 'Aplicabilidade', 'Data da consulta', 'Restrições de uso'];
 const TIPOS = ['oficial', 'manual', 'primaria', 'complementar'];
 const LEITURAS = ['nao-lido', 'consultado', 'parcial', 'nao-processado'];
 const TEXTO_LEGIVEL = ['.md', '.markdown', '.txt', '.html', '.htm'];
@@ -24,9 +25,15 @@ export async function validarBiblioteca({ raiz = RAIZ, biblioteca } = {}) {
     const avisos = [];
     let registros = [];
     try {
-        registros = analisarTabelaMarkdown(await readFile(await exigirArquivoRegular(caminho), 'utf8'), CABECALHOS);
+        // Normalize only table headers; keep the public record keys and legacy catalogs compatible.
+        const texto = await readFile(await exigirArquivoRegular(caminho), 'utf8');
+        const normalizado = texto.replace(/^[ \t]*\|[^\r\n]*\|[ \t]*(?=\r?\n[ \t]*\|[\s:|\-]+\|)/gm, (linha) => linha.replace(/([^|]+)/g, (celula) => {
+            const indice = ROTULOS_CABECALHOS.indexOf(celula.trim());
+            return indice < 0 ? celula : celula.replace(celula.trim(), CABECALHOS[indice]);
+        }));
+        registros = analisarTabelaMarkdown(normalizado, CABECALHOS);
     } catch (erro) {
-        erros.push(`Biblioteca indisponivel ou invalida: ${erro.message}.`);
+        erros.push(`Biblioteca indisponível ou inválida: ${erro.message}.`);
         return { caminho, registros: [], erros, avisos };
     }
     const vistos = new Set();
@@ -35,15 +42,15 @@ export async function validarBiblioteca({ raiz = RAIZ, biblioteca } = {}) {
         try {
             validarIdentificador('fonte', registro.ID);
         } catch {
-            erros.push(`${linha} com ID invalido.`);
+            erros.push(`${linha} com ID inválido.`);
         }
         if (vistos.has(registro.ID)) erros.push(`ID duplicado na biblioteca: ${registro.ID}.`);
         vistos.add(registro.ID);
         for (const campo of ['Titulo', 'Tipo', 'Versao / data', 'Tema / indicador', 'Data da consulta']) {
-            if (!registro[campo]) erros.push(`${linha} sem ${campo}.`);
+            if (!registro[campo]) erros.push(`${linha} sem ${ROTULOS_CABECALHOS[CABECALHOS.indexOf(campo)]}.`);
         }
-        if (!TIPOS.includes(registro.Tipo)) erros.push(`${linha} com tipo invalido: ${registro.Tipo || 'ausente'}.`);
-        if (!LEITURAS.includes(registro['Situacao de leitura'])) erros.push(`${linha} com situacao de leitura invalida.`);
+        if (!TIPOS.includes(registro.Tipo)) erros.push(`${linha} com tipo inválido: ${registro.Tipo || 'ausente'}.`);
+        if (!LEITURAS.includes(registro['Situacao de leitura'])) erros.push(`${linha} com situação de leitura inválida.`);
         const local = registro['Caminho local ou URL verificada'];
         if (!local) {
             erros.push(`${linha} sem caminho local ou URL.`);
@@ -52,11 +59,11 @@ export async function validarBiblioteca({ raiz = RAIZ, biblioteca } = {}) {
         if (/^https?:\/\//i.test(local)) {
             try {
                 const url = new URL(local);
-                if (!url.hostname || url.username || url.password) throw new Error('URL invalida');
+                if (!url.hostname || url.username || url.password) throw new Error('URL inválida');
             } catch {
-                erros.push(`${linha} com URL invalida.`);
+                erros.push(`${linha} com URL inválida.`);
             }
-            if (registro['Situacao de leitura'] === 'nao-lido') avisos.push(`${linha} cadastrada, mas ainda nao lida.`);
+            if (registro['Situacao de leitura'] === 'nao-lido') avisos.push(`${linha} cadastrada, mas ainda não lida.`);
         } else {
             try {
                 const absoluto = resolverCaminhoSeguro(raiz, local);
@@ -80,14 +87,14 @@ export function verificarCitacoes(fontes, registros) {
     for (const fonte of fontes || []) {
         const catalogada = mapa.get(fonte.id);
         if (!catalogada) {
-            erros.push(`Fonte citada fora do catalogo: ${fonte.id}.`);
+            erros.push(`Fonte citada fora do catálogo: ${fonte.id}.`);
             continue;
         }
         if (catalogada['Situacao de leitura'] === 'nao-lido' || catalogada['Situacao de leitura'] === 'nao-processado') {
             avisos.push(`Fonte citada sem leitura confirmada: ${fonte.id}.`);
         }
         if ((catalogada['Versao / data'] || '') !== (fonte.versaoData || '') && fonte.versaoData) {
-            avisos.push(`Versao da fonte divergente do catalogo: ${fonte.id}.`);
+            avisos.push(`Versão da fonte divergente do catálogo: ${fonte.id}.`);
         }
     }
     return { erros, avisos };
