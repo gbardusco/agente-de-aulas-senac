@@ -47,7 +47,7 @@ export async function verificarFixture(fonte) {
         if (PADROES_REAIS.some((padrao) => padrao.test(conteudo))) ocorrencias.push(caminho);
     }
     if (ocorrencias.length > 0) {
-        throw new Error(`Fixture com possivel dado real: ${ocorrencias.join(', ')}.`);
+        throw new Error(`Fixture com possível dado real: ${ocorrencias.join(', ')}.`);
     }
 }
 
@@ -55,14 +55,14 @@ async function prepararSaida(saida, sobrescrever) {
     const destino = saida ? resolve(process.cwd(), saida) : await mkdtemp(join(tmpdir(), 'demo-fluxo-'));
     try {
         const info = await stat(destino);
-        if (!info.isDirectory()) throw new Error(`Saida invalida: ${destino}.`);
+        if (!info.isDirectory()) throw new Error(`Saída inválida: ${destino}.`);
         if ((await readdir(destino)).length > 0 && !sobrescrever) {
-            throw new Error(`Saida ocupada: ${destino}. Use --sobrescrever em diretorio isolado.`);
+            throw new Error(`Saída ocupada: ${destino}. Use --sobrescrever em diretório isolado.`);
         }
     } catch (erro) {
         if (erro.code === 'ENOENT') await mkdir(destino, { recursive: true });
-        else if (!erro.message.startsWith('Saida ocupada') && !erro.message.startsWith('Saida invalida')) throw erro;
-        else if (erro.message.startsWith('Saida ocupada') || erro.message.startsWith('Saida invalida')) throw erro;
+        else if (!erro.message.startsWith('Saída ocupada') && !erro.message.startsWith('Saída inválida')) throw erro;
+        else if (erro.message.startsWith('Saída ocupada') || erro.message.startsWith('Saída inválida')) throw erro;
     }
     return destino;
 }
@@ -109,7 +109,7 @@ async function executarAulaDemo({ fonte, workspace, biblioteca, aulaId, atividad
         atualizadoEm: AGORA
     });
     await prepararEstado({ raiz: workspace, aulaId, publicos, atividadeId, agora: AGORA });
-    await solicitarRevisao({ raiz: workspace, aulaId, agora: AGORA, motivo: 'Revisao ficticia da demonstracao.' });
+    await solicitarRevisao({ raiz: workspace, aulaId, agora: AGORA, motivo: 'Revisão fictícia da demonstração.' });
     await aprovarEstado({
         raiz: workspace,
         aulaId,
@@ -118,14 +118,14 @@ async function executarAulaDemo({ fonte, workspace, biblioteca, aulaId, atividad
         aprovadoEm: '2026-09-09',
         referencia: 'DEC-DEMO-001',
         fontes: fontesEstado,
-        registro: { registroId, evidencias: [evidenciaId], observacao: 'Registro ficticio vinculado.' },
+        registro: { registroId, evidencias: [evidenciaId], observacao: 'Registro fictício vinculado.' },
         agora: AGORA
     });
-    await marcarAplicada({ raiz: workspace, aulaId, data: '2026-09-09', fonte: `Relatorio ficticio ${registroId}`, agora: AGORA });
+    await marcarAplicada({ raiz: workspace, aulaId, data: '2026-09-09', fonte: `Relatório fictício ${registroId}`, agora: AGORA });
     const bibliotecaPath = biblioteca;
     const verificacao = await verificarAula({ raiz: workspace, aulaId, biblioteca: bibliotecaPath, modo: 'distribuicao' });
     if (verificacao.erros.length > 0) {
-        throw new Error(`Demonstracao reprovada na verificacao: ${verificacao.erros.map((erro) => erro.mensagem).join('; ')}`);
+        throw new Error(`Demonstração reprovada na verificação: ${verificacao.erros.map((erro) => erro.mensagem).join('; ')}`);
     }
     const pacote = await empacotarAula({ raiz: workspace, aulaId, destino: join(workspace, 'saidas', `${aulaId}.zip`), geradoEm: AGORA });
     const zip = await JSZip.loadAsync(await readFile(pacote.caminhoSaida));
@@ -134,7 +134,7 @@ async function executarAulaDemo({ fonte, workspace, biblioteca, aulaId, atividad
         throw new Error(`Pacote fora do esperado: ${entradas.join(', ')}.`);
     }
     for (const excluido of esperados.excluidosDoPacote) {
-        if (entradas.some((entrada) => entrada.endsWith(excluido))) throw new Error(`Conteudo privado no pacote: ${excluido}.`);
+        if (entradas.some((entrada) => entrada.endsWith(excluido))) throw new Error(`Conteúdo privado no pacote: ${excluido}.`);
     }
     const estado = await avaliarEstado({ raiz: workspace, aulaId });
     if (estado.estado !== esperados.estadoFinal || !estado.atualizado) throw new Error('Estado final fora do esperado.');
@@ -159,7 +159,7 @@ function analisarArgumentos(argumentos) {
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
     try {
         const resumo = await executarDemonstracao(analisarArgumentos(process.argv.slice(2)));
-        console.log(`Demonstracao concluida: ${resumo.workspace}`);
+        console.log(`Demonstração concluída: ${resumo.workspace}`);
         for (const aula of resumo.aulas) {
             console.log(`Pacote ${aula.aulaId}: ${aula.pacote}`);
             for (const entrada of aula.entradas) console.log(`- ${entrada}`);
