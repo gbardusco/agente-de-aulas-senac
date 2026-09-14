@@ -1,67 +1,67 @@
 {
     "version": 2,
-    "title": "Exemplo PBL teorico: interpretacao de texto normativo",
+    "title": "Exemplo PBL teórico: interpretação de texto normativo",
     "pedagogia": {
         "abordagem": "pbl",
         "modalidadeAplicacao": "analitica",
         "problemaId": "problema-00-norma-demo-1",
-        "objetivos": ["Comparar interpretacoes de um texto normativo ficticio"],
+        "objetivos": ["Comparar interpretações de um texto normativo fictício"],
         "fontes": ["fonte-manual-ficticio"]
     },
     "slides": [
         {
-            "title": "Problema: duas leituras da mesma norma ficticia",
+            "title": "Problema: duas leituras da mesma norma fictícia",
             "blocks": [
                 {
                     "type": "problema",
-                    "contexto": "Duas equipes interpretam de forma diferente o mesmo artigo ficticio sobre prazos.",
-                    "questao": "Quais criterios tornam uma interpretacao mais consistente que a outra?"
+                    "contexto": "Duas equipes interpretam de forma diferente o mesmo artigo fictício sobre prazos.",
+                    "questao": "Quais critérios tornam uma interpretação mais consistente que a outra?"
                 }
             ]
         },
         {
-            "title": "Hipotese iniciais",
+            "title": "Hipóteses iniciais",
             "blocks": [
                 {
                     "type": "hipoteses",
-                    "items": ["O prazo conta da publicacao ficticia.", "O prazo conta da ciencia comprovada no cenario."]
+                    "items": ["O prazo conta da publicação fictícia.", "O prazo conta da ciência comprovada no cenário."]
                 }
             ]
         },
         {
-            "title": "Investigacao orientada",
+            "title": "Investigação orientada",
             "blocks": [
                 {
                     "type": "investigacao",
-                    "texto": "Compare os trechos indicados no manual ficticio e anote os criterios usados por cada equipe."
+                    "texto": "Compare os trechos indicados no manual fictício e anote os critérios usados por cada equipe."
                 }
             ]
         },
         {
-            "title": "Conceito: interpretacao sistematica",
+            "title": "Conceito: interpretação sistemática",
             "blocks": [
                 {
                     "type": "conceito",
-                    "items": ["Ler o artigo no contexto do capitulo ficticio.", "Priorizar a finalidade declarada da norma ficticia."]
+                    "items": ["Ler o artigo no contexto do capítulo fictício.", "Priorizar a finalidade declarada da norma fictícia."]
                 }
             ]
         },
         {
-            "title": "Aplicacao analitica",
+            "title": "Aplicação analítica",
             "blocks": [
                 {
                     "type": "aplicacao",
                     "modalidade": "analitica",
-                    "texto": "Analise os dois pareceres ficticios e indique qual interpretacao esta melhor fundamentada, sem executar nenhuma tarefa operacional."
+                    "texto": "Analise os dois pareceres fictícios e indique qual interpretação está mais bem fundamentada, sem executar nenhuma tarefa operacional."
                 }
             ]
         },
         {
-            "title": "Sintese",
+            "title": "Síntese",
             "blocks": [
                 {
                     "type": "sintese",
-                    "texto": "A interpretacao mais consistente combina texto, contexto e finalidade declarada no cenario ficticio."
+                    "texto": "A interpretação mais consistente combina texto, contexto e finalidade declarada no cenário fictício."
                 }
             ]
         }
