@@ -7,6 +7,10 @@
     "properties": {
         "version": { "const": 2 },
         "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "subtitle": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "disciplina": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "professor": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "data": { "type": "string", "minLength": 1, "maxLength": 40 },
         "pedagogia": {
             "type": "object",
             "additionalProperties": false,
