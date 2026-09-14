@@ -2,11 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, cp, readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 
 const root = resolve(fileURLToPath(new URL('../../', import.meta.url)));
-const temp = await mkdtemp('/tmp/opencode/agente-aulas-persistencia-');
+const temp = await mkdtemp(join(tmpdir(), 'agente-aulas-persistencia-'));
 await cp(join(root, '_templates/assets'), join(temp, 'AULAS/assets'), { recursive: true });
 const report = join(temp, 'AULAS/registros-docentes/aula-01/relatorio.html');
 await cp(join(root, '_templates/relatorio-docente-template.html'), report);
