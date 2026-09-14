@@ -66,7 +66,7 @@ para configuração docente, caminhos, cópia, persistência, testes e limitaç�
 
 | Comando | Uso |
 |---------|-----|
-| `npm run relatorio -- gerar --aula aula-XX` | Criar relatório privado e JSON persistente |
+| `npm run relatorio -- gerar --aula aula-XX --valores <redacao.json>` | Renderizar textos redigidos pelo agente; `--modelo` para formulário vazio explícito |
 | `npm run aula:estado -- preparar --aula aula-XX --publicos ...` | Registrar rascunho e hash do conteúdo público |
 | `npm run aula:estado -- aprovar --aula aula-XX ...` | Aprovar conteúdo somente com responsável, fontes e rubrica |
 | `npm run pacote:alunos -- --aula aula-XX` | Gerar ZIP com lista explícita e manifesto |
