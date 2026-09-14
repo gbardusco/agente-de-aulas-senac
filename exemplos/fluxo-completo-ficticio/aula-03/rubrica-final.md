@@ -1,21 +1,21 @@
-# Rubrica ficticia aprovada - Aula demo 03
+# Rubrica fictícia aprovada - Aula demo 03
 
-Status: APROVADA em ambiente de demonstracao. Atividade: `atividade-03-estrutura-demo-1`.
+Status: APROVADA em ambiente de demonstração. Atividade: `atividade-03-estrutura-demo-1`.
 Rubrica: `rubrica-03-estrutura-demo-1-v1`. Problema: `problema-03-catalogo-demo-1`.
 Nenhum desempenho real foi avaliado.
 
-## Configuracao
+## Configuração
 
-- Indicador ficticio: `IND-DEMO-03`, fonte `fonte-plano-curso-ficticio`, secao 1.
-- Escala ficticia: `inicial`, `em-desenvolvimento`, `consolidado`.
-- Pesos: nao se aplica.
-- Aprovacao ficticia: Docente DEMO em 2026-09-09.
+- Indicador fictício: `IND-DEMO-03`, fonte `fonte-plano-curso-ficticio`, seção 1.
+- Escala fictícia: `inicial`, `em-desenvolvimento`, `consolidado`.
+- Pesos: não se aplicam.
+- Aprovação fictícia: Docente DEMO em 2026-09-09.
 
 ## Descritores
 
-| Criterio | Evidencia esperada | Inicial | Em desenvolvimento | Consolidado |
+| Critério | Evidência esperada | Inicial | Em desenvolvimento | Consolidado |
 |----------|-------------------|---------|-------------------|-------------|
-| Estrutura semantica | Pagina sintetica com titulo e descricao | Usa apenas texto sem estrutura | Usa alguns elementos semanticos | Usa estrutura semantica completa e coerente |
-| Clareza da demonstracao | Exemplo reproduzivel | Exemplo incompleto | Exemplo completo com pequenas lacunas | Exemplo completo, organizado e comentado |
+| Estrutura semântica | Página sintética com título e descrição | Usa apenas texto sem estrutura | Usa alguns elementos semânticos | Usa estrutura semântica completa e coerente |
+| Clareza da demonstração | Exemplo reproduzível | Exemplo incompleto | Exemplo completo com pequenas lacunas | Exemplo completo, organizado e comentado |
 
-Rubrica publica: contem apenas criterios. Evidencias e feedback ficam no relatorio privado ficticio.
+Rubrica pública: contém apenas critérios e descritores. Evidências e feedback ficam no relatório privado fictício.
