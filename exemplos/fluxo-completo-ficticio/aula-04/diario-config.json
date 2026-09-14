@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "instituicao": "Instituicao DEMO",
+    "instituicao": "Instituição DEMO",
     "sistema": "Sistema DEMO",
     "manual": "Manual DEMO",
     "manualVersao": "DEMO-1.0",
@@ -8,14 +8,14 @@
     "campos": [
         {
             "id": "configuracao",
-            "rotulo": "Rubrica, criterios, escala e preferencias de feedback aprovados",
+            "rotulo": "Rubrica, critérios, escala e preferências de feedback aprovados",
             "grupo": "configuracao",
             "obrigatorio": false,
             "limiteCaracteres": null
         },
         {
             "id": "evidencias",
-            "rotulo": "Evidencias e rastreabilidade (privado)",
+            "rotulo": "Evidências e rastreabilidade (privado)",
             "grupo": "evidencia",
             "obrigatorio": false,
             "limiteCaracteres": null
@@ -43,14 +43,14 @@
         },
         {
             "id": "observacao-docente",
-            "rotulo": "Observacao Docente",
+            "rotulo": "Observação Docente",
             "grupo": "diario",
             "obrigatorio": true,
             "limiteCaracteres": 1000
         },
         {
             "id": "recuperacao",
-            "rotulo": "Acoes de Recuperacao",
+            "rotulo": "Ações de Recuperação",
             "grupo": "diario",
             "obrigatorio": true,
             "limiteCaracteres": 1000
