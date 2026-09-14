@@ -4,7 +4,7 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import JSZip from 'jszip';
-import { generateSlides, validateDeck } from '../scripts/gerar-slides.mjs';
+import { generateSlides, validateDeck, textosDoBloco } from '../scripts/gerar-slides.mjs';
 
 const root = resolve(fileURLToPath(new URL('../', import.meta.url)));
 const pratica = join(root, '_templates/slides-fonte-template.json');
@@ -33,10 +33,14 @@ test('PBL pratico e teorico geram HTML e PPTX equivalentes e editaveis', async (
             assert.equal(deck.version, 2);
             const html = await readFile(join(saida, 'slides.html'), 'utf8');
             const textos = await textosPptx(join(saida, 'slides.pptx'));
-            assert.equal(textos.length, deck.slides.length);
-            for (const rotulo of rotulos) {
-                assert.ok(html.includes(rotulo), `HTML sem ${rotulo}`);
-                assert.ok(textos.some((texto) => texto.includes(rotulo)), `PPTX sem ${rotulo}`);
+            assert.equal(textos.length, deck.slides.length + 1);
+            assert.ok(textos[0].includes(deck.title));
+            for (const [index, slide] of deck.slides.entries()) {
+                assert.ok(textos[index + 1].includes(slide.title));
+                for (const texto of slide.blocks.flatMap(textosDoBloco)) {
+                    assert.ok(decode(html).includes(texto), `HTML sem ${texto}`);
+                    for (const line of texto.split('\n')) assert.ok(textos[index + 1].includes(line.trim()), `PPTX sem ${line}`);
+                }
             }
             assert.ok(!html.includes('<pre><code></pre>'));
         }
@@ -69,12 +73,12 @@ test('PBL rejeita arco incompleto, ordem errada e modalidade incoerente', () => 
         pedagogia: { ...base.pedagogia, modalidadeAplicacao: 'analitica' },
         slides: [base.slides[0], base.slides[1], { title: 'Aplicacao', blocks: [{ type: 'aplicacao', modalidade: 'analitica', texto: 'Analise.', codigo: 'x' }] }, base.slides[3]]
     };
-    assert.throws(() => validateDeck(analiticaComCodigo), /Fonte invalida/);
+    assert.throws(() => validateDeck(analiticaComCodigo), /Fonte inválida/);
     const praticaSemArtefato = {
         ...base,
         slides: [base.slides[0], base.slides[1], { title: 'Aplicacao', blocks: [{ type: 'aplicacao', modalidade: 'pratica', texto: 'Faca.' }] }, base.slides[3]]
     };
-    assert.throws(() => validateDeck(praticaSemArtefato), /Fonte invalida|codigo ou demonstracao/);
+    assert.throws(() => validateDeck(praticaSemArtefato), /Fonte inválida|código ou demonstração/);
 });
 
 test('exposicao legada v1 continua valida', () => {
