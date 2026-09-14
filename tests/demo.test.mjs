@@ -2,10 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { executarDemonstracao } from '../scripts/demo-fluxo.mjs';
 
 test('demonstracao ficticia executa fluxos pratico e teorico sem dados reais', async () => {
-    const saida = await mkdtemp('/tmp/opencode/demo-teste-');
+    const saida = await mkdtemp(join(tmpdir(), 'demo-teste-'));
     await rm(saida, { recursive: true, force: true });
     try {
         const resumo = await executarDemonstracao({ saida, sobrescrever: true });
