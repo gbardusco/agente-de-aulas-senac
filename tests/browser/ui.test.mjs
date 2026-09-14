@@ -2,12 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, cp, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 import { generateSlides } from '../../scripts/gerar-slides.mjs';
 
 const root = resolve(fileURLToPath(new URL('../../', import.meta.url)));
-const temp = await mkdtemp('/tmp/opencode/agente-aulas-browser-');
+const temp = await mkdtemp(join(tmpdir(), 'agente-aulas-browser-'));
 await mkdir(join(temp, 'AULAS/registros-docentes/aula-01'), { recursive: true });
 await cp(join(root, '_templates/assets'), join(temp, 'AULAS/assets'), { recursive: true });
 const report = join(temp, 'AULAS/registros-docentes/aula-01/relatorio.html');
