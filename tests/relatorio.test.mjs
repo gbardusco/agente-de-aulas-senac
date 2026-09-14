@@ -6,6 +6,25 @@ import { carregarConfiguracao, exportarRelatorio, gerarRelatorio, importarRelato
 
 const configPath = new URL('../_templates/diario-sistema-template.json', import.meta.url).pathname;
 
+test('relatorio vazio exige modelo explicito; textos redigidos ficam antes do apoio', async () => {
+    const raiz = await mkdtemp('/tmp/opencode/relatorio-fluxo-');
+    try {
+        await assert.rejects(gerarRelatorio({ raiz, aulaId: 'aula-01', configPath }), /Nenhum texto redigido/);
+        const modelo = await gerarRelatorio({ raiz, aulaId: 'aula-01', configPath, modelo: true });
+        assert.match(await readFile(modelo.htmlPath, 'utf8'), /Modelo vazio/);
+        const resultado = await gerarRelatorio({ raiz, aulaId: 'aula-02', configPath, valores: {
+            campos: [{ id: 'atividades-chamada', valor: 'Análise de dois casos e retomada dos critérios.' }],
+            pendencias: ['Qual foi a data de aplicação?']
+        } });
+        const html = await readFile(resultado.htmlPath, 'utf8');
+        assert.ok(html.indexOf('id="textos-finais"') < html.indexOf('<summary>Evidências'));
+        assert.match(html, /Qual foi a data de aplicação\?/);
+        assert.equal(resultado.relatorio.modelo, false);
+    } finally {
+        await rm(raiz, { recursive: true, force: true });
+    }
+});
+
 test('relatorio canonico usa configuracao, preserva rastreabilidade e rejeita duplicados', async () => {
     const config = await carregarConfiguracao(configPath);
     const relatorio = montarRelatorio({
@@ -21,7 +40,7 @@ test('relatorio canonico usa configuracao, preserva rastreabilidade e rejeita du
     });
     assert.equal(relatorio.campos.length, 7);
     assert.equal(relatorio.campos.find((campo) => campo.id === 'atividades-chamada').valor, 'Aula aplicada com evidencia ficticia.');
-    assert.throws(() => montarRelatorio({ aulaId: 'aula-XX', config, valores: {} }), /Identificador invalido/);
+    assert.throws(() => montarRelatorio({ aulaId: 'aula-XX', config, valores: {} }), /Identificador inválido/);
     assert.throws(() => montarRelatorio({
         aulaId: 'aula-03',
         config,
@@ -53,7 +72,7 @@ test('gerar, exportar e importar preservam texto, escapam HTML e nao sobrescreve
         assert.ok(html.includes('id="status-feedback-aluno-demo-1"'));
         assert.equal(relatorio.campos.length, 8);
         assert.equal(JSON.parse(await readFile(jsonPath, 'utf8')).campos.find((campo) => campo.id === 'observacao-docente').valor, malicioso);
-        await assert.rejects(gerarRelatorio({ raiz, aulaId: 'aula-03', configPath }), /ja existe/);
+        await assert.rejects(gerarRelatorio({ raiz, aulaId: 'aula-03', configPath, valores: { campos: [{ id: 'observacao-docente', valor: 'Preservar' }] } }), /já existe/);
 
         const editado = html.replace('&lt;/script&gt;&lt;script&gt;alert(&quot;x&quot;)', 'Texto revisado');
         await writeFile(htmlPath, editado);
