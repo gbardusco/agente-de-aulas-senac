@@ -44,7 +44,7 @@ test('biblioteca rejeita duplicados, arquivos ausentes e citacoes sem leitura', 
         assert.ok(resultado.erros.some((erro) => erro.includes('duplicado')));
         assert.ok(resultado.erros.some((erro) => erro.includes('ausente')));
         const citacoes = verificarCitacoes([{ id: 'fonte-ausente' }, { id: 'fonte-x' }], resultado.registros);
-        assert.ok(citacoes.erros.some((erro) => erro.includes('fora do catalogo')));
+        assert.ok(citacoes.erros.some((erro) => erro.includes('fora do catálogo')));
         assert.ok(citacoes.avisos.some((aviso) => aviso.includes('sem leitura')));
     } finally {
         await rm(raiz, { recursive: true, force: true });
